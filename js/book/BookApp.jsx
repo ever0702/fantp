@@ -3,10 +3,12 @@ import AddBook from './AddBook';
 import BookListContainer from './BookListContainer';
 
 
-const BookApp = () => (
+const BookApp = ({children}) => (
 		<div>
 			<AddBook />
 			<BookListContainer />
+			{children}
+			<h5>After children</h5>
 		</div>
 	);
 
