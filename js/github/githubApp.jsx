@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GithubUserSearch from './githubUserSearch';
+import GithubUserSearch from './GithubUserSearch';
 import GithubUserContainer from './cmps/GithubUserContainer';
 
 const GithubApp = () => (

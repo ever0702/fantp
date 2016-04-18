@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import configStore from './reduxStore';
 
 import simpleLogger from './middlewares/simpleLogger';
 // import todoApp from './reducers/allReducers';
@@ -13,21 +14,22 @@ import {fetchBooks} from './book/bookActionCreators';
 
 import BookApp from './book/BookApp';
 import TodoApp from './todo/todoApp';
-import GithubApp from './github/githubApp';
+import GithubApp from './github/GithubApp';
+import EmployeeApp from './employee/EmployeeApp';
 
-let store = createStore(rootReducer, {}, compose(
-		applyMiddleware(thunk, simpleLogger),
-		window.devToolsExtension ? window.devToolsExtension() : f => f
-		));
+import './styleRoot';
 
+
+let store = configStore;
 
 const App = ({children}) => (
 		<div>
 	        <h1>My App</h1>
 	        <ul>
-	          <li><Link to="/todo-app">Todo App</Link></li>
+	          <li><Link to="/todo-app" className="red">Todo App</Link></li>
 	          <li><Link to="/book-app">Book App</Link></li>
 	          <li><Link to="/github-app">Github App</Link></li>
+	          <li><Link to="/employee-app">Employee App</Link></li>
 	        </ul>
 
 	        {children}
@@ -53,9 +55,8 @@ let Routes = (
 					<Route path='todo-app' component={TodoApp} >
 					</Route>
 					<Route path='book-app' component={BookApp} />
-					<Route path='github-app' component={GithubApp} >
-
-					</Route>
+					<Route path='github-app' component={GithubApp} />
+					<Route path='employee-app' component={EmployeeApp} />
 				</Route>
 			</Router>
 		</Provider>
