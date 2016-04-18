@@ -13,24 +13,26 @@ import rootReducer from './rootReducer';
 import {fetchBooks} from './book/bookActionCreators';
 
 import BookApp from './book/BookApp';
-import TodoApp from './todo/todoApp';
+// import TodoApp from './todo/todoApp';
 import GithubApp from './github/GithubApp';
 import EmployeeApp from './employee/EmployeeApp';
 
-import './styleRoot';
 
+
+import './styleRoot';
 
 let store = configStore;
 
 const App = ({children}) => (
 		<div>
 	        <h1>My App</h1>
+	        <button className="btn btn-success white">Hey bootstrap</button>
 	        <ul>
-	          <li><Link to="/todo-app" className="red">Todo App</Link></li>
 	          <li><Link to="/book-app">Book App</Link></li>
 	          <li><Link to="/github-app">Github App</Link></li>
 	          <li><Link to="/employee-app">Employee App</Link></li>
 	        </ul>
+
 
 	        {children}
       </div>
@@ -52,8 +54,6 @@ let Routes = (
 			<Router history={hashHistory}>
 				<Route path='/' component = {App} >
 					<IndexRoute component={BookApp} />
-					<Route path='todo-app' component={TodoApp} >
-					</Route>
 					<Route path='book-app' component={BookApp} />
 					<Route path='github-app' component={GithubApp} />
 					<Route path='employee-app' component={EmployeeApp} />

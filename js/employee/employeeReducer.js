@@ -1,22 +1,20 @@
 import employeeActions from './employeeActions';
 import { addEmployee, employeeFormChange } from './employeeActionCreators';
 
-const { ADD_EMPLOYEE, EMPLOYEE_FORM_CHANGE } = employeeActions;
+const { ADD_EMPLOYEE, EMPLOYEE_FORM_CHANGE, ADD_EMPLOYEE_FORM_ERROR, REMOVE_ADD_EMPLOYEE_FORM_ERROR } = employeeActions;
 
 let nextEmpId = 0;
 
-console.log('hey')
 const defaultState = {
     addEmployeeForm: {
         firstName: 'yo',
         age: 145
     },
-
+    addEmployeeFormErrors: [],
     employees: []
 };
 
 const reducer = (state = defaultState, action) => {
-	console.log('hhgg')
     switch (action.type) {
         case ADD_EMPLOYEE:
             return {
@@ -33,11 +31,31 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 addEmployeeForm: {...action.form }
-            }
+            };
+        case ADD_EMPLOYEE_FORM_ERROR:
+            return {
+                ...state,
+                addEmployeeFormErrors: addError(state.addEmployeeFormErrors, action.fieldName)
+            };
+        case REMOVE_ADD_EMPLOYEE_FORM_ERROR:
+            return {
+                ...state,
+                addEmployeeFormErrors: state.addEmployeeFormErrors.filter(err => err !== action.fieldName)
+            };
         default:
             return state;
     }
 };
+
+function addError(errors, fieldName) {
+    if (errors.indexOf(fieldName) < 0) {
+        return [...errors, fieldName];
+    } else {
+        return [...errors];
+    }
+}
+
+
 
 
 export default reducer;
