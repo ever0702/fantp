@@ -1,6 +1,6 @@
 import actionTypes from './bookActionConstants';
 
-import {get, postJSON } from '../httpUtils/httpHelper';
+import {get, postJSON } from '../utils/httpHelper';
 
 const {
     CREATE_BOOK,

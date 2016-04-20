@@ -6,10 +6,10 @@ let CreateEmployeeForm = ({fields: {firstName, age}, resetForm}) => (
 		<form onSubmit={
 			e => console.log('submmmmmmmm')
 		}>
-
+		
 			<input {...firstName}/>
 			<input {...age}/>
-			<button onClick={e=> resetForm()}>RESET</button>
+			<button onClick={e=> resetForm()}>Reseee</button>
 
 		</form>
 

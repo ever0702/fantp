@@ -3,7 +3,21 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {addEmployee, employeeFormChange, addEmployeeFormError, removeAddEmployeeFormError} from '../employeeActionCreators';
 import FormInput from '../../commonComponents/FormInput';
+
+import {Hello} from '../../decorators/HelloDecorator';
 import './emp.scss';
+
+@Hello('I am testing decor')
+class TestDecor {
+	constructor() {
+		console.log('cons');
+	}
+
+}
+
+var mytest = new TestDecor();
+var mytest2 = new TestDecor();
+
 
 let AddEmployeeForm = ({form, onFormChange, onSubmit, validateFirstname, errors}) => {
 
@@ -13,7 +27,7 @@ let AddEmployeeForm = ({form, onFormChange, onSubmit, validateFirstname, errors}
 					e.preventDefault();
 					onSubmit(form);
 				}} onChange={e=> console.log('form on change ', e)}>
-					<FormInput label="FristName" value={form.firstName} onChange={firstName => onFormChange({...form, firstName})} validate={value => validateFirstname(value)}/>
+					<FormInput label="FIRST" value={form.firstName} onChange={firstName => onFormChange({...form, firstName})} validate={value => validateFirstname(value)}/>
 					<FormInput label="Age" value={form.age} onChange={age => onFormChange({...form, age})} validate={age => !isNaN(age)&&parseInt(age)>18?true: 'At least 18 years old'}/>
 
 

@@ -1,9 +1,23 @@
 import React from 'react';
-import BookApp from './book/BookApp';
-const App = () => (
-		<div>
-			<BookApp />
-		</div>
+import {render} from 'react-dom';
+import {AppContainer} from 'react-hot-loader';
+import AppRoutes from './routes';
+import configStore from './reduxStore';
+import './styleRoot';
+
+let store = configStore;
+
+
+render(
+		<AppContainer
+			component={AppRoutes}
+			props={{store}}
+		/>,
+		document.getElementById('react')
 	);
 
-export default App;
+if(module.hot) {
+	module.hot.accept();
+}
+
+

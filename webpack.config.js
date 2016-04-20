@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
@@ -11,7 +12,9 @@ module.exports = {
     entry: [
         // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         'webpack-hot-middleware/client?reload=true',
-        './js/index'
+        'webpack/hot/only-dev-server',
+        'react-hot-loader/patch',
+        './js/bootstrap'
     ],
     output: {
         path: __dirname + '/public',
@@ -44,6 +47,14 @@ module.exports = {
         }]
     },
     resolve: {
+        alias: {
+            'redux-devtools/lib': path.join(__dirname, '..', '..', 'src'),
+            'redux-devtools': path.join(__dirname, '..', '..', 'src'),
+            'react': path.join(__dirname, 'node_modules', 'react')
+        },
         extensions: ['', '.js', '.json', '.jsx', 'css', 'scss']
+    },
+    resolveLoader: {
+        fallback: path.join(__dirname, 'node_modules')
     }
 }

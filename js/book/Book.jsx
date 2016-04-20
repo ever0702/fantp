@@ -1,8 +1,20 @@
 import React from 'react';
 
-let Book = ({id, name}) => (
+class Book extends React.Component {
+	render() {
+		const {name} = this.props;
+		return  (
+
 		<div>
-			<span>{name}</span>
+			<span>{name} Please Wellhello ss</span>
 		</div>
-	)
+			)
+	}
+};
+
+// let Book = ({id, name}) => (
+// 		<div>
+// 			<span>{name}</span>
+// 		</div>
+// 	)
 export default Book;

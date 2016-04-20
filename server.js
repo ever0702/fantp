@@ -16,7 +16,17 @@ let books = [{
 }, {
     id: 2,
     name: 'JAVA'
-}]
+}];
+
+let todos = [{
+    id: 1,
+    text: 'first',
+    completed: false
+}, {
+    id: 2,
+    text: 'second tod',
+    completed: true
+}];
 
 let app = express();
 
@@ -64,6 +74,36 @@ let MONGO_URL = 'mongodb://localhost/relay_graph';
         };
         books.push(newBook);
         res.send(newBook);
+    });
+
+    app.get('/todos', (req, res) => {
+        res.send(todos);
+    });
+
+    app.post('/todos', (req, res) => {
+        let {text} = req.body;
+        const newTodo = {
+            id: nextBookId ++,
+            text,
+            completed: false
+        };
+
+        res.send(newTodo);
+    });
+
+    app.put('/todos/:id', (req, res) => {
+        let {id} = req.params;
+        let {completed} = req.body;
+
+        todos = todos.map(td => ({
+            ...td,
+            completed
+        }));
+
+        res.send({
+            success: true
+        });
+
     });
 
 })();
