@@ -2,7 +2,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {addEmployee, employeeFormChange, addEmployeeFormError, removeAddEmployeeFormError} from '../employeeActionCreators';
-import FormInput from '../../commonComponents/FormInput';
 
 import {Hello} from '../../decorators/HelloDecorator';
 import './emp.scss';
@@ -27,9 +26,6 @@ let AddEmployeeForm = ({form, onFormChange, onSubmit, validateFirstname, errors}
 					e.preventDefault();
 					onSubmit(form);
 				}} onChange={e=> console.log('form on change ', e)}>
-					<FormInput label="FIRST" value={form.firstName} onChange={firstName => onFormChange({...form, firstName})} validate={value => validateFirstname(value)}/>
-					<FormInput label="Age" value={form.age} onChange={age => onFormChange({...form, age})} validate={age => !isNaN(age)&&parseInt(age)>18?true: 'At least 18 years old'}/>
-
 
 					<input value={form.firstName} onChange={(e) => onFormChange({...form, firstName: e.target.value})} placeholder="First Name" />
 					<input value={form.age} onChange={(e) => onFormChange({...form, age: e.target.value})} placeholder="age" />

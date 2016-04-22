@@ -1,20 +1,34 @@
 import { todoActions } from './todoActions';
 
 const {
+    SET_SEARCH_TEXT,
     SET_VISIBILITY_FILTER,
     CREATE_TODO,
     FETCH_TODOS,
     TOGGLE_TODO,
-    DELETE_TODO
+    DELETE_TODO,
+    SEARCH_TODOS
 } = todoActions;
 
 const initState = {
+    todoSearchText: 'init',
+    todoAutocompleteOptions: [],
     todos: []
 };
 
 const todoReducer = (state = initState, action) => {
 
     switch (action.type) {
+        case SET_SEARCH_TEXT: 
+            return {
+                ...state,
+                todoSearchText: action.text
+            }
+        case SEARCH_TODOS.SUCCESS: 
+            return {
+                ...state,
+                todoAutocompleteOptions: action.data
+            }
         case FETCH_TODOS.SUCCESS:
             return {
                 ...state,

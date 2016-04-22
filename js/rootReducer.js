@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import bookAppReducer from './book/bookAppReducer';
-import githubReducer from './github/githubReducer';
 import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
 
@@ -13,7 +12,6 @@ if(module.hot) {
 
 const rootReducer = combineReducers({
     bookApp: bookAppReducer,
-    githubApp: githubReducer,
     employeeApp: employeeReducer,
     todoApp: todoReducer,
     form: formReducer

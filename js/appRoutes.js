@@ -8,12 +8,9 @@ import simpleLogger from './middlewares/simpleLogger';
 import HomeApp from './home/HomeApp';
 import TodoApp from './todo/TodoApp';
 import BookApp from './book/BookApp';
-import GithubApp from './github/GithubApp';
 import EmployeeApp from './employee/EmployeeApp';
 
-
 let store = configStore;
-
 
 const App = ({children}) => (
 		<div>
@@ -36,8 +33,6 @@ class AppRoutes extends React.Component{
 						<Route path='home-app' component={HomeApp} />
 						<Route path='todo-app' component={TodoApp} />
 						<Route path='book-app' component={BookApp} />
-						<Route path='github-app' component={GithubApp} />
-						<Route path='employee-app' component={EmployeeApp} />
 					</Route>
 				</Router>
 			</Provider>

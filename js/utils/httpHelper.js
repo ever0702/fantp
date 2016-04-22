@@ -22,7 +22,7 @@ const jsonHeader = {
     'Content-Type': 'application/json'
 };
 
-var send = ({ url, method = 'get', data = {}, config = {} }) => {
+const send = ({ url, method = 'get', data = {}, config = {} }) => {
     let body = data;
     if (typeof data == 'object') {
         body = JSON.stringify(data);

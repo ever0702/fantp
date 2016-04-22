@@ -10,6 +10,8 @@ const TodoList = ({todos, toggleTodo, deleteTodo}) => (
 					)
 				)
 			}
+
+			<input className="test" />
 		</ul>
 	);
 

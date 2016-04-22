@@ -38,8 +38,8 @@ const asyncActionHelper = ({ dispatch, actionName, payload = {}, startActionPayl
 
     let http = get;
     if (method == 'post') http = post;
-    if (method == 'put') http = put;
-    if(method =='delete') http = deletex;
+    else if (method == 'put') http = put;
+    else if(method =='delete') http = deletex;
 
     return http(url, requestPayload).then(
 

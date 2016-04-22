@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TodoItem = ({_id, text, completed, toggleTodo, deleteTodo}) => (
-
 		<li>
 			<div>{_id+ '    '}</div>
 			<span>{text +' '}</span> 
