@@ -1,14 +1,12 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-const TodoList = ({todos, onTodoClick}) => (
+const TodoList = ({todos, toggleTodo, deleteTodo}) => (
 
 		<ul>
 			{
 				todos.map(td => (
-					<div onClick={e=> onTodoClick(td)}>
-						<TodoItem  {...td} key={td.id} />
-					</div>
+						<TodoItem  key={td._id} {...td}  toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
 					)
 				)
 			}

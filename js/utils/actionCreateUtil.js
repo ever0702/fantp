@@ -1,4 +1,4 @@
-import {get, postJSON, put } from './httpHelper';
+import {get, post, put , deletex} from './httpHelper';
 
 const actionConstantHelper = config => {
     let actions = {};
@@ -21,7 +21,13 @@ const actionConstantHelper = config => {
 
 }
 
-const asyncActionHelper = ({ dispatch, actionName, startActionPayload, requestPayload,successPayload, successParamName, method ='get', url }) => {
+const asyncActionHelper = ({ dispatch, actionName, payload = {}, startActionPayload, requestPayload, successPayload, successParamName = 'data', method = 'get', url }) => {
+
+    startActionPayload = startActionPayload || payload;
+    successPayload = successPayload || payload;
+    requestPayload = requestPayload || payload;
+
+
     dispatch({
         type: actionName + '_REQUEST',
         ...startActionPayload
@@ -29,11 +35,11 @@ const asyncActionHelper = ({ dispatch, actionName, startActionPayload, requestPa
 
     method = method.toLowerCase();
 
-    if (!successParamName) successParamName = 'data';
 
     let http = get;
-    if (method == 'post') http = postJSON;
+    if (method == 'post') http = post;
     if (method == 'put') http = put;
+    if(method =='delete') http = deletex;
 
     return http(url, requestPayload).then(
 

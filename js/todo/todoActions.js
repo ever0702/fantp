@@ -1,9 +1,8 @@
 import { actionConstantHelper, asyncActionHelper } from '../utils/actionCreateUtil';
-import {get, postJSON } from '../utils/httpHelper';
 
 const actionConfig = {
     sync: ['SET_VISIBILITY_FILTER'],
-    async: ['CREATE_TODO', 'FETCH_TODOS', 'TOGGLE_TODO']
+    async: ['CREATE_TODO', 'FETCH_TODOS', 'TOGGLE_TODO', 'DELETE_TODO']
 }
 
 const todoActions = actionConstantHelper(actionConfig);
@@ -12,7 +11,8 @@ const {
     SET_VISIBILITY_FILTER,
     CREATE_TODO,
     FETCH_TODOS,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    DELETE_TODO
 } = todoActions;
 
 const fetchTodos = () => dispatch => {
@@ -26,10 +26,7 @@ const fetchTodos = () => dispatch => {
 
 const createNewTodo = text => dispatch => asyncActionHelper({
 	dispatch,
-	startActionPayload: {
-		text
-	},
-	requestPayload: {
+	payload: {
 		text
 	},
 	actionName: 'CREATE_TODO',
@@ -41,15 +38,8 @@ const createNewTodo = text => dispatch => asyncActionHelper({
 
 const toggleTodo = (id, completed) => dispatch => asyncActionHelper({
 	dispatch,
-	startActionPayload: {
-		id, 
-		completed
-	},
-	successPayload: {
-		id, completed
-	},
-	requestPayload: {
-		id, 
+	payload: {
+		id,
 		completed
 	},
 	actionName: 'TOGGLE_TODO',
@@ -57,4 +47,15 @@ const toggleTodo = (id, completed) => dispatch => asyncActionHelper({
 	url: `/todos/${id}`
 });
 
-export { todoActions, fetchTodos, createNewTodo, toggleTodo };
+const deleteTodo = id => dispatch => asyncActionHelper({
+	dispatch,
+	payload: {
+		id
+	},
+	successParamName: 'todo',
+	actionName:'DELETE_TODO',
+	method:'DELETE',
+	url:`/todos/${id}`
+});
+
+export { todoActions, fetchTodos, createNewTodo, toggleTodo , deleteTodo};

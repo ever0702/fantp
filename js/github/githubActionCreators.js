@@ -1,5 +1,5 @@
 import githubActions from './githubActionConstants';
-import {get} from '../httpUtils/httpHelper';
+import {get} from '../utils/httpHelper';
 
 const {
 	SEARCH_GITHUB_USER_REQUEST,

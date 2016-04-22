@@ -4,7 +4,8 @@ const {
     SET_VISIBILITY_FILTER,
     CREATE_TODO,
     FETCH_TODOS,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    DELETE_TODO
 } = todoActions;
 
 const initState = {
@@ -27,10 +28,15 @@ const todoReducer = (state = initState, action) => {
         case TOGGLE_TODO.SUCCESS:
             return {
                 ...state,
-                todos: state.todos.map(todo => todo.id == action.id ? {
+                todos: state.todos.map(todo => (todo._id == action.id ? {
                     ...todo,
                     completed: action.completed
-                } : todo)
+                } : todo))
+            }
+        case DELETE_TODO.SUCCESS: 
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo._id != action.id)
             }
         default:
             return state;

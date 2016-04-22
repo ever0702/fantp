@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 
-import {fetchTodos, toggleTodo} from '../todoActions';
+import {fetchTodos, toggleTodo, deleteTodo} from '../todoActions';
 import TodoList from './TodoList';
 
 class TodoListContainer extends Component {
@@ -20,7 +20,7 @@ class TodoListContainer extends Component {
 		let {todos, onTodoClick} = this.props;
 		return (
 			
-				<TodoList todos={ todos} onTodoClick={onTodoClick}/>
+				<TodoList todos={ todos} {...this.props}/>
 			);
 	}
 
@@ -32,7 +32,8 @@ TodoListContainer = connect(
 		}),
 		dispatch => ({
 			fetchTodos: () => dispatch(fetchTodos()),
-			onTodoClick: todo => dispatch(toggleTodo(todo.id, !todo.completed))
+			toggleTodo: (id, completed) => dispatch(toggleTodo(id, completed)),
+			deleteTodo: id => dispatch(deleteTodo(id))
 		})
 	)(TodoListContainer);
 
