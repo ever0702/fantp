@@ -53,12 +53,6 @@
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
-    "whatwg-fetch": "^0.11.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.7.7",
-    "babel-loader": "^6.2.4",
-    "browser-sync": "^2.12.3",
     "browser-sync-webpack-plugin": "^1.0.1",
     "colors.css": "^3.0.0",
     "css-loader": "^0.23.1",
@@ -66,13 +60,16 @@
     "nodemon": "^1.9.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
+    "whatwg-fetch": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "browser-sync": "^2.12.3",
     "redux-devtools-diff-monitor": "^5.0.4",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
   }
 }
