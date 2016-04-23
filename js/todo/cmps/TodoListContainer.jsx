@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-
 import {fetchTodos, toggleTodo, deleteTodo} from '../todoActions';
 import TodoList from './TodoList';
+import Track from '../../decorators/trackDecorator';
 
 class TodoListContainer extends Component {
 
