@@ -7,8 +7,8 @@ import todoRouter from './todo/todo.router';
 let config = {
 	secret: 'TheBestIsYetToBe',
 	tokenExpiresInMinutes: 20,
-	database: 'mongodb://localhost:27017/relay_graph'
-	// database: 'mongodb://root:1234@ds063124.mongolab.com:63124/chattyladder'
+	// database: 'mongodb://localhost:27017/relay_graph'
+	database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
 };
 
 
