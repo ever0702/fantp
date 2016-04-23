@@ -5,8 +5,8 @@ import Header from './partials/Header';
 
 import configStore from './reduxStore';
 import simpleLogger from './middlewares/simpleLogger';
-import HomeApp from './home/HomeApp';
-import TodoApp from './todo/TodoApp';
+import HomeApp from './home/homeApp';
+import TodoApp from './todo/todoApp';
 import BookApp from './book/BookApp';
 import EmployeeApp from './employee/EmployeeApp';
 
