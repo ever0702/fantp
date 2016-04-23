@@ -51,61 +51,61 @@ app.use(bodyParser.json());
 
 let MONGO_URL = 'mongodb://localhost/relay_graph';
 
-(async() => {
+// (async() => {
 
-    // let db = await MongoClient.connect(MONGO_URL);
+// let db = await MongoClient.connect(MONGO_URL);
 
 
-    app.listen(3500, () => console.log('Listening on Port 3500'));
+app.listen(3500, () => console.log('Listening on Port 3500'));
 
-    app.get('/coms', (req, res) => {
-        res.send(['Google', 'facebook', 'amazon']);
+app.get('/coms', (req, res) => {
+    res.send(['Google', 'facebook', 'amazon']);
+});
+
+app.get('/books', (req, res) => {
+    res.send(books);
+})
+
+app.post('/books', (req, res) => {
+    let { bookName } = req.body;
+    const newBook = {
+        id: nextBookId++,
+        name: bookName
+    };
+    books.push(newBook);
+    res.send(newBook);
+});
+
+app.get('/todos', (req, res) => {
+    res.send(todos);
+});
+
+app.post('/todos', (req, res) => {
+    let { text } = req.body;
+    const newTodo = {
+        id: nextBookId++,
+        text,
+        completed: false
+    };
+
+    res.send(newTodo);
+});
+
+app.put('/todos/:id', (req, res) => {
+    let { id } = req.params;
+    let { completed } = req.body;
+
+    todos = todos.map(td => ({
+        ...td,
+        completed
+    }));
+
+    res.send({
+        success: true
     });
 
-    app.get('/books', (req, res) => {
-        res.send(books);
-    })
+});
 
-    app.post('/books', (req, res) => {
-        let { bookName } = req.body;
-        const newBook = {
-            id: nextBookId++,
-            name: bookName
-        };
-        books.push(newBook);
-        res.send(newBook);
-    });
-
-    app.get('/todos', (req, res) => {
-        res.send(todos);
-    });
-
-    app.post('/todos', (req, res) => {
-        let {text} = req.body;
-        const newTodo = {
-            id: nextBookId ++,
-            text,
-            completed: false
-        };
-
-        res.send(newTodo);
-    });
-
-    app.put('/todos/:id', (req, res) => {
-        let {id} = req.params;
-        let {completed} = req.body;
-
-        todos = todos.map(td => ({
-            ...td,
-            completed
-        }));
-
-        res.send({
-            success: true
-        });
-
-    });
-
-})();
+// })();
 
 console.log(MONGO_URL);
