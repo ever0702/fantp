@@ -13,12 +13,18 @@ const {
 const initState = {
     todoSearchText: 'init',
     todoAutocompleteOptions: [],
+    visibilityFilter: 'ALL',
     todos: []
 };
 
 const todoReducer = (state = initState, action) => {
 
     switch (action.type) {
+        case SET_VISIBILITY_FILTER: 
+            return {
+                ...state,
+                visibilityFilter: action.value
+            };
         case SET_SEARCH_TEXT: 
             return {
                 ...state,

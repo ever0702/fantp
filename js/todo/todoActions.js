@@ -16,6 +16,11 @@ const {
     DELETE_TODO
 } = todoActions;
 
+const setVisibilityFilter = value => ({
+    type: SET_VISIBILITY_FILTER,
+    value
+});
+
 const setSearchText = text => ({
 	type: SET_SEARCH_TEXT,
 	text
@@ -72,4 +77,4 @@ const deleteTodo = id => dispatch => asyncActionHelper({
     url: `/todos/${id}`
 });
 
-export { todoActions, fetchTodos, createNewTodo, toggleTodo, deleteTodo, setSearchText , searchTodos};
+export { todoActions, fetchTodos, createNewTodo, toggleTodo, deleteTodo, setSearchText , searchTodos, setVisibilityFilter};
