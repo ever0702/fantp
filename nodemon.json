@@ -1,4 +1,4 @@
 {
-    verbose: false,
-    "ignore": ["public", "src", "js"]
+    "verbose": false,
+    "ignore": ["/public/*", "/src/*", "/js/*"]
 }

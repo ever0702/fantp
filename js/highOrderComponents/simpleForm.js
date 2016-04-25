@@ -32,7 +32,8 @@ const simpleForm = ({ formName, fields, validator, asyncValidator }) => WrappedC
         }
 
         render() {
-            return ( <WrappedCmp {...this.props} onChange={this.onFieldChange}/>
+            return (
+             <WrappedCmp {...this.props} onChange={this.onFieldChange}/>
             )
         }
     }

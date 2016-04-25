@@ -5,20 +5,21 @@ import DelayInput from '../commonComponents/DelayInput';
 import {get} from '../utils/httpHelper';
 import authService from './auth.service';
 import {signup} from './authActions';
+import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 
 class SignupForm extends React.Component {
 
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			checkingUnique: false,
 			isUserUnique: true,
 			showUserUnique: false,
-			username: '', 
-			password: '', 
-			email: ''
+			form: createFormInitialState(['username', 'email', 'password', 'repassword'])
+		}
 
-		};
+		this.getHandler= formEvtHandler(this.state, this.setState.bind(this));
 
 		this.submitForm = this.submitForm.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
@@ -29,6 +30,20 @@ class SignupForm extends React.Component {
 		...this.state,
 		[key]: value
 	})
+
+	testChange = value => {
+		console.log('test change', value)
+		this.setState({
+		...this.state,
+		form: {
+			...this.state.form,
+			fields: {
+				...this.state.form.fields,
+				email: value.target.value
+			}
+		}	
+	})
+	}
 
 	 onUsernameChange= username => {
 	 	if(username.length < 3) {
@@ -42,7 +57,6 @@ class SignupForm extends React.Component {
 	 		.then(res => {
 	 			console.log(res)
 	 			this.setState({
-	 				...this.state,
 	 				showUserUnique: true,
 	 				isUserUnique: res.unique
 	 			})
@@ -56,18 +70,14 @@ class SignupForm extends React.Component {
 			password,
 			email
 		})).then(res => console.log(res));
-		// authService.signup({
-		// 	username, 
-		// 	password,
-		// 	email
-		// }).then(res => console.log(res));
 	}
 
 	render(){
+		let {getHandler, setState, state} = this;
 
-		let state = this.state;
 		let {showUserUnique, isUserUnique} = state;
-		this.onInputChange = this.onInputChange.bind(this);
+
+		let {username, password, email, repassword} = this.state.form.fields;
 
 		return (
 			<div className="signup-form card">
@@ -77,7 +87,7 @@ class SignupForm extends React.Component {
 						e.preventDefault();
 						this.submitForm(); }
 					}>
-						<fieldset>
+						<fieldset className="form-group">
 							<label htmlFor="">Username</label>
 							{
 								showUserUnique &&
@@ -87,16 +97,17 @@ class SignupForm extends React.Component {
 									</span>
 								</label>
 							}
-							<DelayInput onTextChange={v => {this.onInputChange('username', v); this.onUsernameChange(v)} } type="email" className="form-control" placeholder="Email" />
+							<DelayInput {...getHandler('username')} onTextChange={v => {this.onInputChange('username', v); this.onUsernameChange(v)} } type="email" className="form-control" placeholder="Username" />
 						</fieldset>
 						<LabelFieldSet label="Email" >
-							<input type="text" value={state.email} className="form-control" placeholder="email" onChange={e=> this.onInputChange('email', e.target.value)}/>
+							<input {...getHandler('email')} type="text" value={email} className="form-control" placeholder="Email"/>
+							<small className="text-danger help-block">Erros happends</small>
 						</LabelFieldSet>
-						<LabelFieldSet label="Password" >
-							<input type="password" onChange={e=> this.onInputChange('password', e.target.value)} className="form-control" placeholder="Password"/>
+						<LabelFieldSet label="Password" err="password">
+							<input {...getHandler('password')} type="password" className="form-control" value={password} placeholder="Password"/>
 						</LabelFieldSet>
 						<LabelFieldSet label="Re-Passowrd" >
-							<input type="password" className="form-control" placeholder="Re-Password" onChange={e => this.onInputChange('repassword', e.target.value)} />
+							<input {...getHandler('repassword')} type="password" className="form-control" value={repassword} placeholder="Re-Password" onChange={e => this.onInputChange('repassword', e.target.value)} />
 						</LabelFieldSet>
 						<button type="submit" className="btn btn-primary">Submit</button>
 					</form>

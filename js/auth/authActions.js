@@ -5,6 +5,7 @@ const actionConfig = {
 	async: ['SIGN_UP', 'SIGN_IN']
 };
 
+
 const authActions = actionConstantHelper(actionConfig);
 
 const {

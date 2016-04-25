@@ -3,6 +3,7 @@ import {todoActions} from './todoActions';
 import TodoSearch from './cmps/TodoSearch';
 import CreateTodoForm from './cmps/CreateTodoForm';
 import TodoListContainer from './cmps/TodoListContainer';
+import TodoFilterLink from './cmps/TodoFilterLink';
 
 
 console.log(todoActions);
@@ -13,6 +14,11 @@ const TodoApp = () => (
 			<TodoSearch />
 			<CreateTodoForm />
 			<TodoListContainer />
+
+			<TodoFilterLink  value="ALL">All</TodoFilterLink>
+			<TodoFilterLink  value="COMPLETED">Completed</TodoFilterLink>
+			<TodoFilterLink  value="ACTIVE">Active</TodoFilterLink>
+
 		</div>
 		
 	);

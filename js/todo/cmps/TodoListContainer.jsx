@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-
 import {fetchTodos, toggleTodo, deleteTodo} from '../todoActions';
 import TodoList from './TodoList';
+import Track from '../../decorators/trackDecorator';
 
 class TodoListContainer extends Component {
 
@@ -28,7 +28,16 @@ class TodoListContainer extends Component {
 
 TodoListContainer = connect(
 		state => ({
-			todos: state.todoApp.todos
+			todos: state.todoApp.todos.filter(td => {
+				switch(state.todoApp.visibilityFilter) {
+					case 'COMPLETED':
+						return td.completed;
+					case 'ACTIVE':
+						return !td.completed;
+					default: 
+						return  true;
+				}
+			})
 		}),
 		dispatch => ({
 			fetchTodos: () => dispatch(fetchTodos()),

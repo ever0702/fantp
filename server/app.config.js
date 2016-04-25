@@ -6,36 +6,24 @@ import authRouter from './auth/auth.router';
 import todoRouter from './todo/todo.router';
 
 
-let config = {
+const config = {
 	secret: 'TheBestIsYetToBe',
 	tokenExpiresInMinutes: 20,
 	database: 'mongodb://localhost:27017/relay_graph'
-	// database: 'mongodb://root:1234@ds063124.mongolab.com:63124/chattyladder'
+	// database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
 };
 
+const connectToDB = () => mongoose.connect(config.database);
 
-function connectToDB() {
-	mongoose.connect(config.database);
-}
-
-function configServerRoutes(app, io) {
-
+const configServerRoutes = (app, io) => {
 	app.use(session({ secret: 'TheBestIsYetToBe', resave: false, saveUninitialized: false }));
-
-	// app.use('/', authRouter);
 	app.use('/', authRouter(io));
 	app.use('/todos', todoRouter(io));
-	// app.use('/api/users', userRouter(io));
-	// app.use('/api/votes', voteRouter(io));
-	// app.use('/api/posts', postRouter(io));
-    // app.use('/api/social', socialRouter(io));
-
 }
 
 
 export {
-config,
-connectToDB,
-// checkCrendential,
-configServerRoutes
+	config,
+	connectToDB,
+	configServerRoutes
 };

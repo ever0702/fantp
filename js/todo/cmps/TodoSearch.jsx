@@ -4,13 +4,16 @@ import {Rx} from '../../utils/rxUtils';
 import {setSearchText, searchTodos} from '../todoActions';
 import Autocomplete from '../../commonComponents/Autocomplete';
 
-let TodoSearch = ({todoSearchText, onTextChange, todoAutocompleteOptions}) => {
-	var sub = new Rx.Subject();
-	sub.subscribe(text => onTextChange(text));
-	return (
-			<Autocomplete options={todoAutocompleteOptions} text={todoSearchText} onTextChange={text=>sub.onNext(text)} />
-		)
-}
+let TodoSearch = props => <Autocomplete {...props} options={props.todoAutocompleteOptions}/>;
+	
+
+// let TodoSearch = ({todoSearchText, onTextChange, todoAutocompleteOptions}) => {
+// 	var sub = new Rx.Subject();
+// 	sub.subscribe(text => onTextChange(text));
+// 	return (
+// 			<Autocomplete options={todoAutocompleteOptions} text={todoSearchText} onTextChange={text=>sub.onNext(text)} />
+// 		)
+// }
 
 TodoSearch = connect(
 		state => ({

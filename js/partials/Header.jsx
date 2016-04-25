@@ -17,6 +17,9 @@ const links = [{
 },{
 	label: 'Signup',
 	url: '/signup'
+}, {
+	label: 'Signin',
+	url: '/signin'
 }];
 
 const NavBar = ({loggedIn, username}) => {

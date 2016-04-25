@@ -11,25 +11,6 @@ var webpack = require('webpack'),
     webpackDevConfig = require('../webpack.config.js');
 
 
-let nextBookId = 3;
-let books = [{
-    id: 1,
-    name: 'C++'
-}, {
-    id: 2,
-    name: 'JAVA'
-}];
-
-let todos = [{
-    id: 1,
-    text: 'first',
-    completed: false
-}, {
-    id: 2,
-    text: 'second tod',
-    completed: true
-}];
-
 let app = express();
 
 let compiler = webpack(webpackDevConfig);

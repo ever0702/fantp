@@ -7,10 +7,7 @@ const todoRouter = io => {
 
     router.route('/')
         .get((req, res) => {
-        	console.log(search);
             let search = req.param('search');
-            console.log(search)
-            
             todoService.findAll().then(todos => {
                 if (search) res.send(todos.filter(td => td.text.indexOf(search) > -1));
                 else res.send(todos);
