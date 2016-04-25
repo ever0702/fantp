@@ -73,54 +73,6 @@ let MONGO_URL = 'mongodb://localhost/relay_graph';
 
     configServerRoutes(app, io);
 
-    app.get('/coms', (req, res) => {
-        res.send(['Google', 'facebook', 'amazon']);
-    });
-
-    app.get('/books', (req, res) => {
-        res.send(books);
-    })
-
-    app.post('/books', (req, res) => {
-        let { bookName } = req.body;
-        const newBook = {
-            id: nextBookId++,
-            name: bookName
-        };
-        books.push(newBook);
-        res.send(newBook);
-    });
-
-    app.get('/todos', (req, res) => {
-        res.send(todos);
-    });
-
-    app.post('/todos', (req, res) => {
-        let {text} = req.body;
-        const newTodo = {
-            id: nextBookId ++,
-            text,
-            completed: false
-        };
-
-        res.send(newTodo);
-    });
-
-    app.put('/todos/:id', (req, res) => {
-        let {id} = req.params;
-        let {completed} = req.body;
-
-        todos = todos.map(td => ({
-            ...td,
-            completed
-        }));
-
-        res.send({
-            success: true
-        });
-
-    });
-
 })();
 
 console.log(MONGO_URL);

@@ -3,6 +3,7 @@ import {reducer as formReducer} from 'redux-form';
 import bookAppReducer from './book/bookAppReducer';
 import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
+import authReducer from './auth/authReducer';
 
 
 if(module.hot) {
@@ -11,6 +12,7 @@ if(module.hot) {
 
 
 const rootReducer = combineReducers({
+	auth: authReducer,
     bookApp: bookAppReducer,
     employeeApp: employeeReducer,
     todoApp: todoReducer,

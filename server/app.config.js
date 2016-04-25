@@ -2,7 +2,9 @@ import  mongoose from 'mongoose';
 import  express from 'express';
 import  session from 'express-session';
 
+import authRouter from './auth/auth.router';
 import todoRouter from './todo/todo.router';
+
 
 let config = {
 	secret: 'TheBestIsYetToBe',
@@ -21,6 +23,7 @@ function configServerRoutes(app, io) {
 	app.use(session({ secret: 'TheBestIsYetToBe', resave: false, saveUninitialized: false }));
 
 	// app.use('/', authRouter);
+	app.use('/', authRouter(io));
 	app.use('/todos', todoRouter(io));
 	// app.use('/api/users', userRouter(io));
 	// app.use('/api/votes', voteRouter(io));

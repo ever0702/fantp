@@ -2,3 +2,16 @@ $red: red;
 .red {
 	color: $red;
 }
+
+.page-body {
+	margin-top:20px;
+}
+
+.signup-page {
+	.signup-form {
+		form {
+			margin-top:25px;
+		}
+	}
+
+}

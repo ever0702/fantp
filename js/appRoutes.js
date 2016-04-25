@@ -8,15 +8,19 @@ import simpleLogger from './middlewares/simpleLogger';
 import HomeApp from './home/HomeApp';
 import TodoApp from './todo/TodoApp';
 import BookApp from './book/BookApp';
-import EmployeeApp from './employee/EmployeeApp';
+import SignupPage from './auth/SignupPage';
 
 let store = configStore;
 
 const App = ({children}) => (
 		<div>
-	        <Header />
 	        <div className="container">
-		        {children}
+	        	<div className="row">
+			        <Header />
+		        </div>
+		        <div className="row page-body">
+			        {children}
+		        </div>
 	        </div>
       </div>
 	);
@@ -33,6 +37,7 @@ class AppRoutes extends React.Component{
 						<Route path='home-app' component={HomeApp} />
 						<Route path='todo-app' component={TodoApp} />
 						<Route path='book-app' component={BookApp} />
+						<Route path='signup' component={SignupPage} />
 					</Route>
 				</Router>
 			</Provider>
