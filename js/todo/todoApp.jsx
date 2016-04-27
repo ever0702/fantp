@@ -5,9 +5,6 @@ import CreateTodoForm from './cmps/CreateTodoForm';
 import TodoListContainer from './cmps/TodoListContainer';
 import TodoFilterLink from './cmps/TodoFilterLink';
 
-
-console.log(todoActions);
-
 const TodoApp = () => (
 		<div>
 			<h4>Welcome to TOdo App</h4>

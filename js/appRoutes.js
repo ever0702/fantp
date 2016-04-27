@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, Link, browserHistory, hashHistory} from 'react-router';
 import Header from './partials/Header';
 
 import configStore from './reduxStore';

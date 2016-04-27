@@ -8,7 +8,6 @@ import './styleRoot';
 
 let store = configStore;
 
-
 render(
 		<AppContainer
 			component={AppRoutes}

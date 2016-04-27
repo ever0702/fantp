@@ -1,4 +1,4 @@
-const createFormInitialState = (fields = [], initData = {}) => {
+const createFormInitialState = (fields = [], validate, initData = {}) => {
     let form = {
         fields: {},
         stats: {}
@@ -12,14 +12,15 @@ const createFormInitialState = (fields = [], initData = {}) => {
                     touched: false,
                     focused: false
                 };
-            form.errors = {};
         }
+        form.errors = validate? validate(form.fields): {};
+        form.hasSubmitted = false;
 
         return form;
     });
 }
 
-const createEmptyInitialState = fields => {
+const createEmptyInitialState = (fields, validate) => {
 
     let form = {
         fields: {},
@@ -32,8 +33,10 @@ const createEmptyInitialState = fields => {
             touched: false,
             focused: false
         };
-        form.errors = {};
     }
+
+    form.errors = validate? validate(form.fields): {};
+    form.hasSubmitted = false;
 
     return form;
 }
@@ -41,20 +44,17 @@ const createEmptyInitialState = fields => {
 const formEvtHandler = (setState, validate) => (fieldName, state) => {
 
     let hasVlidator = typeof validate == 'function';
+    let getErrors = () => hasVlidator? validate(state.fields) : [];
     return {
         onChange(e, value) {
             let v = e ? e.target.value : value;
-            console.log('cccccccccccccc', e);
 
             state.fields[fieldName] = v;
             let errors = hasVlidator ? validate(state.fields) : []
             state.errors = errors;
-            console.log('found errors ', errors)
             setState(state);
-            console.log(state);
         },
         onFocus: e => {
-            console.log('focus', e.target.value)
 
             state.stats[fieldName].focused = true;
             setState(state);

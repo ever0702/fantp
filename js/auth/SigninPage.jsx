@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import simpleForm from '../highOrderComponents/simpleForm'
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 
+
+@connect()
+@simpleForm({
+	fields: ['username', 'password'],
+	validate
+})
 class SigninPage extends Component {
 	
 	constructor(props) {
 		super(props);
-		console.log('props in sign in', props)
+		console.log(this.props);
 	}
 	componentDidMount() {
-	    console.log('Signin  mounttttttt')  
 	}
 
 	render() {
@@ -28,7 +34,7 @@ class SigninPage extends Component {
 	}
 }
 
-const validate = ({username, password}) => {
+const validate = ({username='', password=''}) => {
 	let errs = {};
 	if(username != 'yong') {
 		errs.username = 'Should be yong';
@@ -40,11 +46,4 @@ const validate = ({username, password}) => {
 	
 }
 
-let After = simpleForm({
-	fields: ['username', 'password'],
-	validate
-})(SigninPage );
-
-console.log(After);
-
-export default After;
+export default SigninPage;
