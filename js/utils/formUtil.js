@@ -1,46 +1,69 @@
+const createFormInitialState = (fields = [], initData = {}) => {
+    let form = {
+        fields: {},
+        stats: {}
+    };
 
-const createFormInitialState = (fields =[], fieldsValue = {}) => {
-	let form = {
-		fields: {},
-		stats: {}
-	};
 
-	for(let f of fields) {
-		form.fields[f] = fieldsValue[f] || 'hello',
-		form.stats[f] = {
-			touched: false,
-			focused: false
-		};	
-	}
+    return Promise.resolve(typeof initData == 'function'? initData(): initData).then(values => {
+        for (let f of fields) {
+            form.fields[f] = values[f] || '',
+                form.stats[f] = {
+                    touched: false,
+                    focused: false
+                };
+            form.errors = {};
+        }
 
-	return form;
+        return form;
+    });
 }
 
-const formEvtHandler = (state, setState, validate) => fieldName => {
-	
-	let hasVlidator = typeof validate == 'function';
-	return {
-		onChange(e) {
-			console.log('cccccccccccccc', e);
+const createEmptyInitialState = fields => {
 
-			state.fields[fieldName] = e.target.value;
-			let errors = hasVlidator?validate(state.fields): []
-			state.errors = errors;
-			console.log('found errors ', errors)
-			setState(state);
-			console.log(state);
-		},
-		onFocus: e => {
-			console.log('focus', e.target.value)
+    let form = {
+        fields: {},
+        stats: {}
+    };
 
-			state.stats[fieldName].focused = true;
-			setState(state);
-		},
-		onBlur: e=> {
-			state.stats[fieldName].touched = true;
-			setState(state);
-		}
-	};
+
+    for (let f of fields) {
+        form.stats[f] = {
+            touched: false,
+            focused: false
+        };
+        form.errors = {};
+    }
+
+    return form;
 }
 
-export {createFormInitialState, formEvtHandler};
+const formEvtHandler = (setState, validate) => (fieldName, state) => {
+
+    let hasVlidator = typeof validate == 'function';
+    return {
+        onChange(e, value) {
+            let v = e ? e.target.value : value;
+            console.log('cccccccccccccc', e);
+
+            state.fields[fieldName] = v;
+            let errors = hasVlidator ? validate(state.fields) : []
+            state.errors = errors;
+            console.log('found errors ', errors)
+            setState(state);
+            console.log(state);
+        },
+        onFocus: e => {
+            console.log('focus', e.target.value)
+
+            state.stats[fieldName].focused = true;
+            setState(state);
+        },
+        onBlur: e => {
+            state.stats[fieldName].touched = true;
+            setState(state);
+        }
+    };
+}
+
+export {createEmptyInitialState, createFormInitialState, formEvtHandler };

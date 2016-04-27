@@ -13,6 +13,7 @@ const authRouter = io => {
 		
     });
 
+
     router.get('/check-user-unique', (req, res) => {
         let username = req.param('username');
         let email = req.param('email');
@@ -22,8 +23,8 @@ const authRouter = io => {
         if(email) query.email = email;
 
         console.log('checking unique for ', query);
-        userService.find(query)
-            .then(usr => res.send({ unique: usr == null }))
+        userService.findOne(query)
+            .then(usr => res.send({unique: usr == null}))
     });
 
 	return router;

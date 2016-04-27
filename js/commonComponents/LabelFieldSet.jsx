@@ -7,6 +7,9 @@ const LabelFieldSet = props => (
 				}
 				{props.children}
 				{
+					props.success&&<small className="text-success">{props.success}</small>
+				}
+				{
 					props.err&&<small className="text-danger">{props.err}</small>
 				}
 			</fieldset>

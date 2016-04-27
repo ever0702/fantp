@@ -1,51 +1,75 @@
 import React, { Component } from 'react';
-import {changeFormValue} from './simpleFormCtrl';
+import { createFormInitialState, createEmptyInitialState, formEvtHandler } from '../utils/formUtil';
 
-const simpleForm = ({ formName, fields, validator, asyncValidator }) => WrappedCmp => {
-
-	  class Wrapper extends  Component {
+const hiForm = passedIn => WrapCmp => {
+    console.log(WrapCmp);
+    let propFields = passedIn.fields;
+    let { validate, initData } = passedIn;
+    console.log('propfield', propFields)
+    class Wrapper extends Component {
 
         constructor(props, context) {
             super(props, context);
+            // this.state = createFormInitialState(propFields);
+            this.state = createEmptyInitialState(propFields);
+            if (initData) {
 
-            let store = context.store;
-            let state = store.getState();
-
-            let currentForm = state.simpleForm[formName] || {};
-
-            for(let f of fields) {
-            	currentForm[f] = currentForm[f] || {};
-            	currentForm[f].onChange = this.onFieldChange(f);
+                createFormInitialState(propFields, initData).then(form => this.setState(form));
             }
+            let setState = this.setState.bind(this);
 
-            this.props = {...this.props, ...currentForm};
-            console.log(this.props)
-            
-            let {dispatch} = store;
+            this.getHandler = formEvtHandler(setState, validate);
 
+            this.resetForm = this.resetForm.bind(this);
 
+            console.log('hiForm init state', this.state)
         }
 
-        onFieldChange = fieldName => value => {
-        	let {dispatch} = this.context.store;
-        	dispatch(changeFormValue(formName,  fieldName, value));
+        resetForm() {
+            if (initData) {
+                createFormInitialState(propFields, initData).then(form => this.setState(form));
+            } else {
+
+                this.setState(createFormInitialState(propFields));
+            }
+        }
+
+        componentDidMount() {
+            console.log('mountinnnggggggeeeeeeeeeeeeDDDDDDDDDDDDDDDDDDDDDD')
         }
 
         render() {
-            return (
-             <WrappedCmp {...this.props} onChange={this.onFieldChange}/>
+            let pass = {};
+            let { state } = this;
+            let { fields, stats, errors } = this.state;
+            let getHandler = this.getHandler.bind(this);
+
+            pass.resetForm = this.resetForm;
+
+            for (let f of propFields) {
+
+                let handlers = getHandler(f, state);
+                pass[f] = {
+                    value: fields[f],
+                    ...stats[f],
+                    ...getHandler(f, state),
+                    error: errors[f]
+                }
+            }
+
+            pass.errors = errors;
+
+            console.log('pass is .....', pass)
+
+            return ( < WrapCmp {...this.props } {...pass }
+                />
             )
+
         }
-    }
 
-
-    Wrapper.contextTypes = {
-    	store: React.PropTypes.object.isRequired
     }
 
     return Wrapper;
-
 }
 
-
-export default simpleForm;
+export default hiForm;

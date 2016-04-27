@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import hiForm from '../highOrderComponents/hiForm'
+import simpleForm from '../highOrderComponents/simpleForm'
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 
 class SigninPage extends Component {
@@ -32,20 +32,15 @@ const validate = ({username, password}) => {
 	let errs = {};
 	if(username != 'yong') {
 		errs.username = 'Should be yong';
-	} else {
-		delete errs.username;
-	}
+	} 
 	if(password != 'wang') {
 		errs.password = 'should be wang';
-	} else {
-		delete errs.password;
-	}
-
+	} 
 	return errs;
 	
 }
 
-let After = hiForm({
+let After = simpleForm({
 	fields: ['username', 'password'],
 	validate
 })(SigninPage );

@@ -6,24 +6,30 @@ import {get} from '../utils/httpHelper';
 import authService from './auth.service';
 import {signup} from './authActions';
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
+import simpleForm from '../highOrderComponents/simpleForm';
+
+
 
 class SignupForm extends React.Component {
 
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			checkingUnique: false,
-			isUserUnique: true,
-			showUserUnique: false,
-			form: createFormInitialState(['username', 'email', 'password', 'repassword'])
-		}
 
-		this.getHandler= formEvtHandler(this.state, this.setState.bind(this));
-
+		this.setInitState = this.setInitState.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onUsernameChange = this.onUsernameChange.bind(this);
+
+		this.setInitState();
+	}
+
+	setInitState() {
+		this.state = {
+			checkingUnique: false,
+			isUserUnique: true,
+			showUserUnique: false
+		}
 	}
 
 	onInputChange = (key, value) => this.setState({
@@ -31,21 +37,8 @@ class SignupForm extends React.Component {
 		[key]: value
 	})
 
-	testChange = value => {
-		console.log('test change', value)
-		this.setState({
-		...this.state,
-		form: {
-			...this.state.form,
-			fields: {
-				...this.state.form.fields,
-				email: value.target.value
-			}
-		}	
-	})
-	}
-
 	 onUsernameChange= username => {
+	 	console.log('on username check called', username)
 	 	if(username.length < 3) {
 	 		this.setState({
 	 			...this.state,
@@ -77,7 +70,7 @@ class SignupForm extends React.Component {
 
 		let {showUserUnique, isUserUnique} = state;
 
-		let {username, password, email, repassword} = this.state.form.fields;
+		let {username, password, email, repassword} = this.props;
 
 		return (
 			<div className="signup-form card">
@@ -87,29 +80,24 @@ class SignupForm extends React.Component {
 						e.preventDefault();
 						this.submitForm(); }
 					}>
-						<fieldset className="form-group">
-							<label htmlFor="">Username</label>
-							{
-								showUserUnique &&
-								<label className="pull-right">
-									<span className={isUserUnique?'text-success': 'text-danger'}>
-										{isUserUnique?'Email Available':'Email Taken'}
-									</span>
-								</label>
-							}
-							<DelayInput {...getHandler('username')} onTextChange={v => {this.onInputChange('username', v); this.onUsernameChange(v)} } type="email" className="form-control" placeholder="Username" />
-						</fieldset>
-						<LabelFieldSet label="Email" >
-							<input {...getHandler('email')} type="text" value={email} className="form-control" placeholder="Email"/>
-							<small className="text-danger help-block">Erros happends</small>
+						<span>{JSON.stringify(this.props)}</span>
+						<LabelFieldSet label="Username" success={showUserUnique&&isUserUnique&&'Username Available'} err={showUserUnique&&!isUserUnique&&'Username Taken'}>
+							<DelayInput {...username} onTextChange={v => { this.onUsernameChange(v)} } type="text" className="form-control" placeholder="Username" />
 						</LabelFieldSet>
-						<LabelFieldSet label="Password" err="password">
-							<input {...getHandler('password')} type="password" className="form-control" value={password} placeholder="Password"/>
+						<LabelFieldSet label="Email" err={email.touched&&email.error}>
+							<input {...email} type="text"  className="form-control" placeholder="Email"/>
 						</LabelFieldSet>
-						<LabelFieldSet label="Re-Passowrd" >
-							<input {...getHandler('repassword')} type="password" className="form-control" value={repassword} placeholder="Re-Password" onChange={e => this.onInputChange('repassword', e.target.value)} />
+						<LabelFieldSet label="Password" err={password.touched&&password.error}>
+							<input {...password} type="password" className="form-control" placeholder="Password"/>
+						</LabelFieldSet>
+						<LabelFieldSet label="Re-Passowrd" err={repassword.touched&&repassword.error} >
+							<input {...repassword} type="password" className="form-control" placeholder="Re-Password" />
 						</LabelFieldSet>
 						<button type="submit" className="btn btn-primary">Submit</button>
+						<button  className="btn btn-warning" onClick={e=> {
+							this.props.resetForm(e);
+							this.setInitState();
+						}}>Reset</button>
 					</form>
 				</div>
 			</div>
@@ -117,5 +105,37 @@ class SignupForm extends React.Component {
 	}
 }
 
+let validate = fields => {
+	let errs = {};
+	let {email, password, repassword} = fields;
+	if(email!='yong'){
+		errs.email='Email shoud be yong';
+	}
 
-export default connect()(SignupForm);
+	if(password.length <7) {
+		errs.password = 'Password should be > 7';
+	}
+	if(repassword != password) {
+		errs.repassword = 'Passwords not match';
+	}
+
+	return errs;
+}
+
+let initData =  get('/todos')
+		.then(todos => {
+			return todos.map(td => ({
+				username: td._id,
+				password: td.text,
+				email: td.text
+			}))[0];
+		});
+
+let ConnectForm = simpleForm({
+	fields: ['username', 'email', 'password', 'repassword'],
+	initData,
+	validate
+})(SignupForm);
+
+
+export default connect()(ConnectForm);
