@@ -14,6 +14,11 @@ const authReducer = (state=defaultState, action) => {
 				...state,
 				username: action.user.username
 			};
+		case SIGN_UP.ERROR: 
+			return {
+				...state,
+				username: null
+			};
 		default:
 			return state;
 	}

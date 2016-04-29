@@ -26,7 +26,7 @@ const hiForm = passedIn => WrapCmp => {
                 createFormInitialState(propFields, validate, initData).then(form => this.setState(form));
             } else {
 
-                this.setState(createFormInitialState(propFields, validate));
+                this.setState(createEmptyInitialState(propFields, validate));
             }
         }
 

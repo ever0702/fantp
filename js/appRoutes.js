@@ -10,6 +10,7 @@ import TodoApp from './todo/todoApp';
 import BookApp from './book/BookApp';
 import SignupPage from './auth/SignupPage';
 import SigninPage from './auth/SigninPage';
+import NoteApp from './note/NoteApp';
 
 let store = configStore;
 
@@ -40,6 +41,7 @@ class AppRoutes extends React.Component{
 						<Route path='book-app' component={BookApp} />
 						<Route path='signup' component={SignupPage} />
 						<Route path='signin' component={SigninPage} />
+						<Route path='note-app' component={NoteApp} />
 					</Route>
 				</Router>
 			</Provider>

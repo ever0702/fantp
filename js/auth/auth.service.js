@@ -1,4 +1,5 @@
 import {get, post} from '../utils/httpHelper';
+import profile from '../../isomorphic/decorators/profile.decorator';
 
 const checkUserUnique = query => {
 	let params = $.param(query);
@@ -12,6 +13,7 @@ class AuthService {
 		return get(`/check-user-unique?${params}`);
 	}
 
+	@profile
 	signup(body) {
 		return post('/signup', body);
 	}

@@ -49,6 +49,10 @@ const formEvtHandler = (setState, validate) => (fieldName, state) => {
         onChange(e, value) {
             let v = e ? e.target.value : value;
 
+            if(e.target.type=='checkbox') {
+            	v= e.target.checked;
+            }
+
             state.fields[fieldName] = v;
             let errors = hasVlidator ? validate(state.fields) : []
             state.errors = errors;

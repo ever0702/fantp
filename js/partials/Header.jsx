@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-const NavBarLink = ({url, label}) => (
+const NavBarLink = (props) => (
 		<li className="nav-item">
-			<Link className="nav-link" to={url}>{label}</Link>
+			<Link {...props} className={props.className +" nav-link" } to={props.url}>{props.label}</Link>
 		</li>
 	);
 
@@ -12,14 +12,11 @@ const links = [{
 	label: 'Home',
 	url: '/home-app'
 }, {
+	label: 'Notes',
+	url: '/note-app'
+},{
 	label: 'Todos',
 	url: '/todo-app'
-},{
-	label: 'Signup',
-	url: '/signup'
-}, {
-	label: 'Signin',
-	url: '/signin'
 }];
 
 const NavBar = ({loggedIn, username}) => {
@@ -34,14 +31,23 @@ const NavBar = ({loggedIn, username}) => {
 						{
 							links.map(lk => <NavBarLink  key={lk.label} {...lk} />)
 						}
-						{
-							loggedIn &&
-							<li className="nav-item">
-								<a >{username}</a>
-							</li>
-						}
 		        	</ul>
 
+				  <url className="nav navbar-nav float-right">
+				  {
+				  	loggedIn &&
+				  	[<li className="nav-item">
+				  		<a className="nav-link">{username}</a>
+				  	</li>,
+				  	<NavBarLink label="Signout" url="/signout"></NavBarLink>]
+				  }
+				  {
+				  	!loggedIn &&
+				  	[<NavBarLink label="Signin" url="/signin"></NavBarLink>,
+				  	<NavBarLink label="Signup" url="/signup"></NavBarLink>]
+
+				  }
+				  </url>
 		        </div>
 			</nav>
 

@@ -1,33 +1,49 @@
 import { Router } from 'express';
 import userService from '../user/user.service';
+import authService from './auth.service';
+import { failWithMessage, successWithData } from '../utils/messageGenerator';
+import { badRequest, serviceError } from '../utils/webResponse.util';
+import profile from '../../isomorphic/decorators/profile.decorator';
+import routerException from '../../isomorphic/decorators/routerException.decorator';
+import routerExceptionHandler from '../../isomorphic/decorators/routerExceptionHandler.decorator';
 
+@routerExceptionHandler
+class AuthHandler {
+    constructor(io) {
+        this.io = io;
+    }
+
+    signup(req, res) {
+        let { username, password, email, gender } = req.body;
+        return authService.signup({ username, password, email, gender })
+            .then(data => {
+                    res.send(data)
+                },
+                err => badRequest(res, failWithMessage(err))
+            );
+    }
+
+    checkUserUnique(req, res) {
+    	let {username, email} = req.query;
+        let query = {};
+        if (username) query.username = username;
+        if (email) query.email = email;
+
+        return authService.checkUserUnique(query)
+            .then(unique => res.send({ unique }));
+    }
+}
 
 const authRouter = io => {
+    let authHandler = new AuthHandler(io);
+
     let router = Router();
 
-    router.post('/signup', (req, res) => {
-        let { username, password, email } = req.body;
-		
-		userService.createOne({username, password, email})
-			.then(user => res.send(user));
-		
-    });
+    router.post('/signup', authHandler.signup);
 
+    router.get('/check-user-unique', authHandler.checkUserUnique);
 
-    router.get('/check-user-unique', (req, res) => {
-        let username = req.param('username');
-        let email = req.param('email');
-
-        let query = {};
-        if(username) query.username = username;
-        if(email) query.email = email;
-
-        console.log('checking unique for ', query);
-        userService.findOne(query)
-            .then(usr => res.send({unique: usr == null}))
-    });
-
-	return router;
+    return router;
 }
 
 export default authRouter;

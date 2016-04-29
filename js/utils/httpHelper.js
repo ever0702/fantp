@@ -10,9 +10,11 @@ const checkStatus = res => {
         return res;
     }
 
-    let err = new Error(res.statusText);
-    err.response = res;
-    throw err;
+    return Promise.reject(res);
+
+    // let err = new Error(res.statusText);
+    // err.response = res;
+    // throw err;
 }
 
 const parseJson = res => res.json();

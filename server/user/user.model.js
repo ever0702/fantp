@@ -13,6 +13,11 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
+	gender: {
+		type: String,
+		enum: ['M', 'F'],
+		trim: true
+	},
 	createTime: {
 		type: Date,
 		default: Date.now

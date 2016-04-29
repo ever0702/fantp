@@ -1,3 +1,4 @@
+@import './styles/colors.scss';
 $red: red;
 .red {
 	color: $red;
@@ -7,6 +8,14 @@ $red: red;
 	margin-top:20px;
 }
 
+.float-left{
+	float: left;
+}
+
+.float-right {
+	float:right;
+}
+
 .signup-page {
 	.signup-form {
 		form {
@@ -14,4 +23,18 @@ $red: red;
 		}
 	}
 
+}
+
+.signin-page{
+	.signin-form {
+		form {
+			margin-top:25px;
+			.forget-password {
+				margin-left: 25px;
+				font-size: 13px;
+				color: $navy;
+			}
+
+		}
+	}
 }
