@@ -34,7 +34,6 @@ class AuthService {
 	
 	@profile
     checkUserUnique(query) {
-    	console.log(aaasss)
         return userService.findOne(query)
             .then(user => user == null);
     }
