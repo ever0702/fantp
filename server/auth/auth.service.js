@@ -1,41 +1,46 @@
 import userService from '../user/user.service';
 import { failWithMessage, successWithData } from '../utils/messageGenerator';
-import Q from 'q';
 import profile from '../../isomorphic/decorators/profile.decorator';
 
 class AuthService {
 
-    validateLogin(username, password) {
+    @profile
+    signin({ username, password }) {
+    	console.log(username, password)
         return userService.findOne({ username })
             .then(user => {
-                if (!user) {
-                    return failWithMessage('Username not Found');
-                }
-                if (user.password !== password) {
-                    return failWithMessage('Password not Match');
-                }
+            	console.log(user);
+				if(!user) {
+					return Promise.reject('Username not Found');
+				}
+				if(user.password!= password) {
+					return Promise.reject('Password not Match');
+				}
+				console.log('it has benn passed 000000000----------------')
 
-                return successWithData(user);
-            })
+				let {username, password, _id} = user;
+				return {username, password, _id};
+            });
     }
 
-	@profile
+    @profile
     signup({ username, password, email, gender }) {
 
-		throw new Error('just for fun');
-        return this.checkUserUnique({ username, email })
+        // throw new Error('just for fun');
+        return this.checkUserUnique({ username })
             .then(unique => {
-            	console.log('unique', unique)
+                console.log('unique', unique)
                 if (!unique) return Promise.reject('Username is taken');
                 return userService.createOne({ username, password, email, gender });
             })
-            .then(({ username, password, _id }) => ({ username, password, _id }));
+            .then(({ username, _id }) => ({ username, _id }));
     }
-	
-	@profile
+
+    @profile
     checkUserUnique(query) {
+        console.log(query, 'receive')
         return userService.findOne(query)
-            .then(user => user == null);
+        	.then(user => user == null);
     }
 
 }

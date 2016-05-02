@@ -6,8 +6,10 @@ const routerExceptionHandler = (target, name, descriptor) => {
 		try {
 			return await originalFn.call(this, req, res, next);
 		} catch (err) {
+			console.log(JSON.stringify(err))
 			res.status(500).send({
-				msaage: err.message || 'Service Error'
+				msaage: err || 'Service Error'
+				// msaage: err.message || 'Service Error'
 			});
 		}
 	}

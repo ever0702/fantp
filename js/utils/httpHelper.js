@@ -36,7 +36,10 @@ const send = ({ url, method = 'get', data = {}, config = {} }) => {
     }
     return fetch(url, httpConfig)
         .then(checkStatus)
-        .then(r => r.json());
+        .then(r => r.json())
+        .catch(err => {
+            console.log(err);
+        });
 
 };
 

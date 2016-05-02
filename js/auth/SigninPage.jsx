@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import simpleForm from '../highOrderComponents/simpleForm'
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 import LabelFieldSet from '../commonComponents/LabelFieldSet';
+import {signin} from './authActions';
 
 
 const validate = ({username = '', password = ''}) => {
@@ -28,8 +29,19 @@ class SigninForm extends Component {
 	constructor(props) {
 		super(props);
 		console.log(this.props);
+		this.submitForm = this.submitForm.bind(this);
 	}
 	componentDidMount() {
+	}
+
+	submitForm() {
+		let {fields, isFormValid, dispatch} = this.props;
+		if(!isFormValid) return;
+		const{username, password} = fields;
+		dispatch(signin({
+			username,
+			password
+		})).then(res => console.log(res));
 	}
 
 	render() {
@@ -44,6 +56,7 @@ class SigninForm extends Component {
 							e => {
 								e.preventDefault();
 								preSubmit();
+								this.submitForm();
 								console.log('has submitted');
 							}
 						}>

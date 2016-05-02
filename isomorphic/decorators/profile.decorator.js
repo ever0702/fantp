@@ -1,27 +1,23 @@
 const profile = (target, name, descriptor) => {
     let originalFn = descriptor.value;
-    descriptor.value = function() {
-        let time = new Date();
 
-        console.log('*********** start executing ', name);
-        console.log('arguments--', arguments);
-        let result = originalFn.call(this, arguments);
-        if (result.then) {
-            return result.then(res => {
-            	console.log('RESPONSE is ', res);
-                console.log(`****** Fulfilled EXECUTE [${name}] Elapsed Time ${new Date() - time} ms`);
-                return res;
-            }, err => {
-                console.log(`****** Rejected EXECUTE [${name}] Elapsed Time ${new Date() - time} ms`);
-            	console.log('RESPONSE is ', res);
-                return res;
-            })
-        } else {
-            console.log(`****** Finish EXECUTE [${name}] Elapsed Time ${new Date() - time} ms`);
-        	console.log('RESPONSE is ', res);
+    const asyncCall = originalFn => async(...args) => {
+        let time = new Date(); 
+        try {
+            console.log('args', args)
+            let result = await originalFn.apply(this, args);
+            console.log(`****** Fulfilled EXECUTE [${name}] Elapsed Time ${new Date() - time} ms`);
             return result;
+        } catch(err) {
+            console.log(`****** REJECTED EXECUTE [${name}] Elapsed Time ${new Date() - time} ms`);
+            throw err;
         }
     }
+
+    descriptor.value = asyncCall(descriptor.value);
+
+    Object.defineProperty(target, name, descriptor);
+
 }
 
 
