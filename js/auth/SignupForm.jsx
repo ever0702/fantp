@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import toastr from 'toastr';
 import LabelFieldSet from '../commonComponents/LabelFieldSet';
 import DelayInput from '../commonComponents/DelayInput';
 import {get} from '../utils/httpHelper';
 import authService from './auth.service';
-import {signup} from './authActions';
+import {signupSuccess, signupError} from './authActions';
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 import simpleForm from '../highOrderComponents/simpleForm';
 
@@ -95,14 +96,33 @@ export default class SignupForm extends React.Component {
 		let {fields, isFormValid, onSignupSuccess, dispatch} =this.props;
 		if(!isFormValid) return;
 		const {username, password, email, gender} = fields;
-		dispatch(signup({
+		
+		authService.signup({
 			username,
 			password,
 			email,
 			gender
-		})).then(res => onSignupSuccess(),
-			err => toastr.error(err.message)
-		);
+		}).then(result => {
+			if(result.success) {
+				dispatch(signupSuccess(result));
+				this.setState({signupErrorMessage: null});
+				onSignupSuccess();
+			} else {
+				this.setState({signupErrorMessage: result.message});
+				dispatch(signupError());
+			}
+
+		});
+
+
+		// dispatch(signup({
+		// 	username,
+		// 	password,
+		// 	email,
+		// 	gender
+		// })).then(res => onSignupSuccess(),
+		// 	err => toastr.error(err.message)
+		// );
 	}
 
 	render(){

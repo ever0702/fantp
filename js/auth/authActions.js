@@ -2,7 +2,7 @@ import { actionConstantHelper, asyncActionHelper } from '../utils/actionCreateUt
 
 const actionConfig = {
     sync: [],
-    async: ['SIGN_UP', 'SIGN_IN']
+    async: ['SIGN_UP', 'SIGN_IN', 'SIGN_OUT']
 };
 
 
@@ -10,24 +10,30 @@ const authActions = actionConstantHelper(actionConfig);
 
 const {
     SIGN_UP,
-    SIGN_IN
+    SIGN_IN,
+    SIGN_OUT
 } = authActions;
 
-const signup = body => dispatch => asyncActionHelper({
-    dispatch,
-    payload: body,
-    actionName: 'SIGN_UP',
-    method: 'post',
-    url: '/signup'
+const signupSuccess = data => ({
+    type: SIGN_UP.SUCCESS,
+    ...data
 });
 
-const signin = body => dispatch => asyncActionHelper({
-    dispatch,
-    payload: body,
-    actionName: 'SIGN_IN',
-    method: 'post',
-    url: '/signin'
+const signupError = () => ({
+    type: SIGN_UP.ERROR
 });
 
+const signinError = () => ({
+    type: SIGN_IN.ERROR
+});
 
-export { signin, signup, authActions };
+const signinSuccess = data => ({
+    type: SIGN_IN.SUCCESS,
+    ...data
+});
+
+const signoutSuccess = () => ({
+    type: SIGN_OUT.SUCCESS
+});
+
+export { signinSuccess, signinError, signupSuccess, signupError, signoutSuccess, authActions };

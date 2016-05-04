@@ -1,11 +1,12 @@
 import { authActions, signup } from './authActions';
 
-const { SIGN_UP, SIGN_IN } = authActions;
+const { SIGN_UP, SIGN_IN, SIGN_OUT } = authActions;
 
 
 const defaultState = {
     _id: null,
     username: null,
+    email: null,
     token: null
 };
 
@@ -14,24 +15,30 @@ const authReducer = (state = defaultState, action) => {
         case SIGN_UP.SUCCESS:
             return {
                 ...state,
-                ...action.data
+                _id: action._id,
+                username: action.username,
+                email: action.email,
+                token: action.token
             };
         case SIGN_UP.ERROR:
             return {
-                ...state,
-                user: null,
-                token: null
+                ...defaultState
             };
         case SIGN_IN.SUCCESS:
             return {
                 ...state,
-                ...action.data
+                _id: action._id,
+                username: action.username,
+                email: action.email,
+                token: action.token
             };
         case SIGN_IN.ERROR:
             return {
-                ...state,
-                user: null,
-                token: null
+                ...defaultState
+            };
+        case SIGN_OUT.SUCCESS:
+            return {
+                ...defaultState
             };
         default:
             return state;

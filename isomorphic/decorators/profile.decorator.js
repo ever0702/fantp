@@ -5,7 +5,7 @@ const profile = (target, name, descriptor) => {
         let time = new Date(); 
         try {
             console.log('args', args)
-            let result = await originalFn.apply(this, args);
+            let result = await originalFn.apply(target, args);
             console.log(`****** Fulfilled EXECUTE [${name}] Elapsed Time ${new Date() - time} ms`);
             return result;
         } catch(err) {

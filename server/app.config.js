@@ -2,6 +2,8 @@ import  mongoose from 'mongoose';
 import  express from 'express';
 import  session from 'express-session';
 
+import checkToken from './middlewares/checkToken';
+
 import authRouter from './auth/auth.router';
 import todoRouter from './todo/todo.router';
 
@@ -18,6 +20,8 @@ const connectToDB = () => mongoose.connect(config.database);
 const configServerRoutes = (app, io) => {
 	app.use(session({ secret: 'TheBestIsYetToBe', resave: false, saveUninitialized: false }));
 	app.use('/', authRouter(io));
+
+	app.use(checkToken);
 	app.use('/todos', todoRouter(io));
 }
 

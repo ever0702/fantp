@@ -1,4 +1,7 @@
 import fetch from 'isomorphic-fetch';
+import simpleStorage from './localStorage.util';
+import {hashHistory} from 'react-router';
+import {redirectOnError, httpTime, applyHttpInterceptors} from './httpInterceptor';
 
 const parseResponse = res => {
     const { status } = res;
@@ -24,24 +27,36 @@ const jsonHeader = {
     'Content-Type': 'application/json'
 };
 
-const send = ({ url, method = 'get', data = {}, config = {} }) => {
+let send = ({ url, method = 'get', data = {}, config = {} }) => {
+    console.log('tokenis', simpleStorage.token)
     let body = data;
     if (typeof data == 'object') {
         body = JSON.stringify(data);
     }
 
-    let httpConfig = { method, ...config, headers: jsonHeader };
+    let httpConfig = {
+        method,
+        ...config,
+        headers: {
+            ...jsonHeader,
+            'x-access-token': simpleStorage.token
+        }
+    };
     if (method != 'get' && data != null) {
         httpConfig.body = body;
     }
     return fetch(url, httpConfig)
         .then(checkStatus)
-        .then(r => r.json())
-        .catch(err => {
-            console.log(err);
-        });
+        .then(r => r.json());
 
 };
+
+send = applyHttpInterceptors(
+        httpTime(),
+        redirectOnError({
+            page401: '/signin'
+        })
+    )(send);
 
 const get = url => send({ url });
 const postJSON = (url, data = {}, config) => send({ url, data, method: 'post', config });

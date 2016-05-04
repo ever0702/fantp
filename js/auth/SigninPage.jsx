@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {hashHistory} from 'react-router';
 import simpleForm from '../highOrderComponents/simpleForm'
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 import LabelFieldSet from '../commonComponents/LabelFieldSet';
-import {signin} from './authActions';
+import {signinSuccess, signinError} from './authActions';
+import authService from './auth.service';
+import toastr from 'toastr';
 
 
 const validate = ({username = '', password = ''}) => {
@@ -30,18 +33,32 @@ class SigninForm extends Component {
 		super(props);
 		console.log(this.props);
 		this.submitForm = this.submitForm.bind(this);
+		this.state = {
+			signinErrorMessage: 'No ERROR'
+		};
 	}
 	componentDidMount() {
 	}
 
 	submitForm() {
-		let {fields, isFormValid, dispatch} = this.props;
+		let {fields, isFormValid, dispatch, onSigninSuccess} = this.props;
 		if(!isFormValid) return;
 		const{username, password} = fields;
-		dispatch(signin({
-			username,
-			password
-		})).then(res => console.log(res));
+		authService.signin({username, password})
+			.then(result => {
+				console.log(result)
+				toastr.success(result)
+				if(result.success) {
+					dispatch(signinSuccess(result));
+					this.setState({signinErrorMessage: null});
+					onSigninSuccess();
+				}	
+				else {
+					this.setState({signinErrorMessage: result.message});
+					dispatch(signinError())
+				}
+			})
+			// .catch(err => toastr.error(err));
 	}
 
 	render() {
@@ -51,7 +68,7 @@ class SigninForm extends Component {
 				<div className="signin-form card">
 					<div className="card-block">
 						<h4>Sign In</h4>
-						<span>{JSON.stringify(this.props)}</span>
+						<h3>{this.state.signinErrorMessage}</h3>
 						<form  onSubmit= {
 							e => {
 								e.preventDefault();
@@ -81,17 +98,6 @@ class SigninForm extends Component {
 
 			)
 
-
-		return (<form>
-			<input {...username} />
-			<span>{username.error}</span>
-			<input {...password} />
-			<div>{JSON.stringify(this.props.username)}</div>
-			{JSON.stringify(this.props.password)}
-			<h3>Hello FOrm</h3>
-			<h3>Hello FOrm</h3>
-		</form>
-		)
 	}
 }
 
@@ -101,11 +107,16 @@ export default class SigninPage extends React.Component{
 		super(props);
 	}
 
+	signinSuccess() {
+		console.log('you have singined success');
+		hashHistory.push('/home-app');
+	}
+
 	render() {
 		return (
 				<div className="signin-page">
 					<div className="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-						<SigninForm />
+						<SigninForm onSigninSuccess={this.signinSuccess.bind(this)}/>
 					</div>
 				</div>
 			);

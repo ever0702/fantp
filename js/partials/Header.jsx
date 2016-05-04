@@ -1,12 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import NavBarLink from './NavBarLink';
+import SignHeader from './SignHeader';
 
-const NavBarLink = (props) => (
-		<li className="nav-item">
-			<Link {...props} className={props.className +" nav-link" } to={props.url}>{props.label}</Link>
-		</li>
-	);
 
 const links = [{
 	label: 'Home',
@@ -19,7 +16,7 @@ const links = [{
 	url: '/todo-app'
 }];
 
-const NavBar = ({loggedIn, username}) => {
+const NavBar = ({loggedIn, username, dispatch}) => {
 
 	return (
 			<nav className="navbar navbar-light bg-faded">
@@ -33,21 +30,7 @@ const NavBar = ({loggedIn, username}) => {
 						}
 		        	</ul>
 
-				  <url className="nav navbar-nav float-right">
-				  {
-				  	loggedIn &&
-				  	[<li className="nav-item">
-				  		<a className="nav-link">{username}</a>
-				  	</li>,
-				  	<NavBarLink label="Signout" url="/signout"></NavBarLink>]
-				  }
-				  {
-				  	!loggedIn &&
-				  	[<NavBarLink label="Signin" url="/signin"></NavBarLink>,
-				  	<NavBarLink label="Signup" url="/signup"></NavBarLink>]
-
-				  }
-				  </url>
+				  	<SignHeader />
 		        </div>
 			</nav>
 

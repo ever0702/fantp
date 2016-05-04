@@ -1,7 +1,7 @@
 
-const failWithMessage = msg => ({
+const failWithMessage = message => ({
 	success: false,
-	msg
+	message
 });
 
 const successWithData = data => ({

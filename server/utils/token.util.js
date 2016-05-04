@@ -9,7 +9,7 @@ let defaultSignOptions = {
 
 const signToken = (payload, options) => {
 	let exp = new Date();
-	exp.setMinutes(exp.getMinutes + config.tokenExpiresInMinutes);
+	exp.setMinutes(exp.getMinutes() + config.tokenExpiresInMinutes);
 
 	console.log(exp);
 	payload.exp = exp.getTime();

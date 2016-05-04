@@ -5,21 +5,17 @@ import profile from '../../isomorphic/decorators/profile.decorator';
 class AuthService {
 
     @profile
-    signin({ username, password }) {
-    	console.log(username, password)
-        return userService.findOne({ username })
+    signin({ username: inputUsername, password: inputPassword }) {
+        return userService.findOne({ username: inputUsername })
             .then(user => {
-            	console.log(user);
-				if(!user) {
-					return Promise.reject('Username not Found');
-				}
-				if(user.password!= password) {
-					return Promise.reject('Password not Match');
-				}
-				console.log('it has benn passed 000000000----------------')
-
-				let {username, password, _id} = user;
-				return {username, password, _id};
+                if (!user) {
+                    return Promise.reject('Username not Found');
+                }
+                if (user.password != inputPassword) {
+                    return Promise.reject('Password not Match');
+                }
+                let { username, email, _id } = user;
+                return { username, email, _id };
             });
     }
 
@@ -31,6 +27,7 @@ class AuthService {
             .then(unique => {
                 console.log('unique', unique)
                 if (!unique) return Promise.reject('Username is taken');
+                console.log(username, password, email, gender);
                 return userService.createOne({ username, password, email, gender });
             })
             .then(({ username, _id }) => ({ username, _id }));
@@ -40,7 +37,7 @@ class AuthService {
     checkUserUnique(query) {
         console.log(query, 'receive')
         return userService.findOne(query)
-        	.then(user => user == null);
+            .then(user => user == null);
     }
 
 }

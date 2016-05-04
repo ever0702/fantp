@@ -4,7 +4,7 @@ const routerExceptionHandler = (target, name, descriptor) => {
 
 	const asyncCall = originalFn => async (req, res, next) => {
 		try {
-			return await originalFn.call(this, req, res, next);
+			return await originalFn.call(target, req, res, next);
 		} catch (err) {
 			console.log(JSON.stringify(err))
 			res.status(500).send({

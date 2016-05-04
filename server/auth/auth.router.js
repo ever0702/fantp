@@ -19,24 +19,21 @@ class AuthHandler {
 
         authService.signin({ username, password })
             .then(user => signToken({ user }).then(
-                    token => res.send({ token, ...user }),
-                    err => badRequest(res, failWithMessage('Fail to generate Token'))
+                    token => res.send({ success: true, token, ...user }),
+                    err => res.send(failWithMessage('Fail to generate Token'))
                 ),
-                err => {
-					console.log(err);
-                	badRequest(res, failWithMessage('what the hell'))
-                }
+                err => res.send(failWithMessage(err))
             );
     }
 
     signup(req, res) {
         let { username, password, email, gender } = req.body;
         return authService.signup({ username, password, email, gender })
-            .then(user => signToken({user}).then(
-					token => res.send({token, ...user}),
-					err => badRequest(res, failWithMessage('Fail to generate Token'))
-            	),
-                err => badRequest(res, failWithMessage(err))
+            .then(user => signToken({ user }).then(
+                    token => res.send({ success: true, token, ...user }),
+                    err => res.send(failWithMessage('Fail to generate Token'))
+                ),
+                err => res.send(failWithMessage(err + ' WTF'))
             );
     }
 
