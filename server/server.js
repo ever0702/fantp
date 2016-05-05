@@ -1,4 +1,7 @@
+import 'babel-core/register';
+import 'babel-polyfill';
 import fs from 'fs';
+import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
@@ -53,6 +56,10 @@ let MONGO_URL = 'mongodb://localhost/relay_graph';
     let io = socketio.listen(server);
 
     configServerRoutes(app, io);
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    })
 
 })();
 

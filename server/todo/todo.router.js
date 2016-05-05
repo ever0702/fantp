@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import todoService from './todo.service';
+import checkToken from '../middlewares/checkToken'
 
 const todoRouter = io => {
 
     let router = Router();
+
+    router.use(checkToken);
 
     router.route('/')
         .get((req, res) => {

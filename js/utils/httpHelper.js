@@ -54,7 +54,7 @@ let send = ({ url, method = 'get', data = {}, config = {} }) => {
 send = applyHttpInterceptors(
         httpTime(),
         redirectOnError({
-            page401: '/signin'
+            401: '/signin'
         })
     )(send);
 

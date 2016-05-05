@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 
 const NavBarLink = (props) => (
 		<li className="nav-item">
-			<Link {...props} className={props.className +" nav-link" } to={props.url}>{props.label}</Link>
+			<Link activeStyle={{color:'yellow'}} {...props} className={props.className +" nav-link" } to={props.url}>{props.label}</Link>
 		</li>
 	);
 

@@ -4,7 +4,7 @@ import profile from '../../isomorphic/decorators/profile.decorator';
 
 class AuthService {
 
-    @profile
+    // @profile
     signin({ username: inputUsername, password: inputPassword }) {
         return userService.findOne({ username: inputUsername })
             .then(user => {
@@ -19,7 +19,7 @@ class AuthService {
             });
     }
 
-    @profile
+    // @profile
     signup({ username, password, email, gender }) {
 
         // throw new Error('just for fun');
@@ -33,7 +33,7 @@ class AuthService {
             .then(({ username, _id }) => ({ username, _id }));
     }
 
-    @profile
+    // @profile
     checkUserUnique(query) {
         console.log(query, 'receive')
         return userService.findOne(query)

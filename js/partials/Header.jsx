@@ -19,18 +19,23 @@ const links = [{
 const NavBar = ({loggedIn, username, dispatch}) => {
 
 	return (
-			<nav className="navbar navbar-light bg-faded">
-				<button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header"> |||         
-		        </button>
-		        <div className="collapse navbar-toggleable-xs">
-		        	<a href="" className="navbar-brand">React</a>
-		        	<ul className="nav navbar-nav">
-						{
-							links.map(lk => <NavBarLink  key={lk.label} {...lk} />)
-						}
-		        	</ul>
+			<nav className="navbar navbar-fixed-top navbar-default navbar-light" id="navbar">
+				<div className="container">
+					<button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header"> |||         
+			        </button>
+			        <div className="collapse navbar-toggleable-xs">
+			        	<a href="" className="navbar-brand">
+			        		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Beats_Electronics_logo.svg/2000px-Beats_Electronics_logo.svg.png" alt=""/>
+			        		<span className="navbar-logo">React</span>
+			        	</a>
+			        	<ul className="nav navbar-nav">
+							{
+								links.map(lk => <NavBarLink  key={lk.label} {...lk} />)
+							}
+			        	</ul>
 
-				  	<SignHeader />
+					  	<SignHeader />
+			        </div>
 		        </div>
 			</nav>
 

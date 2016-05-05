@@ -15,15 +15,8 @@ import NoteApp from './note/NoteApp';
 let store = configStore;
 
 const App = ({children}) => (
-		<div>
-	        <div className="container">
-	        	<div className="row">
-			        <Header />
-		        </div>
-		        <div className="row page-body">
-			        {children}
-		        </div>
-	        </div>
+		<div id="app-body">
+			{children}
       </div>
 	);
 

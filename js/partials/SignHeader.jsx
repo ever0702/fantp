@@ -39,10 +39,10 @@ class SignHeader extends Component {
 					{
 						loggedIn && 
 						[
-							<li className="nav-item">
+							<li className="nav-item" key="username">
 								<a className="nav-link">{username}</a>
 							</li>,
-							<li className="nav-item" onClick={
+							<li className="nav-item" key="signout" onClick={
 								e => {
 									e.preventDefault();
 									signout();
@@ -55,8 +55,8 @@ class SignHeader extends Component {
 					{
 						!loggedIn && 
 						[
-							<NavBarLink label="Signin" url="/signin"></NavBarLink>,
-							<NavBarLink label="Signup" url="/signup"></NavBarLink>
+							<NavBarLink label="Signin" key="signin" url="/signin"></NavBarLink>,
+							<NavBarLink label="Signup" key="signup" url="/signup"></NavBarLink>
 						]
 					}
 				</ul>	

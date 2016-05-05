@@ -21,7 +21,6 @@ const configServerRoutes = (app, io) => {
 	app.use(session({ secret: 'TheBestIsYetToBe', resave: false, saveUninitialized: false }));
 	app.use('/', authRouter(io));
 
-	app.use(checkToken);
 	app.use('/todos', todoRouter(io));
 }
 

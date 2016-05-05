@@ -1,4 +1,4 @@
-import { hashHistory } from 'react-router';
+import navHistory from './navHistory';
 
 const applyHttpInterceptors = (...interceptors) => fn => {
 
@@ -9,17 +9,21 @@ const applyHttpInterceptors = (...interceptors) => fn => {
 	return fn;
 };
 
-const redirectOnError = ({
-    page401 = '/signin'
-}) => target => {
+const redirectOnError = config => target => {
     return (...args) => {
         return target.apply(null, args)
             .catch(err => {
-                if (err.status == 401) {
-                    console.log('unauthorize detected 00000000000000000000kkAjA;');
-                    hashHistory.push(page401);
+				
+				for(let [k, v] of Object.entries(config)) {
+					if(err.status == k) 
+						navHistory.push(v);
+				}
 
-                }
+                // if (err.status == 401) {
+                //     console.log('unauthorize detected 00000000000000000000kkAjA;');
+                //     navHistory.push(page401);
+
+                // }
                 return Promise.reject(err);
             })
     }
