@@ -24,7 +24,6 @@ const configServerRoutes = (app, io) => {
 	app.use('/todos', todoRouter(io));
 }
 
-
 export {
 	config,
 	connectToDB,
