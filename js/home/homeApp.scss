@@ -5,7 +5,7 @@
         padding: 40px 0;
         background-image: url(https://harmonicdemo.files.wordpress.com/2014/10/mc8kw4x9q3arr3rkp5im_img_4417.jpg);
         background-position: 50% 0px;
-        
+
         img {
             max-width: 100%;
         }
@@ -24,6 +24,16 @@
         right: 0;
         background-size: cover;
         background-position: center;
+
+        .poster-card {
+        	background: transparent;
+
+        	img {
+        		border-radius: 50%;
+        		width:220px;
+        		height: 220px;
+        	}
+        }
         .content {
             text-align: center;
             margin: auto;

@@ -48,10 +48,11 @@ class HomeApp extends React.Component {
 					<div className="jumbotron poster" >
 						<div className="container">
 							<div className="content">
-							<h1 className="header" style={{color:'black', marginBottom:'50px'}}>The best is Yet to Be...</h1>
 
-							<button className="btn btn-success btn-lg" style={{marginRight: 40}}>Get Started</button>
-							<button className="btn btn-primary-outline btn-lg">Learn More...</button>
+								<h1 className="header" style={{color:'black', marginBottom:'50px'}}>The best is Yet to Be...</h1>
+
+								<button className="btn btn-success btn-lg" style={{marginRight: 40}}>Get Started</button>
+								<button className="btn btn-primary-outline btn-lg">Learn More...</button>
 							</div>
 						</div>
 					</div>

@@ -40,7 +40,7 @@ class SignHeader extends Component {
 						loggedIn && 
 						[
 							<li className="nav-item" key="username">
-								<a className="nav-link">{username}</a>
+								<a href="#" className="nav-link">{username}</a>
 							</li>,
 							<li className="nav-item" key="signout" onClick={
 								e => {
@@ -48,7 +48,7 @@ class SignHeader extends Component {
 									signout();
 								}
 							}>
-								<a className="nav-link">Signout</a>
+								<a href="#" className="nav-link">Signout</a>
 							</li>
 						]
 					}
