@@ -1,13 +1,14 @@
 import { authActions, signup } from './authActions';
+import simpleStorage from '../utils/localStorage.util';
 
 const { SIGN_UP, SIGN_IN, SIGN_OUT } = authActions;
 
 
 const defaultState = {
-    _id: null,
-    username: null,
+    _id: simpleStorage.get('_id'),
+    username: simpleStorage.get('username'),
     email: null,
-    token: null
+    token: simpleStorage.token
 };
 
 const authReducer = (state = defaultState, action) => {

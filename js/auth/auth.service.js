@@ -18,11 +18,15 @@ class AuthService {
     signup(body) {
         return post('/signup', body)
             .then(result => {
-                let { success, token } = result;
+                let { success, token, _id, username } = result;
                 if (success) {
                     simpleStorage.token = token;
+                    simpleStorage.set('username', username);
+                    simpleStorage.set('_id', _id);
                 } else {
                     simpleStorage.removeToken();
+                    simpleStorage.remove('_id');
+                    simpleStorage.remove('username');
                 }
 
                 return result;
@@ -33,11 +37,15 @@ class AuthService {
     signin(body) {
         return post('/signin', body)
             .then(result => {
-                let { success, token } = result;
+                let { success, token, username, _id } = result;
                 if (success) {
                     simpleStorage.token = token;
+                    simpleStorage.set('username', username);
+                    simpleStorage.set('_id', _id);
                 } else {
                     simpleStorage.removeToken();
+                    simpleStorage.remove('_id');
+                    simpleStorage.remove('username');
                 }
                 return result;
             });

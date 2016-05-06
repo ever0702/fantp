@@ -6,6 +6,9 @@ import AppRoutes from './appRoutes';
 import store from './reduxStore';
 import './styleRoot';
 
+import './utils/genericPipes';
+
+
 render(
 		<AppContainer
 			component={AppRoutes}

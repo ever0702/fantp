@@ -8,11 +8,10 @@ import simpleLogger from './middlewares/simpleLogger';
 import HomeApp from './home/homeApp';
 import TodoApp from './todo/todoApp';
 import BookApp from './book/BookApp';
+import MemoApp from './memo/memoApp';
 import SignupPage from './auth/SignupPage';
 import SigninPage from './auth/SigninPage';
-import NoteApp from './note/NoteApp';
 
-import './utils/genericPipes';
 
 let store = configStore;
 
@@ -36,7 +35,7 @@ class AppRoutes extends React.Component{
 						<Route path='book-app' component={BookApp} />
 						<Route path='signup' component={SignupPage} />
 						<Route path='signin' component={SigninPage} />
-						<Route path='note-app' component={NoteApp} />
+						<Route path='memo-app' component={MemoApp} />
 					</Route>
 				</Router>
 			</Provider>

@@ -7,12 +7,12 @@ import SignHeader from './SignHeader';
 const links = [{
 	label: 'Home',
 	url: '/home-app'
-}, {
-	label: 'Notes',
-	url: '/note-app'
 },{
 	label: 'Todos',
 	url: '/todo-app'
+}, {
+	label: 'Memos',
+	url: '/memo-app'
 }];
 
 const NavBar = ({loggedIn, username, dispatch}) => {
