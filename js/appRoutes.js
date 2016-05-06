@@ -12,6 +12,8 @@ import SignupPage from './auth/SignupPage';
 import SigninPage from './auth/SigninPage';
 import NoteApp from './note/NoteApp';
 
+import './utils/genericPipes';
+
 let store = configStore;
 
 const App = ({children}) => (
