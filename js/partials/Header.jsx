@@ -4,7 +4,6 @@ import {Link} from 'react-router';
 import NavBarLink from './NavBarLink';
 import SignHeader from './SignHeader';
 
-
 const links = [{
 	label: 'Home',
 	url: '/home-app'

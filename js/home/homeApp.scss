@@ -1,0 +1,36 @@
+@import '../styles/colors.scss';
+#home-page {
+    .content-section {
+        border-top: 3px solid $blue;
+        padding: 40px 0;
+        background-image: url(https://harmonicdemo.files.wordpress.com/2014/10/mc8kw4x9q3arr3rkp5im_img_4417.jpg);
+        background-position: 50% 0px;
+        
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+#home-page {
+    .poster {
+        min-height: 500px;
+        height: 100vh;
+        background-image: url(https://cdn-images-1.medium.com/max/1200/1*sY7tE-ciILm9qqr7731tUA.jpeg);
+        background-image: url(https://wallpaperscraft.com/image/batman_arkham_city_joker_smile_suit_flower_fan_art_black_and_white_19699_1920x1080.jpg);
+        // position: absolute;
+        //   // top: 0;
+        left: 0;
+        right: 0;
+        background-size: cover;
+        background-position: center;
+        .content {
+            text-align: center;
+            margin: auto;
+            margin-top: 30vh;
+            .header {
+                font-family: 'Open Sans', sans-serif;
+            }
+        }
+    }
+}

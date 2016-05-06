@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from './Header';
+import Footer from './Footer';
 
 const NavContainerShell = ({children}) => (
 		<div className="nav-container-shell">

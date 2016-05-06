@@ -1,5 +1,6 @@
 @import './styles/colors.scss';
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Exo:400,700,800);
+@import url(https://fonts.googleapis.com/css?family=PT+Sans|Dosis:400,700|Alegreya+Sans|Oxygen);
 html,
 body {
     height: 100%;
@@ -31,7 +32,8 @@ body {
 
 #navbar {
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
+	border-bottom: 3px solid $green;
     .navbar-brand {
         margin-top: 5px;
         padding-top: 5px;
@@ -56,10 +58,8 @@ body {
 }
 
 #home-page #navbar {
-	background-color: transparent;
-	border-bottom: 3px solid $green;
 	 a {
-		color:gray;
+		// color:gray;
 	}
 }
 
@@ -76,25 +76,5 @@ body {
     }
 }
 
-#home-page {
-    .poster {
-        min-height: 500px;
-        height: 100vh;
-        background-image: url(https://cdn-images-1.medium.com/max/1200/1*sY7tE-ciILm9qqr7731tUA.jpeg);
-        background-image: url(https://wallpaperscraft.com/image/batman_arkham_city_joker_smile_suit_flower_fan_art_black_and_white_19699_1920x1080.jpg);
-        // position: absolute;
-        //   // top: 0;
-        left: 0;
-        right: 0;
-        background-size: cover;
-        background-position: center;
-        .content {
-            text-align: center;
-            margin: auto;
-            margin-top: 40vh;
-            .header {
-                font-family: 'Open Sans', sans-serif;
-            }
-        }
-    }
-}
+
+
