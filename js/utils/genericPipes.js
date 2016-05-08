@@ -1,6 +1,10 @@
-const containStr = (obj, str) => {
+const containStr = (obj, str, sensitive=false) => {
     if (typeof obj !== 'object') {
-        return String(obj).indexOf(String(str)) > -1;
+    	if(sensitive) {
+	        return String(obj).indexOf(String(str)) > -1;
+    	} else {
+    		
+    	}
     }
     for (let v of Object.values(obj)) {
         if (String(v).indexOf(str) > -1) {

@@ -2,9 +2,15 @@ import React from 'react';
 
 const Card = props => {
 
-		let {imgSrc, title, text, children, ...rest} = props;
+		let {imgSrc, topTitle, title, text, children, ...rest} = props;
 		return (
 			 <div className="card" {...rest}>
+			 	{
+			 		topTitle &&
+			 		<div className="card-block">
+				 		<h3 className="card-title">{topTitle}</h3>
+			 		</div>
+			 	}
 				{
 					imgSrc && 
 					<img src="" alt="" className="card-img-top" src={imgSrc} alt="Image not Found"/>

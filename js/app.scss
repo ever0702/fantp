@@ -5,6 +5,10 @@ html,
 body {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
+
+    .card img {
+    	max-width: 100%;
+    }
 }
 
 .page-body {}
@@ -75,6 +79,9 @@ body {
         }
     }
 }
+
+
+
 
 
 
