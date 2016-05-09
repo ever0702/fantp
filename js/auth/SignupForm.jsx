@@ -8,6 +8,7 @@ import authService from './auth.service';
 import {signupSuccess, signupError} from './authActions';
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 import simpleForm from '../highOrderComponents/simpleForm';
+import Card from '../commonComponents/Card';
 
 
 // let initData =  get('/todos')
@@ -21,14 +22,14 @@ import simpleForm from '../highOrderComponents/simpleForm';
 let validate = ({email = '', password = '', repassword = '', agreement=false, gender}) => {
 	let errs = {};
 	if(email.indexOf('@') == -1){
-		errs.email='Please enter a valid Email';
+		errs.email='请输入合法的邮箱';
 	}
 
 	if(password.length <4) {
-		errs.password = 'Password should be at least 4 charactors';
+		errs.password = '密码不得低于8位';
 	}
 	if(repassword != password) {
-		errs.repassword = 'Passwords not match';
+		errs.repassword = '密码不匹配';
 	}
 	if(!agreement) {
 		errs.agreement = 'You much agree to signup';
@@ -118,58 +119,57 @@ export default class SignupForm extends React.Component {
 		
 		let {getHandler, setState, state} = this;
 		let {showUserUnique, isUserUnique} = state;
-		let {username, password, email, repassword, agreement, gender,age, hasSubmitted, preSubmit, resetForm} = this.props;
+		let {username, password, email, repassword, agreement, gender,age, hasSubmitted, preSubmit, resetForm, ...rest} = this.props;
 
 		return (
-			<div className="signup-form card">
-				<div className="card-block">
-					<h4 className="card-title">Create New Account</h4>
-					<form onSubmit={e=> {
-						e.preventDefault();
-						preSubmit();
-						this.submitForm(); 
-					}}>
-						<LabelFieldSet label="Username" success={showUserUnique&&isUserUnique&&'Username Available'} err={showUserUnique&&!isUserUnique&&'Username Taken'}>
-							<DelayInput {...username} onTextChange={v => { this.onUsernameChange(v)} } type="text" className="form-control" placeholder="Username" />
-						</LabelFieldSet>
-						<LabelFieldSet label="Email" err={(hasSubmitted||email.touched)&&email.error}>
-							<input {...email} type="text"  className="form-control" placeholder="Email"/>
-						</LabelFieldSet>
-						<LabelFieldSet label="Password" err={(hasSubmitted||password.touched)&&password.error}>
-							<input {...password} type="password" className="form-control" placeholder="Password"/>
-						</LabelFieldSet>
-						<LabelFieldSet label="Re-Passowrd" err={(hasSubmitted||repassword.touched)&&repassword.error} >
-							<input {...repassword} type="password" className="form-control" placeholder="Re-Password" />
-						</LabelFieldSet>
-						<LabelFieldSet label="Gender" err={(hasSubmitted||agreement.touched)&&gender.error} >
-							<div className="radio">
-							  <label className="col-md-3">
-							    <input {...gender} type="radio" name="gender" value="M"  />
-							    Male
-							  </label>
-							  <label>
-							    <input {...gender} type="radio" name="gender" value="F" />
-							    Female
-							  </label>
-							</div>
-						</LabelFieldSet>
-						<LabelFieldSet err={(hasSubmitted||agreement.touched)&&agreement.error}>
-							<div className="checkbox">
-							  <label>
-							    <input {...agreement} type="checkbox"  />
-							    <span>I agree to Term of use</span>
-							  </label>
-							</div>
-						</LabelFieldSet>
-						<button type="submit" className="btn btn-primary">Submit</button>
-						<button  className="btn btn-warning" style={{marginLeft: '15px'}} onClick={e=> {
+			<div className="mui">
+				<Card className="signup-form card shadow" {...rest} title="创建账号">
+						<form onSubmit={e=> {
 							e.preventDefault();
-							console.log(resetForm)
-							resetForm(e);
-							this.setInitState();
-						}}>Reset</button>
-					</form>
-				</div>
+							preSubmit();
+							this.submitForm(); 
+						}}>
+							<LabelFieldSet label="Username" success={showUserUnique&&isUserUnique&&'Username Available'} err={showUserUnique&&!isUserUnique&&'Username Taken'}>
+								<DelayInput {...username} onTextChange={v => { this.onUsernameChange(v)} } type="text" className="form-control" placeholder="Username" />
+							</LabelFieldSet>
+							<LabelFieldSet label="请输入邮箱" err={(hasSubmitted||email.touched)&&email.error}>
+								<input {...email} type="text"  className="form-control" placeholder="邮箱"/>
+							</LabelFieldSet>
+							<LabelFieldSet label="请输入密码" err={(hasSubmitted||password.touched)&&password.error}>
+								<input {...password} type="password" className="form-control" placeholder="密码"/>
+							</LabelFieldSet>
+							<LabelFieldSet label="Re-Passowrd" err={(hasSubmitted||repassword.touched)&&repassword.error} >
+								<input {...repassword} type="password" className="form-control" placeholder="Re-Password" />
+							</LabelFieldSet>
+							<LabelFieldSet label="Gender" err={(hasSubmitted||agreement.touched)&&gender.error} >
+								<div className="radio">
+								  <label className="col-md-3">
+								    <input {...gender} type="radio" name="gender" value="M"  />
+								    Male
+								  </label>
+								  <label>
+								    <input {...gender} type="radio" name="gender" value="F" />
+								    Female
+								  </label>
+								</div>
+							</LabelFieldSet>
+							<LabelFieldSet err={(hasSubmitted||agreement.touched)&&agreement.error}>
+								<div className="checkbox">
+								  <label>
+								    <input {...agreement} type="checkbox"  />
+								    <span>I agree to Term of use</span>
+								  </label>
+								</div>
+							</LabelFieldSet>
+							<button type="submit" className="btn btn-primary-outline">注册</button>
+							<button  className="btn btn-warning-outline" style={{marginLeft: '15px'}} onClick={e=> {
+								e.preventDefault();
+								console.log(resetForm)
+								resetForm(e);
+								this.setInitState();
+							}}>Reset</button>
+						</form>
+				</Card>
 			</div>
 			)
 	}

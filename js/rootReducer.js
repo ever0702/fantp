@@ -5,6 +5,7 @@ import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
 import authReducer from './auth/authReducer';
 import homeReducer from './home/homeReducer';
+import tripPlannerReducer from './tripPlanner/tripPlannerReducer';
 
 
 if(module.hot) {
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     employeeApp: employeeReducer,
     todoApp: todoReducer,
     form: formReducer,
-    homeApp:homeReducer
+    homeApp:homeReducer,
+    tripPlanner: tripPlannerReducer
 });
 
 export default rootReducer;

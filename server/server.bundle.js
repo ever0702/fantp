@@ -139,32 +139,6 @@
 
 	console.log(MONGO_URL);
 
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/server.production.js',
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(app, 'app');
-	    tagSource(MONGO_URL, 'MONGO_URL');
-	})();
-
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
@@ -250,8 +224,8 @@
 	var config = {
 		secret: 'TheBestIsYetToBe',
 		tokenExpiresInMinutes: 20,
-		// database: 'mongodb://localhost:27017/relay_graph'
-		database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
+		database: 'mongodb://localhost:27017/relay_graph'
+		// database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
 	};
 
 	var connectToDB = function connectToDB() {
@@ -268,33 +242,6 @@
 	exports.config = config;
 	exports.connectToDB = connectToDB;
 	exports.configServerRoutes = configServerRoutes;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/app.config.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(config, 'config');
-		tagSource(connectToDB, 'connectToDB');
-		tagSource(configServerRoutes, 'configServerRoutes');
-	})();
 
 /***/ },
 /* 11 */
@@ -349,34 +296,7 @@
 		});
 	};
 
-	var _default = checkToken;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/middlewares/checkToken.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(checkToken, 'checkToken');
-		tagSource(_default, 'default');
-	})();
+	exports.default = checkToken;
 
 /***/ },
 /* 14 */
@@ -470,33 +390,6 @@
 
 	// }
 
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/utils/token.util.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(defaultSignOptions, 'defaultSignOptions');
-		tagSource(signToken, 'signToken');
-		tagSource(verifyToken, 'verifyToken');
-	})();
-
 /***/ },
 /* 15 */
 /***/ function(module, exports) {
@@ -526,34 +419,7 @@
 		SERVER_ERROR: 500
 	};
 
-	var _default = HttpCodes;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: "C:/ps_workspace_yong/redux_todo_app_yong/isomorphic/constants/httpCodes.js",
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(HttpCodes, "HttpCodes");
-		tagSource(_default, "default");
-	})();
+	exports.default = HttpCodes;
 
 /***/ },
 /* 18 */
@@ -581,32 +447,6 @@
 
 	exports.failWithMessage = failWithMessage;
 	exports.successWithData = successWithData;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: "C:/ps_workspace_yong/redux_todo_app_yong/server/utils/messageGenerator.js",
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(failWithMessage, "failWithMessage");
-		tagSource(successWithData, "successWithData");
-	})();
 
 /***/ },
 /* 19 */
@@ -737,35 +577,7 @@
 	    return router;
 	};
 
-	var _default = authRouter;
-	exports.default = _default;
-
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/auth/auth.router.js',
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(AuthHandler, 'AuthHandler');
-	    tagSource(authRouter, 'authRouter');
-	    tagSource(_default, 'default');
-	})();
+	exports.default = authRouter;
 
 /***/ },
 /* 20 */
@@ -807,35 +619,7 @@
 
 	var userService = new UserService();
 
-	var _default = userService;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/user/user.service.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(UserService, 'UserService');
-		tagSource(userService, 'userService');
-		tagSource(_default, 'default');
-	})();
+	exports.default = userService;
 
 /***/ },
 /* 21 */
@@ -898,34 +682,7 @@
 	    return BaseService;
 	}();
 
-	var _default = BaseService;
-	exports.default = _default;
-
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: "C:/ps_workspace_yong/redux_todo_app_yong/server/utils/base.service.js",
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(BaseService, "BaseService");
-	    tagSource(_default, "default");
-	})();
+	exports.default = BaseService;
 
 /***/ },
 /* 22 */
@@ -969,35 +726,7 @@
 
 	var User = _mongoose2.default.model('User', UserSchema);
 
-	var _default = User;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/user/user.model.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(UserSchema, 'UserSchema');
-		tagSource(User, 'User');
-		tagSource(_default, 'default');
-	})();
+	exports.default = User;
 
 /***/ },
 /* 23 */
@@ -1095,35 +824,7 @@
 
 	var authService = new AuthService();
 
-	var _default = authService;
-	exports.default = _default;
-
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/auth/auth.service.js',
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(AuthService, 'AuthService');
-	    tagSource(authService, 'authService');
-	    tagSource(_default, 'default');
-	})();
+	exports.default = authService;
 
 /***/ },
 /* 24 */
@@ -1185,34 +886,7 @@
 	    Object.defineProperty(target, name, descriptor);
 	};
 
-	var _default = profile;
-	exports.default = _default;
-
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/isomorphic/decorators/profile.decorator.js',
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(profile, 'profile');
-	    tagSource(_default, 'default');
-	})();
+	exports.default = profile;
 
 /***/ },
 /* 25 */
@@ -1251,36 +925,6 @@
 	exports.badRequest = badRequest;
 	exports.unauthorized = unauthorized;
 	exports.serviceError = serviceError;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/utils/webResponse.util.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(BAD_REQUEST, 'BAD_REQUEST');
-		tagSource(UNAUTHORIZED, 'UNAUTHORIZED');
-		tagSource(SERVER_ERROR, 'SERVER_ERROR');
-		tagSource(badRequest, 'badRequest');
-		tagSource(unauthorized, 'unauthorized');
-		tagSource(serviceError, 'serviceError');
-	})();
 
 /***/ },
 /* 26 */
@@ -1334,34 +978,7 @@
 	    }();
 	};
 
-	var _default = routerExcp;
-	exports.default = _default;
-
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/isomorphic/decorators/routerException.decorator.js',
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(routerExcp, 'routerExcp');
-	    tagSource(_default, 'default');
-	})();
+	exports.default = routerExcp;
 
 /***/ },
 /* 27 */
@@ -1454,34 +1071,7 @@
 		}
 	};
 
-	var _default = routerExceptionHandler;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/isomorphic/decorators/routerExceptionHandler.decorator.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(routerExceptionHandler, 'routerExceptionHandler');
-		tagSource(_default, 'default');
-	})();
+	exports.default = routerExceptionHandler;
 
 /***/ },
 /* 28 */
@@ -1559,34 +1149,7 @@
 	    return router;
 	};
 
-	var _default = todoRouter;
-	exports.default = _default;
-
-	(function () {
-	    function tagSource(fn, localName) {
-	        if (typeof fn !== "function") {
-	            return;
-	        }
-
-	        if (fn.hasOwnProperty("__source")) {
-	            return;
-	        }
-
-	        try {
-	            Object.defineProperty(fn, "__source", {
-	                enumerable: false,
-	                configurable: true,
-	                value: {
-	                    fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/todo/todo.router.js',
-	                    localName: localName
-	                }
-	            });
-	        } catch (err) {}
-	    }
-
-	    tagSource(todoRouter, 'todoRouter');
-	    tagSource(_default, 'default');
-	})();
+	exports.default = todoRouter;
 
 /***/ },
 /* 29 */
@@ -1628,35 +1191,7 @@
 
 	var todoSerice = new TodoService();
 
-	var _default = todoSerice;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/todo/todo.service.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(TodoService, 'TodoService');
-		tagSource(todoSerice, 'todoSerice');
-		tagSource(_default, 'default');
-	})();
+	exports.default = todoSerice;
 
 /***/ },
 /* 30 */
@@ -1688,35 +1223,7 @@
 
 	var Todo = _mongoose2.default.model('Todo', TodoSchema);
 
-	var _default = Todo;
-	exports.default = _default;
-
-	(function () {
-		function tagSource(fn, localName) {
-			if (typeof fn !== "function") {
-				return;
-			}
-
-			if (fn.hasOwnProperty("__source")) {
-				return;
-			}
-
-			try {
-				Object.defineProperty(fn, "__source", {
-					enumerable: false,
-					configurable: true,
-					value: {
-						fileName: 'C:/ps_workspace_yong/redux_todo_app_yong/server/todo/todo.model.js',
-						localName: localName
-					}
-				});
-			} catch (err) {}
-		}
-
-		tagSource(TodoSchema, 'TodoSchema');
-		tagSource(Todo, 'Todo');
-		tagSource(_default, 'default');
-	})();
+	exports.default = Todo;
 
 /***/ },
 /* 31 */

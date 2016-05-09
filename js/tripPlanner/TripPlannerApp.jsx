@@ -12,18 +12,20 @@ class TripPlannerApp extends React.Component {
 
 	render() {
 		return (
-			<NavContainerShell>
-				<div className="trip-plan-page">
-					<div className="container">
-						<div className="row">
-							<div className="col-md-4 col-md-offset-4">
-								Helo THere
+			<div className="trip-plan-bg">
+				<NavContainerShell>
+					<div className="trip-plan-page">
+						<div className="container">
+							<div className="row">
+								<div className="col-md-4 col-md-offset-4">
+									Still Work
+								</div>
 							</div>
-						</div>
-						<TripPlannerDashboard />
-					</div>	
-				</div>
-			</NavContainerShell>
+							<TripPlannerDashboard />
+						</div>	
+					</div>
+				</NavContainerShell>
+			</div>
 		);
 	}
 }

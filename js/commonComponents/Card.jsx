@@ -2,9 +2,13 @@ import React from 'react';
 
 const Card = props => {
 
-		let {imgSrc, topTitle, title, text, children, ...rest} = props;
+		let {imgSrc, topTitle, title, text, headerClose, onCloseClick, children, ...rest} = props;
 		return (
 			 <div className="card" {...rest}>
+			 	{
+			 		headerClose &&
+				 	<i className="material-icons close-icon" onClick={e=>onCloseClick(e)}>close</i>	
+			 	}
 			 	{
 			 		topTitle &&
 			 		<div className="card-block">

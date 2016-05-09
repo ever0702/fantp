@@ -64,7 +64,7 @@ class SigninForm extends Component {
 		let {username, password, rememberMe, hasSubmitted, preSubmit} = this.props;
 
 		return (
-				<div className="signin-form card">
+				<div className="signin-form card shadow">
 					<div className="card-block">
 						<h4>Sign In</h4>
 						<h3>{this.state.signinErrorMessage}</h3>
@@ -115,7 +115,7 @@ export default class SigninPage extends React.Component{
 		return (
 			<NavContainerShell >
 				<div className="signin-page ">
-					<div className="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+					<div className="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 mui">
 						<SigninForm onSigninSuccess={this.signinSuccess.bind(this)}/>
 					</div>
 				</div>

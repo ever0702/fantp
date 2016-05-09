@@ -1,16 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
-
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
-
-// var publicPath = 'http://localhost:3000/';
 var publicPath = '/';
 
+console.log('CURRENT NODE_ENV: ', process.env.NODE_ENV);
+
 var config = {
-	// entry: ['./js/index', hotMiddlewareScript],
 	entry: [
-		// 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
 		'webpack-hot-middleware/client?reload=true',
 		'webpack/hot/only-dev-server',
 		'react-hot-loader/patch',
@@ -36,7 +31,13 @@ var config = {
 		}, {
 			test: /\.css$/,
 			// exclude: /(node_modules|bower_components)/,
-			loaders: ['style', 'css'],
+			loaders: ['style', 'css']
+		}, {
+			test: /\.(jpe?g|png|gif|svg)$/i,
+			loaders: [
+				'file?hash=sha512&digest=hex&name=[hash].[ext]',
+				'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+			]
 		}, {
 			test: /\.scss$/,
 			loaders: ["style", "css", "sass"]
@@ -60,9 +61,9 @@ var config = {
 }
 
 if (process.env.NODE_ENV == 'production') {
+	config.devtool = undefined;
 	config.plugins = config.plugins.concat([
 		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin()
 	]);
 }

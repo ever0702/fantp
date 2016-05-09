@@ -11,9 +11,6 @@ class TreeView extends React.Component {
 
 	render() {
 		let {treeData, NodeTmp, iconClick, ...rest} = this.props;
-		console.log(NodeTmp)
-		console.log(iconClick);
-
 		return (
 				<div className="container bg-purple">
 					<h3>A tree</h3>
@@ -24,11 +21,11 @@ class TreeView extends React.Component {
 									e.stopPropagation();
 									iconClick(tr);
 								}}>
-									<div  className="bg-blue">{tr.id}</div>
+									<div  className="bg-blue">{tr.label}</div>
 									<NodeTmp label='ddd' />
 									{
-										tr.children && tr.expand &&
-										<TreeView {...this.props} treeData={tr.children}/>
+										tr.subSteps && tr.expand &&
+										<TreeView {...this.props} treeData={tr.subSteps}/>
 									}
 								</div>
 							))
