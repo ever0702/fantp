@@ -1,19 +1,21 @@
-import {get, post, put , deletex} from './httpHelper';
+import {get, post, put, deletex } from './httpHelper';
 
 const actionConstantHelper = config => {
     let actions = {};
 
-    for (let i of config.sync) {
-        actions[i] = i;
-    }
+    if (config.sync)
+        for (let i of config.sync) {
+            actions[i] = i;
+        }
 
-    for (let k of config.async) {
-        actions[k] = {
-            REQUEST: k + '_REQUEST',
-            SUCCESS: k + '_SUCCESS',
-            ERROR: k + '_ERROR'
-        };
-    }
+    if (config.async)
+        for (let k of config.async) {
+            actions[k] = {
+                REQUEST: k + '_REQUEST',
+                SUCCESS: k + '_SUCCESS',
+                ERROR: k + '_ERROR'
+            };
+        }
 
     console.log('created actions', actions)
 
@@ -39,7 +41,7 @@ const asyncActionHelper = ({ dispatch, actionName, payload = {}, startActionPayl
     let http = get;
     if (method == 'post') http = post;
     else if (method == 'put') http = put;
-    else if(method =='delete') http = deletex;
+    else if (method == 'delete') http = deletex;
 
     return http(url, requestPayload).then(
 

@@ -14,57 +14,36 @@ const Footer = () => (
 						
 			        	<a href="" className="footer-brand">
 			        		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Beats_Electronics_logo.svg/2000px-Beats_Electronics_logo.svg.png" alt=""/>
-			        		<span className="footer-logo">React</span>
+			        		<span className="footer-logo">Fantp</span>
 			        	</a>
 					</div>
 					<div className="col-md-2">
-						<h3 className="nav-title">Company</h3>
+						<h3 className="nav-title">公司网址</h3>
 						<ul className="nav">
 							<li>
-								<a href="">About</a>
-							</li>
-							<li>
-								<a href="">Jobs</a>
-							</li>
-							<li>
-								<a href="">Press</a>
-							</li>
-							<li>
-								<a href="">News</a>
+								<a href="">www.fantp.com</a>
 							</li>
 						</ul>
 					</div>
 					<div className="col-md-2">
-						<h3 className="nav-title">Communities</h3>
+						<h3 className="nav-title">Email</h3>
 						<ul className="nav">
 							<li>
-								<a href="">Artists</a>
-							</li>
-							<li>
-								<a href="">Labels</a>
-							</li>
-							<li>
-								<a href="">Developers</a>
-							</li>
-							<li>
-								<a href="">Brands</a>
+								<a href="">fantexiuss@gmail.com</a>
 							</li>
 						</ul>
 					</div>
 					<div className="col-md-2">
-						<h3 className="nav-title">Useful Links</h3>
+						<h3 className="nav-title">TEL: 联系电话</h3>
 						<ul className="nav">
 							<li>
-								<a href="">Help</a>
+								<a href="">+86-95040492898</a>
 							</li>
 							<li>
-								<a href="">Gift</a>
+								<a href="">+1-6267680508</a>
 							</li>
 							<li>
-								<a href="">About</a>
-							</li>
-							<li>
-								<a href="">About</a>
+								<a href="">+86-18686029222</a>
 							</li>
 						</ul>
 					</div>

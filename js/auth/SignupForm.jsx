@@ -113,18 +113,7 @@ export default class SignupForm extends React.Component {
 			}
 
 		});
-
-
-		// dispatch(signup({
-		// 	username,
-		// 	password,
-		// 	email,
-		// 	gender
-		// })).then(res => onSignupSuccess(),
-		// 	err => toastr.error(err.message)
-		// );
 	}
-
 	render(){
 		
 		let {getHandler, setState, state} = this;

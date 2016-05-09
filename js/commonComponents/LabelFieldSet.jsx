@@ -1,18 +1,21 @@
 import React from 'react';
 
-const LabelFieldSet = props => (
-			<fieldset {...props} className={props.className+ ' form-group'}>
+const LabelFieldSet = props => { 
+		let {label, className, labelClassName, success, err, children, ...rest} = props;
+		return (
+			<fieldset {...rest} className={className+ ' form-group'}>
 				{
-					props.label&&<label>{props.label}</label>
+					label&&<label className={labelClassName}>{props.label}</label>
 				}
-				{props.children}
+				{children}
 				{
-					props.success&&<small className="text-success">{props.success}</small>
+					success&&<small className="text-success">{success}</small>
 				}
 				{
-					props.err&&<small className="text-danger">{props.err}</small>
+					err&&<small className="text-danger">{err}</small>
 				}
 			</fieldset>
 		);
+	};
 
 export default LabelFieldSet;

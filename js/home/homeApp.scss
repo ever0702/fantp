@@ -18,8 +18,7 @@
         height: 100vh;
         background-image: url(https://cdn-images-1.medium.com/max/1200/1*sY7tE-ciILm9qqr7731tUA.jpeg);
         background-image: url(https://wallpaperscraft.com/image/batman_arkham_city_joker_smile_suit_flower_fan_art_black_and_white_19699_1920x1080.jpg);
-        // position: absolute;
-        //   // top: 0;
+        background-image: url(http://www.bidpal.com/wordpress/wp-content/uploads/2015/03/header-golf-e1425581930814.jpg);
         left: 0;
         right: 0;
         background-size: cover;
@@ -43,4 +42,25 @@
             }
         }
     }
+}
+
+
+.start-form-wrap {
+    margin-top:18vh;
+    .start-form {
+        .card-title {
+            color: $orange;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        color: white;
+        .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+        }
+        input {
+            width: 100%;
+        }
+    }
+
 }

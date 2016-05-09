@@ -4,13 +4,15 @@ import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 import Card from '../commonComponents/Card';
 import './homeApp.scss';
+import HomeStartForm from './cmps/HomeStartForm';
+import navHistory from '../utils/navHistory';
 
 @connect(
 
 		state => ({
 			cards: [{
 				title: 'Small Cat',
-				text: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+				text: 'Some  example text to build on the card title and make up the bulk of the card content.',
 				imgSrc: 'https://i.ytimg.com/vi/nomNd-1zBl8/maxresdefault.jpg'
 			}, {
 				title: 'Big Cat',
@@ -38,6 +40,10 @@ import './homeApp.scss';
 class HomeApp extends React.Component {
 	constructor(props) {
 		super(props);
+		this.onHomeStartFormSuccess = this.onHomeStartFormSuccess.bind(this);
+	}
+	onHomeStartFormSuccess(){
+		navHistory.push('/planner');
 	}
 	render() {
 		return (
@@ -47,12 +53,8 @@ class HomeApp extends React.Component {
 				</div>
 					<div className="jumbotron poster" >
 						<div className="container">
-							<div className="content">
-
-								<h1 className="header" style={{color:'black', marginBottom:'50px'}}>The best is Yet to Be...</h1>
-
-								<button className="btn btn-success btn-lg" style={{marginRight: 40}}>Get Started</button>
-								<button className="btn btn-primary-outline btn-lg">Learn More...</button>
+							<div className="start-form-wrap col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+								<HomeStartForm onHomeStartFormSuccess={this.onHomeStartFormSuccess} />
 							</div>
 						</div>
 					</div>

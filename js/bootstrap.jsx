@@ -10,10 +10,9 @@ import './utils/genericPipes';
 
 
 render(
-		<AppContainer
-			component={AppRoutes}
-			props={{store}}
-		/>,
+		<AppContainer>
+			<AppRoutes store={store}/>
+		</AppContainer>,
 		document.getElementById('react')
 	);
 

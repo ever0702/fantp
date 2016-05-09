@@ -4,6 +4,7 @@ import bookAppReducer from './book/bookAppReducer';
 import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
 import authReducer from './auth/authReducer';
+import homeReducer from './home/homeReducer';
 
 
 if(module.hot) {
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     bookApp: bookAppReducer,
     employeeApp: employeeReducer,
     todoApp: todoReducer,
-    form: formReducer
+    form: formReducer,
+    homeApp:homeReducer
 });
 
 export default rootReducer;

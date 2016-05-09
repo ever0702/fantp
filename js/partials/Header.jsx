@@ -11,8 +11,8 @@ const links = [{
 	label: 'Todos',
 	url: '/todo-app'
 }, {
-	label: 'Memos',
-	url: '/memo-app'
+	label: 'Planner',
+	url: '/planner'
 }];
 
 const NavBar = ({loggedIn, username, dispatch}) => {
@@ -25,7 +25,7 @@ const NavBar = ({loggedIn, username, dispatch}) => {
 			        <div className="collapse navbar-toggleable-xs">
 			        	<a href="" className="navbar-brand">
 			        		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Beats_Electronics_logo.svg/2000px-Beats_Electronics_logo.svg.png" alt=""/>
-			        		<span className="navbar-logo">React</span>
+			        		<span className="navbar-logo">Fantp</span>
 			        	</a>
 			        	<ul className="nav navbar-nav">
 							{
