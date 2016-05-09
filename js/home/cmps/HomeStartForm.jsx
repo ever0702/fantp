@@ -58,7 +58,7 @@ class HomeStartForm extends React.Component {
 						<InlineLabelFieldSet label="平均年龄" divClassName="col-md-6" labelClassName="col-md-6" err={(hasSubmitted||averageAge.touched)&&averageAge.error}>
 						      <input className="form-control" type="text" {...averageAge} placeholder="平均年龄"/>
 						</InlineLabelFieldSet>
-						  <button className="btn btn-success-outline" type="submit">开始订制</button>
+						  <button className="btn btn-raised btn-primary" type="submit">开始订制</button>
 					</form>	
 					
 				</Card>

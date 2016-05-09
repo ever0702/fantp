@@ -25,7 +25,11 @@ class TripPlannerDashboard extends React.Component {
 		
 		return (
 			<div className="trip-planner-dashboard">
-				Face Icon: <i class="material-icons">face</i> face
+				  <div className="form-group label-static">
+				    <input type="email" className="form-control" id="i2" placeholder="placeholder attribute"/>
+				    <p className="help-block">This is a hint as a <code>p.help-block.hint</code></p>
+				  </div>
+				Face Icon: <i className="material-icons">face</i> face
 				<TreeView NodeTmp={NodeTmp} treeData = {stepConfig} iconClick={nd => this.onToggleNode(nd) } />
 			</div>
 		);

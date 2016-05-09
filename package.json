@@ -16,10 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.6.5",
-    "babel-polyfill": "^6.7.4",
-    "babel-relay-plugin": "^0.7.3",
-    "babel-watch": "^2.0.2",
+  
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
     "bootstrap-material-design": "^0.5.9",
@@ -27,7 +24,6 @@
     "es6-promise": "^3.1.2",
     "events": "^1.1.0",
     "express": "^4.13.4",
-    "express-graphql": "^0.4.13",
     "express-session": "^1.13.0",
     "flux": "^2.1.1",
     "graphql": "^0.4.18",
@@ -42,7 +38,6 @@
     "q": "^1.4.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
-    "react-hot-loader": "^3.0.0-alpha.12",
     "react-redux": "^4.4.1",
     "react-router": "^2.3.0",
     "redbox-react": "^1.2.3",
@@ -58,6 +53,10 @@
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
+      "babel-cli": "^6.6.5",
+    "babel-polyfill": "^6.7.4",
+    "babel-relay-plugin": "^0.7.3",
+    "babel-watch": "^2.0.2",
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.0-beta1",
@@ -76,6 +75,7 @@
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
     "react-transform-catch-errors": "^1.0.2",
+    "react-hot-loader": "^3.0.0-alpha.12",
     "react-transform-hmr": "^1.0.4",
     "redux-devtools-diff-monitor": "^5.0.4",
     "redux-devtools-dock-monitor": "^1.1.1",
