@@ -1,11 +1,12 @@
 import { tripPlannerActions, toggleTripUnit } from './tripPlannerActions';
-import stepConfig from '../stepConfig';
+import {stepTree, stepFlat} from '../stepConfig';
 import {setPropertyWhenNodeChildrenContains} from '../utils/treeUtil';
 
 const { TOGGLE_TRIP_UNIT } = tripPlannerActions;
 
 const defaultState = {
-    steps: stepConfig
+    steps: stepFlat,
+    stepTree: stepTree
 };
 
 const tripPlannerReducer = (state = defaultState, action) => {

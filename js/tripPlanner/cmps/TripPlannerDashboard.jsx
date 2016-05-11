@@ -4,7 +4,7 @@ import {Modal, Button} from 'react-bootstrap';
 import TreeView from '../../commonComponents/TreeView';
 import SignupForm from '../../auth/SignupForm';
 import navHistory from '../../utils/navHistory';
-import TripStep from './TripStep';
+import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
 import {toggleTripUnit} from '../tripPlannerActions';
 
@@ -13,9 +13,21 @@ const NodeTmp = ({label}) => (
 	<h4 style={{backgroundColor:'orange'}}>{label+'hahahah'}</h4>
 );
 
+const getTopSteps = stepObj => {
+	let arr = [];
+	for(let [k, v] of Object.entries(stepObj)) {
+		if(!v.parentStep){
+			arr.push(v);
+		}
+	}
+
+	return arr;
+}
+
 @connect(
 	state => ({
-		steps: state.tripPlanner.steps
+		steps: state.tripPlanner.steps,
+		topSteps: getTopSteps(state.tripPlanner.steps)
 	})
 )
 class TripPlannerDashboard extends React.Component {
@@ -55,19 +67,19 @@ class TripPlannerDashboard extends React.Component {
 	render() {
 		
 		let {onUnitClick} = this;
-		let {steps} = this.props;
+		let {topSteps, steps} = this.props;
 		console.log(steps, 'stepconaaaa')
 		return (
 			<div className="trip-planner-dashboard">
 				<div className="row">
 					<div className="col-md-9">
-						<TreeView NodeTmp={NodeTmp} treeData = {steps} iconClick={nd => this.onToggleNode(nd) } />
 						<Button onClick={e=> this.openSignupModal()}>Open Modal</Button>
 
 						{
-							steps.map(sp => (
+							topSteps && 
+							topSteps.map(sp => (
 									<div>
-										<TripStep key={sp.id} stepConfig={sp} onUnitClick={onUnitClick} />
+										<PlanStep key={sp.id} {...sp} onUnitClick={onUnitClick} />
 									</div>
 								))
 						}

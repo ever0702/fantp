@@ -1,6 +1,6 @@
 import {normalizr} from './utils/treeUtil';
 
-let stepConfig = [{
+let stepTree = [{
 	index: 0,
 	id: 'travelStyle',
 	label: '旅行方式',
@@ -33,21 +33,25 @@ let stepConfig = [{
 }, {
 	index: 1,
 	id: 'hLeooStyl',
+	label:'Hilari',
 	subSteps: [{
 		index: 0,
 		id: 'rentfff',
+		label:'cliton',
 		subSteps: [{
 			index: 0,
+			label:'WTF',
 			id: 'middsssle'
 		}, {
 			index: 1,
+			label:'inters',
 			id: 'bigfff'
 		}]
 
 	}]
 }];
 
-stepConfig = normalizr(stepConfig, 'subSteps', 'id');
-console.log(stepConfig)
+let stepFlat = normalizr(stepTree, 'subSteps', 'id', 'parentStep', 'childSteps');
+console.log(stepFlat)
 
-export default stepConfig;
+export  {stepFlat, stepTree};
