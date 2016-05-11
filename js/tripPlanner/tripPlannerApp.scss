@@ -6,6 +6,13 @@
 }
 
 .trip-plan-page{
+	
+	.active-step {
+		border: 3px solid orange;
+	}
 
+	.not-active-step{
+		border: 2px solid gray;
+	}
 
 }

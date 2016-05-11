@@ -11,7 +11,17 @@ let stepTree = [{
 		subSteps: [{
 			index: 0,
 			label: '大巴（10-16座)',
-			id: 'middle'
+			id: 'middle',
+			subSteps: [
+				{
+					id: 'oilBigBus',
+					label: '大油车'
+				},
+				{
+					id: 'smallBigBus',
+					label: 'small油车'
+				}
+			]
 		}, {
 			index: 1,
 			label: '小巴（7-10座）',

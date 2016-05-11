@@ -1,14 +1,14 @@
 import {actionConstantHelper, asyncActionHelper} from '../utils/actionCreateUtil';
 
 const tripPlannerActions = actionConstantHelper({
-	sync: ['TOGGLE_TRIP_UNIT']
+	sync: ['TOGGLE_STEP_NODE']
 });
 
-const {TOGGLE_TRIP_UNIT} = tripPlannerActions;
+const {TOGGLE_STEP_NODE} = tripPlannerActions;
 
-const toggleTripUnit = unit => ({
-	type: TOGGLE_TRIP_UNIT,
-	unit
+const toggleStepNode = nodeId => ({
+	type: TOGGLE_STEP_NODE,
+	nodeId
 });
 
-export {tripPlannerActions, toggleTripUnit};
+export {tripPlannerActions, toggleStepNode};

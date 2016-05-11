@@ -29,7 +29,7 @@ let MONGO_URL = 'mongodb://localhost/relay_graph';
 
 (async() => {
 
-    let server = app.listen(3500, () => console.log('Listening on Port 3500'));
+    let server = app.listen(80, () => console.log('Listening on Port 80'));
 
     let io = socketio.listen(server);
 

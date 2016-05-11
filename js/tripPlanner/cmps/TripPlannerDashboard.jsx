@@ -6,7 +6,7 @@ import SignupForm from '../../auth/SignupForm';
 import navHistory from '../../utils/navHistory';
 import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
-import {toggleTripUnit} from '../tripPlannerActions';
+import {toggleStepNode} from '../tripPlannerActions';
 
 
 const NodeTmp = ({label}) => (
@@ -37,7 +37,7 @@ class TripPlannerDashboard extends React.Component {
 		this.onToggleNode = this.onToggleNode.bind(this);
 		this.openSignupModal = this.openSignupModal.bind(this);
 		this.closeSignupModal = this.closeSignupModal.bind(this);
-		this.onUnitClick = this.onUnitClick.bind(this);
+		this.onNodeClick = this.onNodeClick.bind(this);
 		this.onSignupSuccess = this.onSignupSuccess.bind(this);
 		
 	}
@@ -58,15 +58,15 @@ class TripPlannerDashboard extends React.Component {
 		navHistory.push('/home-app');
 	}
 
-	onUnitClick(unit) {
+	onNodeClick(unit) {
 		console.log('unit click fired ', unit)
-		this.props.dispatch(toggleTripUnit(unit));
+		this.props.dispatch(toggleStepNode(unit));
 		this.forceUpdate();
 
 	}
 	render() {
 		
-		let {onUnitClick} = this;
+		let {onNodeClick} = this;
 		let {topSteps, steps} = this.props;
 		console.log(steps, 'stepconaaaa')
 		return (
@@ -79,7 +79,7 @@ class TripPlannerDashboard extends React.Component {
 							topSteps && 
 							topSteps.map(sp => (
 									<div>
-										<PlanStep key={sp.id} {...sp} onUnitClick={onUnitClick} />
+										<PlanStep key={sp.id} {...sp} onNodeClick={node => onNodeClick(node)} />
 									</div>
 								))
 						}

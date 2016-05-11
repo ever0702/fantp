@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 const NavContainerShell = ({children}) => (
 		<div className="nav-container-shell">
-	        <div className="container-fluid bg-faded" id="top-nav">
+	        <div className="bg-faded" id="top-nav">
 	        	<div className="container">
 			        <Header />
 		        </div>

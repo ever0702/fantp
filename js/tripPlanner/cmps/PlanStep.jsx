@@ -2,35 +2,49 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Card from '../../commonComponents/Card';
 
-const getSubStep = (state, ownProps) => {
-	console.log('get sub step call ', state, ownProps);
-	return ownProps.childSteps.map(id => state.tripPlanner.steps[id]);
+const isNodeActive = (paths, nodeId) => {
+	for(let [k, v] of Object.entries(paths)) {
+		for(let id of v) {
+			if(id == nodeId)
+				return true;
+		}
+	}
+	return false;
 }
 
-@connect(
-	(state, ownProps) => ({
-		subSteps: getSubStep(state, ownProps)
-	})
-)
-class PlanStep extends React.Component {
+class PlanStepRaw extends React.Component {
     constructor(props) {
         super(props);
-
     }
     render() {
-    	let {id, label, subSteps} = this.props;
-    	console.log(subSteps)
+    	let {id, active, label, isRoot, pathLink, subSteps, onNodeClick} = this.props;
+
         return (
 			<div className="plan-step">
-				<Card title={label} >
-				{JSON.stringify(this.props)}
+				<Card className={active?'active-step': 'not-active-step'} style={{background:'white'}}>
+					<div className="card-block" onClick={e=>{
+						onNodeClick(id);
+					}}>{label}</div>
+					{JSON.stringify(this.props)}
+					<p>isRoot{isRoot+''}</p>
+					
 					{
+						pathLink&&
+						pathLink[0]&&
+						pathLink.slice(1).map(pl => <span><i className="fa fa-play" style={{color:'gray'}}></i>{pl.label}</span>)
+					}
+					{
+						pathLink && 
+						<ol className="breadcrumb">
+							{
+								pathLink.map(path => <li>{path.label}</li>)
+							}
+						</ol>
+					}
+					{
+						active &&
 						subSteps &&
-						subSteps.map(sp =>  {
-							console.log(sp, 'iaaaaan');
-							console.log(PlanStep)
-							return	<PlanStep {...sp} />
-						})
+						subSteps.map(sp => <PlanStep {...sp} onNodeClick={onNodeClick} />)
 					}
 				</Card>
 			</div>	
@@ -40,10 +54,19 @@ class PlanStep extends React.Component {
     }
 }
 
-// PlanStep = connect(
-// 	(state, ownProps) => ({
-// 		subSteps: getSubStep(state, ownProps)
-// 	})
-// )
+const mapState = (state, ownProps) => {
+	let {steps, activePaths} = state.tripPlanner;
+	return {
+		subSteps: ownProps.childSteps? ownProps.childSteps.map(id => steps[id]): [],
+		active: isNodeActive(activePaths, ownProps.id),
+		isRoot: !ownProps.parentStep,
+		pathLink: activePaths[ownProps.id]? activePaths[ownProps.id].map(id => ({
+			id,
+			label: steps[id].label
+		})): null
+	};
+}
 
+const PlanStep = connect(mapState)(PlanStepRaw);
+	
 export default PlanStep;

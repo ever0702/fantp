@@ -115,8 +115,8 @@
 	        while (1) {
 	            switch (_context.prev = _context.next) {
 	                case 0:
-	                    server = app.listen(3500, function () {
-	                        return console.log('Listening on Port 3500');
+	                    server = app.listen(80, function () {
+	                        return console.log('Listening on Port 80');
 	                    });
 	                    io = _socket2.default.listen(server);
 
@@ -224,8 +224,8 @@
 	var config = {
 		secret: 'TheBestIsYetToBe',
 		tokenExpiresInMinutes: 20,
-		database: 'mongodb://localhost:27017/relay_graph'
-		// database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
+		// database: 'mongodb://localhost:27017/relay_graph'
+		database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
 	};
 
 	var connectToDB = function connectToDB() {
