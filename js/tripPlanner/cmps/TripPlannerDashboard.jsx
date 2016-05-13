@@ -6,7 +6,8 @@ import SignupForm from '../../auth/SignupForm';
 import navHistory from '../../utils/navHistory';
 import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
-import {toggleStepNode} from '../tripPlannerActions';
+import {toggleStepNode, fetchStepNodes} from '../tripPlannerActions';
+import {isNull} from '../../../isomorphic/utils/easy';
 
 
 const NodeTmp = ({label}) => (
@@ -27,7 +28,8 @@ const getTopSteps = stepObj => {
 @connect(
 	state => ({
 		steps: state.tripPlanner.steps,
-		topSteps: getTopSteps(state.tripPlanner.steps)
+		topSteps: state.tripPlanner.steps&&getTopSteps(state.tripPlanner.steps),
+		loggedIn: state.auth.username
 	})
 )
 class TripPlannerDashboard extends React.Component {
@@ -39,7 +41,14 @@ class TripPlannerDashboard extends React.Component {
 		this.closeSignupModal = this.closeSignupModal.bind(this);
 		this.onNodeClick = this.onNodeClick.bind(this);
 		this.onSignupSuccess = this.onSignupSuccess.bind(this);
+		this.nextStepClick = this.nextStepClick.bind(this);
 		
+	}
+
+	componentWillMount() {
+	 	// if(!this.props.stepjs) {
+	 		this.props.dispatch(fetchStepNodes());
+	 	// }
 	}
 
 	onToggleNode(nd) {
@@ -55,7 +64,7 @@ class TripPlannerDashboard extends React.Component {
 	}
 	onSignupSuccess(){
 		this.setState({showModal: false});
-		navHistory.push('/home-app');
+		navHistory.push('/home');
 	}
 
 	onNodeClick(unit) {
@@ -64,9 +73,18 @@ class TripPlannerDashboard extends React.Component {
 		this.forceUpdate();
 
 	}
+
+	nextStepClick(){
+		let {loggedIn} = this.props;
+		if(loggedIn) {
+			navHistory.push('home');
+		} else {
+			this.openSignupModal();
+		}
+	}
 	render() {
 		
-		let {onNodeClick} = this;
+		let {onNodeClick, nextStepClick} = this;
 		let {topSteps, steps} = this.props;
 		console.log(steps, 'stepconaaaa')
 		return (
@@ -89,7 +107,7 @@ class TripPlannerDashboard extends React.Component {
 				        </Modal>
 					</div>
 					<div className="col-md-3">
-						<TripSummary />
+						<TripSummary nextStepClick={nextStepClick}/>
 					</div>
 				</div>
 			</div>

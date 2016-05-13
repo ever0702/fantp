@@ -17,17 +17,14 @@ class PlanStepRaw extends React.Component {
         super(props);
     }
     render() {
-    	let {id, active, label, isRoot, pathLink, subSteps, onNodeClick} = this.props;
+    	let {_id, active, label, isRoot, pathLink, subSteps, onNodeClick} = this.props;
 
         return (
 			<div className="plan-step">
 				<Card className={active?'active-step': 'not-active-step'} style={{background:'white'}}>
 					<div className="card-block" onClick={e=>{
-						onNodeClick(id);
+						onNodeClick(_id);
 					}}>{label}</div>
-					{JSON.stringify(this.props)}
-					<p>isRoot{isRoot+''}</p>
-					
 					{
 						pathLink&&
 						pathLink[0]&&

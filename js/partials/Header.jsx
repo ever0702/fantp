@@ -6,7 +6,10 @@ import SignHeader from './SignHeader';
 
 const links = [{
 	label: 'Home',
-	url: '/home-app'
+	url: '/home'
+},{
+	label: 'Dashboard',
+	url: '/dashboard'
 },{
 	label: 'Todos',
 	url: '/todo-app'

@@ -1,11 +1,8 @@
 import 'babel-core/register';
 import 'babel-polyfill';
-import fs from 'fs';
 import path from 'path';
 import express from 'express';
-import bodyParser from 'body-parser';
-import { MongoClient } from 'mongodb';
-import {config, connectToDB, configServerRoutes} from './app.config';
+import {config, configServer, connectToDB, configServerRoutes, port} from './app.config';
 import socketio from 'socket.io';
 
 var webpack = require('webpack'),
@@ -22,7 +19,6 @@ app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackDevConfig.output.publicPath,
     hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
-    // noInfo: true,
     stats: {
         color: true
     }
@@ -30,37 +26,24 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
+configServer(app);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-connectToDB();
-
-app.use(express.static('public'));
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-let MONGO_URL = 'mongodb://localhost/relay_graph';
+console.log('dirname ', __dirname);
 
 (async() => {
 
-    // let db = await MongoClient.connect(MONGO_URL);
+    await connectToDB();
 
-
-    let server = app.listen(80, () => console.log('Listening on Port 80'));
+    let server = app.listen(port, () => console.log(`Listening on Port ${port}`));
 
     let io = socketio.listen(server);
 
     configServerRoutes(app, io);
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+        res.sendFile(path.join(__dirname, '../public', 'index.html'));
     })
 
 })();
 
-console.log(MONGO_URL);
+console.log(config.database);

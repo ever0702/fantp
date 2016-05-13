@@ -108,7 +108,7 @@ export default class SigninPage extends React.Component{
 
 	signinSuccess() {
 		console.log('you have singined success');
-		navHistory.push('/home-app');
+		navHistory.push('/home');
 	}
 
 	render() {

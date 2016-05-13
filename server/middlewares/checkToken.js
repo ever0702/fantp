@@ -16,7 +16,8 @@ const checkToken = (req, res, next) => {
 	
 	verifyToken(token).then(decoded => {
 		console.log('decoded is ,', JSON.stringify(decoded));
-		req.userid = decoded._id;
+		req.userId = decoded._id;
+		req.user = decoded;
 		next();
 	})
 	.catch(err=> res.status(HttpCodes.UNAUTHORIZED).send(failWithMessage('Token not valid')));

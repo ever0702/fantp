@@ -2,6 +2,36 @@
 @import './styles/material-ui.scss';
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Exo:400,700,800);
 @import url(https://fonts.googleapis.com/css?family=PT+Sans|Dosis:400,700|Alegreya+Sans|Oxygen);
+
+/* boostrap override*/
+
+body {
+    .navbar-brand {
+        float: none;
+    }
+    .navbar-nav .nav-item {
+        float: none;
+    }
+    .navbar-divider,
+    .navbar-nav .nav-item+.nav-item,
+    .navbar-nav .nav-link + .nav-link {
+        margin-left: 0;
+    }
+    @media (min-width: 34em) {
+        .navbar-brand {
+            float: left;
+        }
+        .navbar-nav .nav-item {
+            float: left;
+        }
+        .navbar-divider,
+        .navbar-nav .nav-item + .nav-item,
+        .navbar-nav .nav-link + .nav-link {
+            margin-left: 1rem;
+        }
+    }
+}
+
 html,
 body {
     height: 100%;
@@ -12,12 +42,12 @@ body {
         }
         .close-icon {
             position: absolute;
-            top:10px;
+            top: 10px;
             right: 10px;
             z-index: 1000;
             cursor: pointer;
         }
-        .close-icon:hover{
+        .close-icon:hover {
             color: white;
             background: $olive;
         }

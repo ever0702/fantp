@@ -2,12 +2,12 @@ import { tripPlannerActions, toggleTripUnit } from './tripPlannerActions';
 import { stepTree, stepFlat } from '../stepConfig';
 import { setPropertyWhenNodeChildrenContains } from '../utils/treeUtil';
 
-const { TOGGLE_STEP_NODE } = tripPlannerActions;
+const { TOGGLE_STEP_NODE, FETCH_STEP_NODES } = tripPlannerActions;
 
 const defaultState = {
-    steps: stepFlat,
-    stepTree: stepTree,
-    rootNodes: stepTree.map(node => node.id),
+    steps: null,
+    stepTree: null,
+    rootNodes: null,
     activePaths: {}
 };
 
@@ -41,6 +41,13 @@ const tripPlannerReducer = (state = defaultState, action) => {
 				newState.activePaths[root] = path;
                 return newState;
             }
+        case FETCH_STEP_NODES.SUCCESS :{
+        	return {
+        		...state,
+        		steps: action.data,
+        		rootNodes: action.data.filter(nd => !nd.parent).map(nd => nd._id)
+        	}
+        }
         default:
             return state;
     }

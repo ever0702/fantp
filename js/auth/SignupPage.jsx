@@ -16,8 +16,8 @@ class SignupPage extends React.Component {
 	}
 
 	signupSuccess() {
-		// this.props.history.push('/home-app');
-		navHistory.push('/home-app');
+		// this.props.history.push('/home');
+		navHistory.push('/home');
 	}
 
 	render() {
