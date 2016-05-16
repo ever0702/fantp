@@ -21,6 +21,10 @@ const config = {
         // database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
 };
 
+if(process.env.NODE_ENV === 'production') {
+	config.database = 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph';
+}
+
 const connectToDB = () => mongoose.connect(config.database);
 
 const configServer = app => {
