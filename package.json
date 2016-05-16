@@ -81,12 +81,8 @@
     "react-hot-loader": "^3.0.0-alpha.12",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
-    "redux-devtools-diff-monitor": "^5.0.4",
-    "redux-devtools-dock-monitor": "^1.1.1",
-    "redux-devtools-log-monitor": "^1.0.11",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   }
