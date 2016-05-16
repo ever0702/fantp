@@ -6,7 +6,7 @@ const isNull = (value, ifIsNullValue) => value!=null?value:ifIsNullValue;
 
 const mapState = state => {
 	let {rootNodes, activePaths, steps} = state.tripPlanner;
-	let paths = rootNodes.map(nd => ({
+	let paths = isNull(rootNodes, []).map(nd => ({
 			root: steps[nd], 
 			path:isNull(activePaths[nd], []).map(ph => ({
 				id: steps[ph].id,
