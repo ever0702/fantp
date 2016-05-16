@@ -97,12 +97,12 @@ class TripPlannerDashboard extends React.Component {
 							topSteps && 
 							topSteps.map(sp => (
 									<div>
-										<PlanStep key={sp.id} {...sp} onNodeClick={node => onNodeClick(node)} />
+										<PlanStep level={1} key={sp.id} {...sp} onNodeClick={node => onNodeClick(node)} />
 									</div>
 								))
 						}
 
-						<Modal show={this.state.showModal} onHide={this.closeSignupModal}>
+						<Modal show={this.state.showModal} onHide={this.closeSignupModal} bsSize="sm">
 				            <SignupForm headerClose={true} onCloseClick={this.closeSignupModal} onSignupSuccess={this.onSignupSuccess}/>
 				        </Modal>
 					</div>

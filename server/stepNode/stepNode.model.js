@@ -6,7 +6,14 @@ let StepNodeSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
-	parent: {type: mongoose.Schema.Types.ObjectId, ref: 'StepNode'},
+	parent: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'StepNode'
+	},
+	subTitle: {
+		type: String,
+		trim: true
+	},
 	createTime: {
 		type: Date,
 		default: Date.now
@@ -15,4 +22,5 @@ let StepNodeSchema = new mongoose.Schema({
 
 let StepNode = mongoose.model('StepNode', StepNodeSchema);
 
-export default StepNode;
+export
+default StepNode;

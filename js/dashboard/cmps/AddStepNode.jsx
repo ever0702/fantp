@@ -7,7 +7,7 @@ import stepNodeService from '../stepNode.service';
 
 @connect()
 @simpleForm({
-	fields:['label', 'order', 'parentId']
+	fields:['label', 'order','subTitle', 'parentId']
 })
 class AddStepNode extends React.Component {
 	constructor(props) {
@@ -23,10 +23,10 @@ class AddStepNode extends React.Component {
 	
 	submitForm() {
 		let {fields} = this.props;
-		let {label, order, parentId} = fields;
+		let {label, order, subTitle, parentId} = fields;
 		let {fetchStepNodes} = this;
 		
-		stepNodeService.createStepNode({label, order, parent: parentId})
+		stepNodeService.createStepNode({label, order, subTitle, parent: parentId})
 			.then(result => console.log(result))
 			.then( fetchStepNodes);
 
@@ -34,7 +34,7 @@ class AddStepNode extends React.Component {
 	}
 	
 	render() {
-		let {label, order, parentId, preSubmit} = this.props;
+		let {label, order, subTitle, parentId, preSubmit} = this.props;
 
 		let {stepNodes} = this.state;
 
@@ -51,6 +51,9 @@ class AddStepNode extends React.Component {
 					}>
 						<LabelFieldSet label="Label">
 							<input type="text" {...label} className="form-control" />	
+						</LabelFieldSet>	
+						<LabelFieldSet label="SubTitle">
+							<input type="text" {...subTitle} className="form-control" />	
 						</LabelFieldSet>	
 						<LabelFieldSet label="order">
 							<input type="text" {...order} className="form-control" />	

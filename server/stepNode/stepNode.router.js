@@ -18,6 +18,7 @@ const stepNodeRouter = io => {
 					_id: sp._id,
 					label: sp.label,
 					order: sp.order,	
+					subTitle: sp.subTitle,
 					parentStep: sp.parent,
 					childSteps: steps.filter(s => String(s.parent) == String(sp._id)).map(s => s._id)
 				}))
@@ -25,7 +26,7 @@ const stepNodeRouter = io => {
 		})
 		.post((req, res) => {
 			let {
-				order, label, parent
+				order, label, subTitle, parent
 			} = req.body;
 
 			if (parent != null) {
@@ -34,7 +35,7 @@ const stepNodeRouter = io => {
 				})
 			}
 			stepNodeService.createOne({
-				order, label, parent
+				order, label, subTitle, parent
 			})
 				.then(stepNode => res.send(stepNode))
 				.catch(err => console.log(err));

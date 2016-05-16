@@ -9,10 +9,40 @@
 	
 	.active-step {
 		border: 3px solid orange;
+		background:white;
+		.step-label.label{
+			background:green;
+		}
 	}
+
+
 
 	.not-active-step{
 		border: 2px solid gray;
+		background:white;
+		.step-label.label{
+			background:white;
+		color:#818a91;
+		}
+	}
+
+	.path-span {
+		i {
+			margin-left:6px;
+			margin-right: 4px;
+		}
+		white-space: normal;
+	}
+
+	.children-steps {
+	}
+	.card-block {
+		padding: 0.6em;
+	}
+
+	.step-subtitle{
+		font-size:12px;
+		
 	}
 
 }
