@@ -28,31 +28,47 @@ class PlanStepRaw extends React.Component {
 
     }
     render() {
-    	let {_id, active, label, subTitle, level, isRoot, pathLink, childStepsObj, onNodeClick} = this.props;
+    	let {_id, active, label, completed, expanded, subTitle, level, isRoot, pathLink, childStepsObj, expandRoot, onNodeClick} = this.props;
+
+    	const className = `plan-step ${active?'active-step':'not-active-step'}`
 
         return (
-			<div className="plan-step ">
-				<Card className={active?'active-step': 'not-active-step'} style={{borderRadius:level!=1?'10%':''}}>
-					<div className="step-label label" style={{color:''}} onClick={e=>{
-						onNodeClick(_id);
-					}}>{label}
+			<div className={className} style={{marginTop:level==1?'15px':null}}>
+				<Card className={'level'+level} style={{border: level==1&&completed?'2px solid green':null}}>
+					{JSON.stringify(this.props.expandRoot)}
+					{
+						level==1 && 
+						completed &&
+						<i className="fa fa-check-circle complete-icon text-success"></i>
+					}
+					<div className="cursor-pointer" onClick={e=>{
+							e.preventDefault();
+							if(expandRoot) expandRoot(_id);
+						}}>
+						<div className="step-label label" style={{color:''}} onClick={e=>{
+							onNodeClick(_id);
+						}}>
+						<a >{label}</a>
+
+						</div>
+						{
+							subTitle &&
+							<div className="step-subtitle text-muted">{subTitle}</div>
+						}
+						{
+							pathLink&&
+							pathLink[0]&&
+							pathLink.slice(1).map(pl => <span onClick={e=> {e.stopPropagation(); onNodeClick(pl._id); }} className="path-span label text-primary"><i className="fa fa-play" style={{color:'gray'}}></i>{pl.label}
+									{
+										pl.subTitle&&
+										<span className="text-muted" style={{fontWeight:'normal', color:'gray'}}>{' ('+pl.subTitle+') '}</span>
+									}
+								</span>)
+						}
 					</div>
-					{
-						subTitle &&
-						<div className="step-subtitle text-muted">{subTitle}</div>
-					}
-					{
-						pathLink&&
-						pathLink[0]&&
-						pathLink.slice(1).map(pl => <span onClick={e=> {e.stopPropagation(); onNodeClick(pl._id); }} className="path-span label text-primary"><i className="fa fa-play" style={{color:'gray'}}></i>{pl.label}
-								{
-									pl.subTitle&&
-									<span className="text-muted" style={{fontWeight:'normal', color:'gray'}}>{' ('+pl.subTitle+') '}</span>
-								}
-							</span>)
-					}
 					<div className="row children-steps">
 					{
+						(expanded||level!=1)&&
 						active &&
 						childStepsObj &&
 						childStepsObj.map(sp => (

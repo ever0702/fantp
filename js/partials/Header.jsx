@@ -23,7 +23,7 @@ const NavBar = ({loggedIn, username, dispatch}) => {
 	return (
 			<nav className="navbar navbar-fixed-top navbar-default navbar-light" id="navbar">
 				<div className="container">
-			        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="true">
+			        <button id="navbar-toggle" class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="true">
 			          <i className="fa fa-bars" aria-hidden="true"></i>
 			        </button>
 			        <div className="collapse navbar-toggleable-xs" id="navbar-header">

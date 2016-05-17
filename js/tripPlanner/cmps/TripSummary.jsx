@@ -31,7 +31,6 @@ class TripSummary extends React.Component {
 				<div className="trip-summary">
 					<Card title="Trip Summary">
 						I am some content
-						{JSON.stringify(this.props.paths)}
 						{
 							paths.map(ph => (
 								<p>{

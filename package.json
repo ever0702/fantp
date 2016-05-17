@@ -10,7 +10,8 @@
     "start:production": "node server/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
-    "build": "npm run build:client && npm run build:server"
+    "build": "npm run build:client && npm run build:server",
+    "init": "npm install -g webpack babel-cli babel-core nodemon forever"
   },
   "keywords": [],
   "author": "",

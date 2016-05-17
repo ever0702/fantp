@@ -6,7 +6,7 @@ import SignupForm from '../../auth/SignupForm';
 import navHistory from '../../utils/navHistory';
 import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
-import {toggleStepNode, fetchStepNodes} from '../tripPlannerActions';
+import {toggleStepNode, fetchStepNodes, expandRoot} from '../tripPlannerActions';
 import {isNull} from '../../../isomorphic/utils/easy';
 
 
@@ -29,7 +29,9 @@ const getTopSteps = stepObj => {
 	state => ({
 		steps: state.tripPlanner.steps,
 		topSteps: state.tripPlanner.steps&&getTopSteps(state.tripPlanner.steps),
-		loggedIn: state.auth.username
+		loggedIn: state.auth.username,
+		activePaths: state.tripPlanner.activePaths,
+		expandedRoot: state.tripPlanner.expandedRoot
 	})
 )
 class TripPlannerDashboard extends React.Component {
@@ -42,6 +44,7 @@ class TripPlannerDashboard extends React.Component {
 		this.onNodeClick = this.onNodeClick.bind(this);
 		this.onSignupSuccess = this.onSignupSuccess.bind(this);
 		this.nextStepClick = this.nextStepClick.bind(this);
+		this.expandRoot = this.expandRoot.bind(this);
 		
 	}
 
@@ -71,7 +74,10 @@ class TripPlannerDashboard extends React.Component {
 		console.log('unit click fired ', unit)
 		this.props.dispatch(toggleStepNode(unit));
 		this.forceUpdate();
+	}
 
+	expandRoot(_id) {
+		this.props.dispatch(expandRoot(_id));
 	}
 
 	nextStepClick(){
@@ -82,22 +88,28 @@ class TripPlannerDashboard extends React.Component {
 			this.openSignupModal();
 		}
 	}
+
+
 	render() {
+		console.log(this.props);
 		
 		let {onNodeClick, nextStepClick} = this;
-		let {topSteps, steps} = this.props;
-		console.log(steps, 'stepconaaaa')
+		let {topSteps, steps, activePaths, expandedRoot} = this.props;
+		const isCompleted = sp => {
+			if(!activePaths[sp._id] || activePaths[sp._id].length==0) return false;
+			let lastItm = activePaths[sp._id][activePaths[sp._id].length-1];
+			return steps[lastItm].childSteps==null;
+		}
 		return (
 			<div className="trip-planner-dashboard">
 				<div className="row">
 					<div className="col-md-9">
-						<Button onClick={e=> this.openSignupModal()}>Open Modal</Button>
 
 						{
 							topSteps && 
 							topSteps.map(sp => (
 									<div>
-										<PlanStep level={1} key={sp.id} {...sp} onNodeClick={node => onNodeClick(node)} />
+										<PlanStep completed={isCompleted(sp)} expanded={expandedRoot==sp._id} level={1} key={sp._id} {...sp} onNodeClick={node => onNodeClick(node)} expandRoot={this.expandRoot}/>
 									</div>
 								))
 						}
@@ -110,6 +122,7 @@ class TripPlannerDashboard extends React.Component {
 						<TripSummary nextStepClick={nextStepClick}/>
 					</div>
 				</div>
+				<Button onClick={e=> this.openSignupModal()}>Open Modal</Button>
 			</div>
 		);
 

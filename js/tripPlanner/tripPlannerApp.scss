@@ -1,48 +1,72 @@
+@import '../styles/colors.scss';
 
 .trip-plan-bg {
-        background-image: url(http://www.bidpal.com/wordpress/wp-content/uploads/2015/03/header-golf-e1425581930814.jpg);	
-        background-image: url(http://t.wallpaperweb.org/wallpaper/nature/1920x1080/Wallpaper_1080p_38.jpg);	
-        height: 100vh;
+    // background-image: url(http://www.bidpal.com/wordpress/wp-content/uploads/2015/03/header-golf-e1425581930814.jpg);
+    background-image: url(http://t.wallpaperweb.org/wallpaper/nature/1920x1080/Wallpaper_1080p_38.jpg);
+    // background:#eee;
+    // height: 100vh;
 }
 
-.trip-plan-page{
-	
-	.active-step {
-		border: 3px solid orange;
-		background:white;
-		.step-label.label{
-			background:green;
-		}
-	}
-
-
-
-	.not-active-step{
-		border: 2px solid gray;
-		background:white;
-		.step-label.label{
-			background:white;
-		color:#818a91;
-		}
-	}
-
-	.path-span {
-		i {
-			margin-left:6px;
-			margin-right: 4px;
-		}
-		white-space: normal;
-	}
-
-	.children-steps {
-	}
+.trip-plan-page {
 	.card-block {
-		padding: 0.6em;
+		position:relative;
 	}
+    .active-step {
+    	.level1{
+    	}
+    	.level2 {
+    		border: 2px solid $purple;
+    	}
+    	.level3 {
+    		border: 2px solid $green;
+    	}
+        background: white;
+        .step-label.label {
+            background: $orange;
+            a {
+                color: white;
+            }
+        }
+    }
+    .not-active-step {
+    	.level{
+    		border: 2px solid transparent;
+    	}
+    	.level2, .level3 {
 
-	.step-subtitle{
-		font-size:12px;
-		
-	}
+	        border: 2px solid gray;
+    	}
+        background: white;
+        .step-label.label {
+            background: white;
+            a {
+                color: $black;
+            }
+        }
+    }
+    .path-span {
+        i {
+            margin-left: 6px;
+            margin-right: 4px;
+        }
+        white-space: normal;
+    }
+    .children-steps {}
+    .card-block {
+        padding: 0.6em;
+    }
+    .step-subtitle {
+        font-size: 12px;
+    }
 
+    .complete-icon {
+    	position:absolute;
+    	top:5px;
+    	right: 5px;
+    	font-size: 30px;
+    }
+}
+
+.plan-step.top-level {
+	margin-bottom: 15px;
 }

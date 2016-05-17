@@ -5,6 +5,12 @@
 
 /* boostrap override*/
 
+@media(min-width:544px) {
+    #navbar-toggle {
+        display: none;
+    }
+}
+
 body {
     .navbar-brand {
         float: none;
@@ -29,6 +35,21 @@ body {
         .navbar-nav .nav-link + .nav-link {
             margin-left: 1rem;
         }
+    }
+    a {
+        cursor: pointer;
+    }
+}
+
+body.common {
+    .cursor-pointer {
+        cursor: pointer;
+    }
+    .float-left {
+        float: left;
+    }
+    .float-right {
+        float: right;
     }
 }
 

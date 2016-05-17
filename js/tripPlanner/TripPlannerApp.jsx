@@ -17,9 +17,6 @@ class TripPlannerApp extends React.Component {
 					<div className="trip-plan-page">
 						<div className="container">
 							<div className="row">
-								<div className="col-md-4 col-md-offset-4">
-									Still Work
-								</div>
 							</div>
 							<TripPlannerDashboard />
 						</div>	
