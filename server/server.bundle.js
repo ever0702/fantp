@@ -119,6 +119,17 @@
 	console.log('This is the production server file');
 
 	console.log(_app.config.database);
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(app, 'app', 'C:/ps_workspace_yong/fantp/server/server.production.js');
+	})();
+
+	;
 	/* WEBPACK VAR INJECTION */}.call(exports, "server"))
 
 /***/ },
@@ -252,6 +263,25 @@
 	exports.configServer = configServer;
 	exports.configServerRoutes = configServerRoutes;
 	exports.port = port;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(port, 'port', 'C:/ps_workspace_yong/fantp/server/app.config.js');
+
+	    __REACT_HOT_LOADER__.register(config, 'config', 'C:/ps_workspace_yong/fantp/server/app.config.js');
+
+	    __REACT_HOT_LOADER__.register(connectToDB, 'connectToDB', 'C:/ps_workspace_yong/fantp/server/app.config.js');
+
+	    __REACT_HOT_LOADER__.register(configServer, 'configServer', 'C:/ps_workspace_yong/fantp/server/app.config.js');
+
+	    __REACT_HOT_LOADER__.register(configServerRoutes, 'configServerRoutes', 'C:/ps_workspace_yong/fantp/server/app.config.js');
+	})();
+
+	;
 
 /***/ },
 /* 8 */
@@ -313,7 +343,21 @@
 		});
 	};
 
-	exports.default = checkToken;
+	var _default = checkToken;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(checkToken, 'checkToken', 'C:/ps_workspace_yong/fantp/server/middlewares/checkToken.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/middlewares/checkToken.js');
+	})();
+
+	;
 
 /***/ },
 /* 12 */
@@ -407,6 +451,22 @@
 
 	// }
 
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(defaultSignOptions, 'defaultSignOptions', 'C:/ps_workspace_yong/fantp/server/utils/token.util.js');
+
+		__REACT_HOT_LOADER__.register(signToken, 'signToken', 'C:/ps_workspace_yong/fantp/server/utils/token.util.js');
+
+		__REACT_HOT_LOADER__.register(verifyToken, 'verifyToken', 'C:/ps_workspace_yong/fantp/server/utils/token.util.js');
+	})();
+
+	;
+
 /***/ },
 /* 13 */
 /***/ function(module, exports) {
@@ -436,7 +496,21 @@
 		SERVER_ERROR: 500
 	};
 
-	exports.default = HttpCodes;
+	var _default = HttpCodes;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(HttpCodes, "HttpCodes", "C:/ps_workspace_yong/fantp/isomorphic/constants/httpCodes.js");
+
+		__REACT_HOT_LOADER__.register(_default, "default", "C:/ps_workspace_yong/fantp/isomorphic/constants/httpCodes.js");
+	})();
+
+	;
 
 /***/ },
 /* 16 */
@@ -464,6 +538,19 @@
 
 	exports.failWithMessage = failWithMessage;
 	exports.successWithData = successWithData;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(failWithMessage, "failWithMessage", "C:/ps_workspace_yong/fantp/server/utils/messageGenerator.js");
+
+		__REACT_HOT_LOADER__.register(successWithData, "successWithData", "C:/ps_workspace_yong/fantp/server/utils/messageGenerator.js");
+	})();
+
+	;
 
 /***/ },
 /* 17 */
@@ -594,7 +681,23 @@
 	    return router;
 	};
 
-	exports.default = authRouter;
+	var _default = authRouter;
+	exports.default = _default;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(AuthHandler, 'AuthHandler', 'C:/ps_workspace_yong/fantp/server/auth/auth.router.js');
+
+	    __REACT_HOT_LOADER__.register(authRouter, 'authRouter', 'C:/ps_workspace_yong/fantp/server/auth/auth.router.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/auth/auth.router.js');
+	})();
+
+	;
 
 /***/ },
 /* 18 */
@@ -636,7 +739,23 @@
 
 	var userService = new UserService();
 
-	exports.default = userService;
+	var _default = userService;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(UserService, 'UserService', 'C:/ps_workspace_yong/fantp/server/user/user.service.js');
+
+		__REACT_HOT_LOADER__.register(userService, 'userService', 'C:/ps_workspace_yong/fantp/server/user/user.service.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/user/user.service.js');
+	})();
+
+	;
 
 /***/ },
 /* 19 */
@@ -699,7 +818,21 @@
 	    return BaseService;
 	}();
 
-	exports.default = BaseService;
+	var _default = BaseService;
+	exports.default = _default;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(BaseService, "BaseService", "C:/ps_workspace_yong/fantp/server/utils/base.service.js");
+
+	    __REACT_HOT_LOADER__.register(_default, "default", "C:/ps_workspace_yong/fantp/server/utils/base.service.js");
+	})();
+
+	;
 
 /***/ },
 /* 20 */
@@ -743,7 +876,23 @@
 
 	var User = _mongoose2.default.model('User', UserSchema);
 
-	exports.default = User;
+	var _default = User;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(UserSchema, 'UserSchema', 'C:/ps_workspace_yong/fantp/server/user/user.model.js');
+
+		__REACT_HOT_LOADER__.register(User, 'User', 'C:/ps_workspace_yong/fantp/server/user/user.model.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/user/user.model.js');
+	})();
+
+	;
 
 /***/ },
 /* 21 */
@@ -841,7 +990,23 @@
 
 	var authService = new AuthService();
 
-	exports.default = authService;
+	var _default = authService;
+	exports.default = _default;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(AuthService, 'AuthService', 'C:/ps_workspace_yong/fantp/server/auth/auth.service.js');
+
+	    __REACT_HOT_LOADER__.register(authService, 'authService', 'C:/ps_workspace_yong/fantp/server/auth/auth.service.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/auth/auth.service.js');
+	})();
+
+	;
 
 /***/ },
 /* 22 */
@@ -903,7 +1068,21 @@
 	    Object.defineProperty(target, name, descriptor);
 	};
 
-	exports.default = profile;
+	var _default = profile;
+	exports.default = _default;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(profile, 'profile', 'C:/ps_workspace_yong/fantp/isomorphic/decorators/profile.decorator.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/isomorphic/decorators/profile.decorator.js');
+	})();
+
+	;
 
 /***/ },
 /* 23 */
@@ -942,6 +1121,27 @@
 	exports.badRequest = badRequest;
 	exports.unauthorized = unauthorized;
 	exports.serviceError = serviceError;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(BAD_REQUEST, 'BAD_REQUEST', 'C:/ps_workspace_yong/fantp/server/utils/webResponse.util.js');
+
+		__REACT_HOT_LOADER__.register(UNAUTHORIZED, 'UNAUTHORIZED', 'C:/ps_workspace_yong/fantp/server/utils/webResponse.util.js');
+
+		__REACT_HOT_LOADER__.register(SERVER_ERROR, 'SERVER_ERROR', 'C:/ps_workspace_yong/fantp/server/utils/webResponse.util.js');
+
+		__REACT_HOT_LOADER__.register(badRequest, 'badRequest', 'C:/ps_workspace_yong/fantp/server/utils/webResponse.util.js');
+
+		__REACT_HOT_LOADER__.register(unauthorized, 'unauthorized', 'C:/ps_workspace_yong/fantp/server/utils/webResponse.util.js');
+
+		__REACT_HOT_LOADER__.register(serviceError, 'serviceError', 'C:/ps_workspace_yong/fantp/server/utils/webResponse.util.js');
+	})();
+
+	;
 
 /***/ },
 /* 24 */
@@ -995,7 +1195,21 @@
 	    }();
 	};
 
-	exports.default = routerExcp;
+	var _default = routerExcp;
+	exports.default = _default;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(routerExcp, 'routerExcp', 'C:/ps_workspace_yong/fantp/isomorphic/decorators/routerException.decorator.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/isomorphic/decorators/routerException.decorator.js');
+	})();
+
+	;
 
 /***/ },
 /* 25 */
@@ -1088,7 +1302,21 @@
 		}
 	};
 
-	exports.default = routerExceptionHandler;
+	var _default = routerExceptionHandler;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(routerExceptionHandler, 'routerExceptionHandler', 'C:/ps_workspace_yong/fantp/isomorphic/decorators/routerExceptionHandler.decorator.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/isomorphic/decorators/routerExceptionHandler.decorator.js');
+	})();
+
+	;
 
 /***/ },
 /* 26 */
@@ -1166,7 +1394,21 @@
 	    return router;
 	};
 
-	exports.default = todoRouter;
+	var _default = todoRouter;
+	exports.default = _default;
+	;
+
+	(function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(todoRouter, 'todoRouter', 'C:/ps_workspace_yong/fantp/server/todo/todo.router.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/todo/todo.router.js');
+	})();
+
+	;
 
 /***/ },
 /* 27 */
@@ -1208,7 +1450,23 @@
 
 	var todoSerice = new TodoService();
 
-	exports.default = todoSerice;
+	var _default = todoSerice;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(TodoService, 'TodoService', 'C:/ps_workspace_yong/fantp/server/todo/todo.service.js');
+
+		__REACT_HOT_LOADER__.register(todoSerice, 'todoSerice', 'C:/ps_workspace_yong/fantp/server/todo/todo.service.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/todo/todo.service.js');
+	})();
+
+	;
 
 /***/ },
 /* 28 */
@@ -1240,7 +1498,23 @@
 
 	var Todo = _mongoose2.default.model('Todo', TodoSchema);
 
-	exports.default = Todo;
+	var _default = Todo;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(TodoSchema, 'TodoSchema', 'C:/ps_workspace_yong/fantp/server/todo/todo.model.js');
+
+		__REACT_HOT_LOADER__.register(Todo, 'Todo', 'C:/ps_workspace_yong/fantp/server/todo/todo.model.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/todo/todo.model.js');
+	})();
+
+	;
 
 /***/ },
 /* 29 */
@@ -1307,7 +1581,21 @@
 		return router;
 	};
 
-	exports.default = stepNodeRouter;
+	var _default = stepNodeRouter;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(stepNodeRouter, 'stepNodeRouter', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.router.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.router.js');
+	})();
+
+	;
 
 /***/ },
 /* 30 */
@@ -1349,7 +1637,23 @@
 
 	var stepNodeService = new StepNodeService();
 
-	exports.default = stepNodeService;
+	var _default = stepNodeService;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(StepNodeService, 'StepNodeService', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.service.js');
+
+		__REACT_HOT_LOADER__.register(stepNodeService, 'stepNodeService', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.service.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.service.js');
+	})();
+
+	;
 
 /***/ },
 /* 31 */
@@ -1389,7 +1693,23 @@
 
 	var StepNode = _mongoose2.default.model('StepNode', StepNodeSchema);
 
-	exports.default = StepNode;
+	var _default = StepNode;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(StepNodeSchema, 'StepNodeSchema', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.model.js');
+
+		__REACT_HOT_LOADER__.register(StepNode, 'StepNode', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.model.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/stepNode/stepNode.model.js');
+	})();
+
+	;
 
 /***/ },
 /* 32 */
@@ -1412,7 +1732,21 @@
 		});
 	};
 
-	exports.default = planRouter;
+	var _default = planRouter;
+	exports.default = _default;
+	;
+
+	(function () {
+		if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+			return;
+		}
+
+		__REACT_HOT_LOADER__.register(planRouter, 'planRouter', 'C:/ps_workspace_yong/fantp/server/plan/plan.router.js');
+
+		__REACT_HOT_LOADER__.register(_default, 'default', 'C:/ps_workspace_yong/fantp/server/plan/plan.router.js');
+	})();
+
+	;
 
 /***/ },
 /* 33 */
