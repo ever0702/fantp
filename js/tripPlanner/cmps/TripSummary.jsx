@@ -29,8 +29,8 @@ class TripSummary extends React.Component {
 		console.log(paths);
 		return (
 				<div className="trip-summary">
-					<Card title="Trip Summary">
-						I am some content
+					<Card title="旅程预算">
+						
 						{
 							paths.map(ph => (
 								<p>{

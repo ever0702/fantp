@@ -31,12 +31,12 @@ let validate = ({email = '', password = '', repassword = '', agreement=false, ge
 	if(repassword != password) {
 		errs.repassword = '密码不匹配';
 	}
-	if(!agreement) {
-		errs.agreement = 'You much agree to signup';
-	}
-	if(!gender ) {
-		errs.gender='Please select a gender';
-	}
+	// if(!agreement) {
+	// 	errs.agreement = 'You much agree to signup';
+	// }
+	// if(!gender ) {
+	// 	errs.gender='Please select a gender';
+	// }
 
 	return errs;
 }
@@ -129,19 +129,19 @@ export default class SignupForm extends React.Component {
 							preSubmit();
 							this.submitForm(); 
 						}}>
-							<LabelFieldSet label="Username" success={showUserUnique&&isUserUnique&&'Username Available'} err={showUserUnique&&!isUserUnique&&'Username Taken'}>
-								<DelayInput {...username} onTextChange={v => { this.onUsernameChange(v)} } type="text" className="form-control" placeholder="Username" />
+							<LabelFieldSet label="邮箱" success={showUserUnique&&isUserUnique&&'该邮箱可以注册'} err={showUserUnique&&!isUserUnique&&'该邮箱已被注册'}>
+								<DelayInput {...email} onTextChange={v => { this.onUsernameChange(v)} } type="text" className="form-control" placeholder="请输入邮箱" />
 							</LabelFieldSet>
-							<LabelFieldSet label="请输入邮箱" err={(hasSubmitted||email.touched)&&email.error}>
-								<input {...email} type="text"  className="form-control" placeholder="邮箱"/>
+							<LabelFieldSet label="姓名" err={(hasSubmitted||username.touched)&&username.error}>
+								<input {...username} type="text"  className="form-control" placeholder="请输入姓名"/>
 							</LabelFieldSet>
-							<LabelFieldSet label="请输入密码" err={(hasSubmitted||password.touched)&&password.error}>
-								<input {...password} type="password" className="form-control" placeholder="密码"/>
+							<LabelFieldSet label="密码" err={(hasSubmitted||password.touched)&&password.error}>
+								<input {...password} type="password" className="form-control" placeholder="请输入密码"/>
 							</LabelFieldSet>
-							<LabelFieldSet label="Re-Passowrd" err={(hasSubmitted||repassword.touched)&&repassword.error} >
-								<input {...repassword} type="password" className="form-control" placeholder="Re-Password" />
+							<LabelFieldSet label="确认密码" err={(hasSubmitted||repassword.touched)&&repassword.error} >
+								<input {...repassword} type="password" className="form-control" placeholder="请再次输入密码" />
 							</LabelFieldSet>
-							<LabelFieldSet label="Gender" err={(hasSubmitted||agreement.touched)&&gender.error} >
+							{/*<LabelFieldSet label="Gender" err={(hasSubmitted||agreement.touched)&&gender.error} >
 								<div className="radio">
 								  <label className="col-md-3">
 								    <input {...gender} type="radio" name="gender" value="M"  />
@@ -161,13 +161,17 @@ export default class SignupForm extends React.Component {
 								  </label>
 								</div>
 							</LabelFieldSet>
-							<button type="submit" className="btn btn-primary-outline">注册</button>
+							*/}
+							<button type="submit" className="btn btn-primary-outline" onClick={e=> {
+								preSubmit();
+								this.submitForm();
+							}}>注册</button>
 							<button  className="btn btn-warning-outline" style={{marginLeft: '15px'}} onClick={e=> {
 								e.preventDefault();
 								console.log(resetForm)
 								resetForm(e);
 								this.setInitState();
-							}}>Reset</button>
+							}}>重置</button>
 						</form>
 				</Card>
 			</div>

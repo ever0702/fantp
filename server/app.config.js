@@ -11,7 +11,10 @@ import todoRouter from './todo/todo.router';
 import stepNodeRouter from './stepNode/stepNode.router';
 import planRouter from './plan/plan.router';
 
-const port = 3500;
+
+console.log("CURRENT NODE_ENV", process.env.NODE_ENV);
+
+let port = 3500;
 
 
 const config = {
@@ -22,7 +25,8 @@ const config = {
 };
 
 if(process.env.NODE_ENV === 'production') {
-	config.database = 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph';
+	config.database = 'mongodb://root:1234@ds023912.mlab.com:23912/fantp_dev';
+	port = 80;
 }
 
 const connectToDB = () => mongoose.connect(config.database);

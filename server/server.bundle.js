@@ -223,6 +223,7 @@
 
 	if (process.env.NODE_ENV === 'production') {
 	    config.database = 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph';
+	    exports.port = port = 80;
 	}
 
 	var connectToDB = function connectToDB() {

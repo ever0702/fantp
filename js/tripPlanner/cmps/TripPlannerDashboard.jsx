@@ -7,6 +7,7 @@ import navHistory from '../../utils/navHistory';
 import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
 import {toggleStepNode, fetchStepNodes, expandRoot} from '../tripPlannerActions';
+import PlanStartForm from './PlanStartForm';
 import {isNull} from '../../../isomorphic/utils/easy';
 
 
@@ -49,9 +50,9 @@ class TripPlannerDashboard extends React.Component {
 	}
 
 	componentWillMount() {
-	 	// if(!this.props.stepjs) {
+	 	if(!this.props.steps) {
 	 		this.props.dispatch(fetchStepNodes());
-	 	// }
+	 	}
 	}
 
 	onToggleNode(nd) {
@@ -104,7 +105,7 @@ class TripPlannerDashboard extends React.Component {
 			<div className="trip-planner-dashboard">
 				<div className="row">
 					<div className="col-md-9">
-
+					<PlanStartForm />
 						{
 							topSteps && 
 							topSteps.map(sp => (

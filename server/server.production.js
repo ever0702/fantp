@@ -12,6 +12,7 @@ configServer(app);
 
 (async() => {
 
+
 	await connectToDB();
 
     let server = app.listen(port, () => console.log('Listening on Port ', port));

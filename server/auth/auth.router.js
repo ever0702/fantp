@@ -15,9 +15,9 @@ class AuthHandler {
     }
 
     signin(req, res) {
-        let { username, password } = req.body;
+        let { email, password } = req.body;
 
-        authService.signin({ username, password })
+        authService.signin({ email, password })
             .then(user => signToken({ user }).then(
                     token => res.send({ success: true, token, ...user }),
                     err => res.send(failWithMessage('Fail to generate Token'))

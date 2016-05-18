@@ -16,7 +16,7 @@ var config = {
 		filename: 'bundle.js',
 		publicPath: publicPath
 	},
-	'devtool': 'cheap-module-eval-source-map',
+	'devtool': 'source-map',
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),

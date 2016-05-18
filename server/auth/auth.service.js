@@ -5,14 +5,14 @@ import profile from '../../isomorphic/decorators/profile.decorator';
 class AuthService {
 
     // @profile
-    signin({ username: inputUsername, password: inputPassword }) {
-        return userService.findOne({ username: inputUsername })
+    signin({ email: inputEmail, password: inputPassword }) {
+        return userService.findOne({ email: inputEmail })
             .then(user => {
                 if (!user) {
-                    return Promise.reject('Username not Found');
+                    return Promise.reject('邮箱不存在');
                 }
                 if (user.password != inputPassword) {
-                    return Promise.reject('Password not Match');
+                    return Promise.reject('密码不匹配');
                 }
                 let { username, email, _id } = user;
                 return { username, email, _id };
@@ -23,10 +23,10 @@ class AuthService {
     signup({ username, password, email, gender }) {
 
         // throw new Error('just for fun');
-        return this.checkUserUnique({ username })
+        return this.checkUserUnique({ email })
             .then(unique => {
                 console.log('unique', unique)
-                if (!unique) return Promise.reject('Username is taken');
+                if (!unique) return Promise.reject('该邮箱已被注册');
                 console.log(username, password, email, gender);
                 return userService.createOne({ username, password, email, gender });
             })

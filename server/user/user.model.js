@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-	username: {
+	email: {
 		type: String,
 		trim: true
 	},
@@ -9,13 +9,8 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
-	email: {
+	username: {
 		type: String,
-		trim: true
-	},
-	gender: {
-		type: String,
-		enum: ['M', 'F'],
 		trim: true
 	},
 	createTime: {
@@ -27,3 +22,10 @@ const UserSchema = new mongoose.Schema({
 let User = mongoose.model('User', UserSchema);
 
 export default User;
+
+// ,
+// 	gender: {
+// 		type: String,
+// 		enum: ['M', 'F'],
+// 		trim: true
+// 	}

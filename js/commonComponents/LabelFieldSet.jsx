@@ -1,10 +1,9 @@
 import React from 'react';
 
 const LabelFieldSet = props => { 
-		let {label, className, labelClassName, success, err, children, ...rest} = props;
-		console.log(err)
+		let {label, noMargin, className, labelClassName, success, err, children, ...rest} = props;
 		return (
-			<fieldset {...rest} className={className+ ' form-group' } className={err?'has-error':''}>
+			<fieldset style={{marginBottom:noMargin?null:'15px'}} {...rest} className={className||''+ ' form-group' } className={err?'has-error':''}>
 				{
 					label&&<label className={labelClassName}>{props.label}</label>
 				}

@@ -46,6 +46,7 @@ class PlanStepRaw extends React.Component {
 							if(expandRoot) expandRoot(_id);
 						}}>
 						<div className="step-label label" style={{color:''}} onClick={e=>{
+							if(level == 1) return;
 							onNodeClick(_id);
 						}}>
 						<a >{label}</a>
@@ -58,7 +59,7 @@ class PlanStepRaw extends React.Component {
 						{
 							pathLink&&
 							pathLink[0]&&
-							pathLink.slice(1).map(pl => <span onClick={e=> {e.stopPropagation(); onNodeClick(pl._id); }} className="path-span label text-primary"><i className="fa fa-play" style={{color:'gray'}}></i>{pl.label}
+							pathLink.slice(1).map(pl => <span className="path-span label text-primary"><i className="fa fa-play" style={{color:'gray'}}></i>{pl.label}
 									{
 										pl.subTitle&&
 										<span className="text-muted" style={{fontWeight:'normal', color:'gray'}}>{' ('+pl.subTitle+') '}</span>
@@ -89,9 +90,6 @@ class PlanStepRaw extends React.Component {
 
 const mapState = (state, ownProps) => {
 	let {steps, activePaths} = state.tripPlanner;
-	console.log(ownProps.childSteps)
-	console.log(steps);
-
 
 	return {
 		childStepsObj: ownProps.childSteps&&ownProps.childSteps.length>0? ownProps.childSteps.map(_id => steps[_id]): null,

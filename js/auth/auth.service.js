@@ -39,8 +39,6 @@ class AuthService {
 			});
 	}
 
-	@
-	profile
 	signin(body) {
 		return post('/signin', body)
 			.then(result => {

@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import { createFormInitialState, createEmptyInitialState, formEvtHandler } from '../utils/formUtil';
 
 const hiForm = passedIn => WrapCmp => {
     let propFields = passedIn.fields;
-    let { validate, initData } = passedIn;
+    let { validate, initData, mapStateToFormData } = passedIn;
+
+    @connect(mapStateToFormData)
     class Wrapper extends Component {
 
         constructor(props, context) {
             super(props, context);
 
             this.state = createEmptyInitialState(propFields, validate);
-            if (initData) {
-                createFormInitialState(propFields, validate, initData).then(form => this.setState(form));
+            let tempInitData = initData||{};
+            if(mapStateToFormData) {
+                tempInitData = {};
+                for(let f of propFields) {
+                    tempInitData[f] = this.props[f];
+                }
+                console.log(tempInitData)
             }
+            if (tempInitData) {
+                createFormInitialState(propFields, validate, tempInitData).then(form => this.setState(form));
+            } 
 
             let setState = this.setState.bind(this);
             this.resetForm = this.resetForm.bind(this);
