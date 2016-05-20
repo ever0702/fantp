@@ -24,7 +24,7 @@ const config = {
         // database: 'mongodb://root:1234@ds015780.mlab.com:15780/relay_graph'
 };
 
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV != 'dev') {
 	config.database = 'mongodb://root:1234@ds023912.mlab.com:23912/fantp_dev';
 	port = 80;
 }

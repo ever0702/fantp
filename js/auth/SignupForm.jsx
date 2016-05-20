@@ -11,14 +11,6 @@ import simpleForm from '../highOrderComponents/simpleForm';
 import Card from '../commonComponents/Card';
 
 
-// let initData =  get('/todos')
-// 		.then(todos => {
-// 			return todos.map(td => ({
-// 				username: td._id,
-// 				password: td.text,
-// 				email: td.text
-// 			}))[0];
-// 		});
 let validate = ({email = '', password = '', repassword = '', agreement=false, gender}) => {
 	let errs = {};
 	if(email.indexOf('@') == -1){
@@ -119,7 +111,7 @@ export default class SignupForm extends React.Component {
 		
 		let {getHandler, setState, state} = this;
 		let {showUserUnique, isUserUnique} = state;
-		let {username, password, email, repassword, agreement, gender,age, hasSubmitted, preSubmit, resetForm, ...rest} = this.props;
+		let {username, password, email, repassword, agreement, gender,age, hasSubmitted, onSigninClick, preSubmit, resetForm, ...rest} = this.props;
 
 		return (
 			<div className="mui">
@@ -166,12 +158,13 @@ export default class SignupForm extends React.Component {
 								preSubmit();
 								this.submitForm();
 							}}>注册</button>
-							<button  className="btn btn-warning-outline" style={{marginLeft: '15px'}} onClick={e=> {
+							<small style={{marginLeft:'20px'}}><a className="cursor-pointer" onClick={e=> onSigninClick()}>已有账号</a></small>
+							{/*<button  className="btn btn-warning-outline" style={{marginLeft: '15px'}} onClick={e=> {
 								e.preventDefault();
 								console.log(resetForm)
 								resetForm(e);
 								this.setInitState();
-							}}>重置</button>
+							}}>重置</button> */}
 						</form>
 				</Card>
 			</div>

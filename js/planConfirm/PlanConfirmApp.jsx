@@ -14,6 +14,7 @@ class PlanConfirmApp extends React.Component {
 					<div className="plan-confirm-page">
 						<div className="container">
 							THIS IS THE Confirm page
+							<button className="btn btn-primary-outline">保存你的规划</button>
 						</div>
 					</div>
 

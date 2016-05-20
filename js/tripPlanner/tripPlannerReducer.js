@@ -81,7 +81,8 @@ const tripPlannerReducer = (state = defaultState, action) => {
                     steps[s._id] = s;
                 }
                 let rootNodes = action.data.filter(nd => !nd.parentStep).map(nd => nd._id);
-                rootNodes.forEach(_id => activePaths[_id] = [_id]);
+                // rootNodes.forEach(_id => activePaths[_id] = [_id]);
+                activePaths={};
 
                 return {
                     ...state,

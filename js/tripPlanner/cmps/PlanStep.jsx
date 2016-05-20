@@ -35,7 +35,6 @@ class PlanStepRaw extends React.Component {
         return (
 			<div className={className} style={{marginTop:level==1?'15px':null}}>
 				<Card className={'level'+level} style={{border: level==1&&completed?'2px solid green':null}}>
-					{JSON.stringify(this.props.expandRoot)}
 					{
 						level==1 && 
 						completed &&
@@ -93,7 +92,7 @@ const mapState = (state, ownProps) => {
 
 	return {
 		childStepsObj: ownProps.childSteps&&ownProps.childSteps.length>0? ownProps.childSteps.map(_id => steps[_id]): null,
-		active: isNodeActive(activePaths, ownProps._id),
+		active: ownProps.level==1?true: isNodeActive(activePaths, ownProps._id),
 		isRoot: !ownProps.parentStep,
 		pathLink: activePaths[ownProps._id]? activePaths[ownProps._id].map(_id => ({
 			_id,

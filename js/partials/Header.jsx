@@ -7,14 +7,16 @@ import SignHeader from './SignHeader';
 const links = [{
 	label: 'Home',
 	url: '/home'
-},{
-	label: 'Dashboard',
-	url: '/dashboard'
-},{
-	label: 'Todos',
-	url: '/todo-app'
-}, {
-	label: 'Planner',
+}
+// ,{
+// 	label: 'Dashboard',
+// 	url: '/dashboard'
+// },{
+// 	label: 'Todos',
+// 	url: '/todo-app'
+// }
+, {
+	label: '路线规划',
 	url: '/planner'
 }];
 
@@ -23,11 +25,15 @@ const NavBar = ({loggedIn, username, dispatch}) => {
 	return (
 			<nav className="navbar navbar-fixed-top navbar-default navbar-light" id="navbar">
 				<div className="container">
-			        <button id="navbar-toggle" class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="true">
+			        <button id="navbar-toggle" className="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="true">
 			          <i className="fa fa-bars" aria-hidden="true"></i>
 			        </button>
+		        	<a href="" className="navbar-brand media-below-md">
+		        		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Beats_Electronics_logo.svg/2000px-Beats_Electronics_logo.svg.png" alt=""/>
+		        		<span className="navbar-logo">Fantp</span>
+		        	</a>
 			        <div className="collapse navbar-toggleable-xs" id="navbar-header">
-			        	<a href="" className="navbar-brand">
+			        	<a href="" className="navbar-brand media-above-md">
 			        		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Beats_Electronics_logo.svg/2000px-Beats_Electronics_logo.svg.png" alt=""/>
 			        		<span className="navbar-logo">Fantp</span>
 			        	</a>

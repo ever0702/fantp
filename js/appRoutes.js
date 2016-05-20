@@ -12,6 +12,7 @@ import TripPlannerApp from './tripPlanner/TripPlannerApp';
 import SignupPage from './auth/SignupPage';
 import SigninPage from './auth/SigninPage';
 import DashboardApp from './dashboard/DashboardApp';
+import PlanConfirmApp from './planConfirm/PlanConfirmApp';
 
 
 let store = configStore;
@@ -37,6 +38,7 @@ class AppRoutes extends React.Component{
 						<Route path='signup' component={SignupPage} />
 						<Route path='signin' component={SigninPage} />
 						<Route path='planner' component={TripPlannerApp} />
+						<Route path='plan-confirm' component={PlanConfirmApp} />
 					</Route>
 				</Router>
 			</Provider>

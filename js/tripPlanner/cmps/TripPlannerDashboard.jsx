@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Modal, Button} from 'react-bootstrap';
 import TreeView from '../../commonComponents/TreeView';
 import SignupForm from '../../auth/SignupForm';
+import SigninForm from '../../auth/SigninForm';
 import navHistory from '../../utils/navHistory';
 import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
@@ -36,9 +37,9 @@ const getTopSteps = stepObj => {
 	})
 )
 class TripPlannerDashboard extends React.Component {
+	state = {showModal: false, showSignup: true, showSignin: false};
 	constructor(props) {
 		super(props);
-		this.state= {showModal: false};
 		this.onToggleNode = this.onToggleNode.bind(this);
 		this.openSignupModal = this.openSignupModal.bind(this);
 		this.closeSignupModal = this.closeSignupModal.bind(this);
@@ -46,7 +47,8 @@ class TripPlannerDashboard extends React.Component {
 		this.onSignupSuccess = this.onSignupSuccess.bind(this);
 		this.nextStepClick = this.nextStepClick.bind(this);
 		this.expandRoot = this.expandRoot.bind(this);
-		
+		this.onSigninClick = this.onSigninClick.bind(this);
+		this.onSignupClick = this.onSignupClick.bind(this);
 	}
 
 	componentWillMount() {
@@ -84,18 +86,31 @@ class TripPlannerDashboard extends React.Component {
 	nextStepClick(){
 		let {loggedIn} = this.props;
 		if(loggedIn) {
-			navHistory.push('home');
+			navHistory.push('plan-confirm');
 		} else {
 			this.openSignupModal();
 		}
 	}
 
+	onSigninClick(){
+		this.setState({
+			showSignin: true,
+			showSignup: false
+		});
+	}
+
+	onSignupClick() {
+		this.setState({
+			showSignin: false,
+			showSignup: true
+		});
+	}
 
 	render() {
-		console.log(this.props);
 		
-		let {onNodeClick, nextStepClick} = this;
+		let {onNodeClick, nextStepClick, onSigninClick, onSignupClick} = this;
 		let {topSteps, steps, activePaths, expandedRoot} = this.props;
+		let {showSignin, showSignup} = this.state;
 		const isCompleted = sp => {
 			if(!activePaths[sp._id] || activePaths[sp._id].length==0) return false;
 			let lastItm = activePaths[sp._id][activePaths[sp._id].length-1];
@@ -116,14 +131,21 @@ class TripPlannerDashboard extends React.Component {
 						}
 
 						<Modal show={this.state.showModal} onHide={this.closeSignupModal} bsSize="sm">
-				            <SignupForm headerClose={true} onCloseClick={this.closeSignupModal} onSignupSuccess={this.onSignupSuccess}/>
+							{
+								showSignup&&
+					            <SignupForm headerClose={true} onCloseClick={this.closeSignupModal} onSignupSuccess={e => navHistory.push('plan-confirm')} onSigninClick={onSigninClick}/>
+							}
+							{
+								showSignin&&
+					            <SigninForm headerClose={true} onCloseClick={this.closeSignupModal} onSigninSuccess={e => navHistory.push('plan-confirm')} onSignupClick={onSignupClick}/>
+							}
 				        </Modal>
 					</div>
 					<div className="col-md-3">
 						<TripSummary nextStepClick={nextStepClick}/>
 					</div>
 				</div>
-				<Button onClick={e=> this.openSignupModal()}>Open Modal</Button>
+				<Button onClick={e=> this.onNextStepClick()}>Open Modal</Button>
 			</div>
 		);
 

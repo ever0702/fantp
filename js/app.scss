@@ -9,7 +9,18 @@
     #navbar-toggle {
         display: none;
     }
+    .media-below-md {
+        display:none;
+    }
 }
+
+@media(max-width: 543px) {
+    .media-above-md {
+        display: none;
+    }
+}
+
+
 
 body {
     .navbar-brand {
@@ -22,6 +33,9 @@ body {
     .navbar-nav .nav-item+.nav-item,
     .navbar-nav .nav-link + .nav-link {
         margin-left: 0;
+    }
+    #navbar-toggle{
+        color:gray;
     }
     @media (min-width: 34em) {
         .navbar-brand {
