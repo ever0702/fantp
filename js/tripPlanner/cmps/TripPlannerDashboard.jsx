@@ -9,6 +9,7 @@ import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
 import {toggleStepNode, fetchStepNodes, expandRoot} from '../tripPlannerActions';
 import PlanStartForm from './PlanStartForm';
+import PlanEditForm from './PlanEditForm';
 import {isNull} from '../../../isomorphic/utils/easy';
 
 
@@ -118,6 +119,7 @@ class TripPlannerDashboard extends React.Component {
 		}
 		return (
 			<div className="trip-planner-dashboard">
+				<PlanEditForm/>
 				<div className="row">
 					<div className="col-md-9">
 					<PlanStartForm />

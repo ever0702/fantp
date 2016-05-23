@@ -1,42 +1,59 @@
-import {actionConstantHelper, asyncActionHelper} from '../utils/actionCreateUtil';
+import { actionConstantHelper, asyncActionHelper } from '../utils/actionCreateUtil';
 
 const tripPlannerActions = actionConstantHelper({
-	sync: ['TOGGLE_STEP_NODE', 'EXPAND_ROOT'],
-	async: ['FETCH_STEP_NODES', 'SAVE_TRIP_PLAN']
+    sync: ['SET_START_FORM', 'TOGGLE_STEP_NODE', 'EXPAND_ROOT'],
+    async: ['FETCH_STEP_NODES', 'SAVE_TRIP_PLAN']
 });
 
-const {TOGGLE_STEP_NODE, EXPAND_ROOT, FETCH_STEP_NODES, SAVE_TRIP_PLAN} = tripPlannerActions;
+const {SET_START_FORM, TOGGLE_STEP_NODE, EXPAND_ROOT, FETCH_STEP_NODES, SAVE_TRIP_PLAN } = tripPlannerActions;
 
 const toggleStepNode = nodeId => ({
-	type: TOGGLE_STEP_NODE,
-	nodeId
+    type: TOGGLE_STEP_NODE,
+    nodeId
 });
 
 const expandRoot = nodeId => ({
-	type: EXPAND_ROOT,
-	nodeId
+    type: EXPAND_ROOT,
+    nodeId
 });
 
 const fetchStepNodes = () => dispatch => asyncActionHelper({
-	dispatch,
-	actionName: 'FETCH_STEP_NODES',
-	url: '/stepNodes'
+    dispatch,
+    actionName: 'FETCH_STEP_NODES',
+    url: '/stepNodes'
 });
 
-const saveTripPlan = paths => {
+const setStartForm = form => ({
+	type: SET_START_FORM,
+	...form
+});
 
-	let pathArray = [];
-	for(let v of Object.values(paths)) pathArray.push(v);
+const saveTripPlan = () => (dispatch, getState) => {
+	console.log(arguments);
+    let state = getState();
+    let { activePaths } = state.tripPlanner;
 
-	return dispatch => asyncActionHelper({
-		dispatch,
-		payload: {
-			paths: pathArray
-		},
-		actionName: 'SAVE_TRIP_PLAN',
-		url: '/tripPlans',
-		method: 'post'
-	})
-}
+    let { tripPlanner } = state;
+    let peopleCount = tripPlanner.peopleCount? tripPlanner.peopleCount.value: null;
+    let daysCount = tripPlanner.daysCount? tripPlanner.daysCount.value: null;
+    let averageAge = tripPlanner.averageAge? tripPlanner.averageAge.value: null;
 
-export {tripPlannerActions, toggleStepNode, fetchStepNodes, expandRoot, saveTripPlan};
+    let pathArray = [];
+    for (let v of Object.values(activePaths)) pathArray.push(v);
+
+    return asyncActionHelper({
+        dispatch,
+        payload: {
+            paths: pathArray,
+            peopleCount,
+            daysCount,
+            averageAge
+        },
+        actionName: 'SAVE_TRIP_PLAN',
+        url: '/plans',
+        method: 'post'
+    })
+
+};
+
+export { tripPlannerActions, toggleStepNode, fetchStepNodes, expandRoot, saveTripPlan, setStartForm };

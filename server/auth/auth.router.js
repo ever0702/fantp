@@ -18,7 +18,7 @@ class AuthHandler {
         let { email, password } = req.body;
 
         authService.signin({ email, password })
-            .then(user => signToken({ user }).then(
+            .then(user => signToken({ ...user }).then(
                     token => res.send({ success: true, token, ...user }),
                     err => res.send(failWithMessage('Fail to generate Token'))
                 ),
@@ -29,7 +29,7 @@ class AuthHandler {
     signup(req, res) {
         let { username, password, email, gender } = req.body;
         return authService.signup({ username, password, email, gender })
-            .then(user => signToken({ user }).then(
+            .then(user => signToken({ ...user }).then(
                     token => res.send({ success: true, token, ...user }),
                     err => res.send(failWithMessage('Fail to generate Token'))
                 ),

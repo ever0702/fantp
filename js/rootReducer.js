@@ -3,7 +3,6 @@ import {reducer as formReducer} from 'redux-form';
 import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
 import authReducer from './auth/authReducer';
-import homeReducer from './home/homeReducer';
 import tripPlannerReducer from './tripPlanner/tripPlannerReducer';
 
 
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
     employeeApp: employeeReducer,
     todoApp: todoReducer,
     form: formReducer,
-    homeApp:homeReducer,
     tripPlanner: tripPlannerReducer
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import simpleForm from '../highOrderComponents/simpleForm';
 import {connect} from 'react-redux';
-import {setStartForm} from './homeActions';
+import {setStartForm} from '../tripPlanner/tripPlannerActions';
 
 const validate = ({peopleCount, daysCount, averageAge}) => {
 	let errs = {}
@@ -20,7 +20,7 @@ const indexFormHOC = passedIn => WrappedCmp => {
 		fields: ['peopleCount', 'daysCount', 'averageAge'],
 		validate,
 		mapStateToFormData: state => {
-			let {peopleCount, daysCount, averageAge} = state.homeApp;
+			let {peopleCount, daysCount, averageAge} = state.tripPlanner;
 			return {
 				peopleCount: peopleCount?peopleCount.value:null,
 				daysCount: daysCount?daysCount.value:null,
