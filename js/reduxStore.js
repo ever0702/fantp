@@ -1,5 +1,6 @@
 import thunk from 'redux-thunk';
 import simpleLogger from './middlewares/simpleLogger';
+import accessStoreMiddleware from './middlewares/accessStoreMiddleware';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
 
@@ -7,7 +8,7 @@ import rootReducer from './rootReducer';
 function configStore(initState) {
 
     const store = createStore(rootReducer, initState, compose(
-        applyMiddleware(thunk, simpleLogger),
+        applyMiddleware(thunk, simpleLogger, accessStoreMiddleware),
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
 

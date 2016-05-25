@@ -10,14 +10,24 @@ const planRouter = io => {
 
 	router.route('/')
 		.get((req, res) => {
-			
+			let {userId} = req;
+			planService.find({user: userId})
+				.then(plans => res.send(plans))
+				.catch(err => console.log(err));
 		})
 		.post((req, res) => {
 			let {userId} = req;
-			console.log(JSON.stringify(req.user))
-			console.log('userId is ', userId);
-			let {peopleCount, daysCount, averageAge, paths} = req.body;
-			planService.createOne({peopleCount, daysCount, averageAge, paths, user: userId})
+			let {peopleCount, daysCount, averageAge, activeNodes} = req.body;
+			planService.createOne({peopleCount, daysCount, averageAge, activeNodes, user: userId})
+				.then(plan => res.send(plan))
+				.catch(err => console.log(err));
+		});
+
+	router.route('/:planId')
+		.get((req, res) => {
+			let {userId} = req;
+			let {planId} = req.params;
+			planService.findById(planId)
 				.then(plan => res.send(plan))
 				.catch(err => console.log(err));
 		});

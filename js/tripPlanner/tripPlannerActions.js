@@ -29,22 +29,17 @@ const setStartForm = form => ({
 });
 
 const saveTripPlan = () => (dispatch, getState) => {
-	console.log(arguments);
     let state = getState();
-    let { activePaths } = state.tripPlanner;
-
     let { tripPlanner } = state;
+    let {activeNodes} = state.tripPlanner;
     let peopleCount = tripPlanner.peopleCount? tripPlanner.peopleCount.value: null;
     let daysCount = tripPlanner.daysCount? tripPlanner.daysCount.value: null;
     let averageAge = tripPlanner.averageAge? tripPlanner.averageAge.value: null;
 
-    let pathArray = [];
-    for (let v of Object.values(activePaths)) pathArray.push(v);
-
     return asyncActionHelper({
         dispatch,
         payload: {
-            paths: pathArray,
+            activeNodes,
             peopleCount,
             daysCount,
             averageAge

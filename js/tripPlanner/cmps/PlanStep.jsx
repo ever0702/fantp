@@ -1,16 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Card from '../../commonComponents/Card';
+import {isNodeActive} from '../../../isomorphic/utils/stepUtils';
 
-const isNodeActive = (paths, nodeId) => {
-	for(let [k, v] of Object.entries(paths)) {
-		for(let _id of v) {
-			if(_id == nodeId)
-				return true;
-		}
-	}
-	return false;
-}
 
 class PlanStepRaw extends React.Component {
     constructor(props) {
@@ -28,7 +20,7 @@ class PlanStepRaw extends React.Component {
 
     }
     render() {
-    	let {_id, active, label, completed, expanded, subTitle, level, isRoot, pathLink, childStepsObj, expandRoot, onNodeClick} = this.props;
+    	let {_id, active, label, completed, expanded, subTitle, level, isRoot, activeNodes, pathLink, childStepsObj, expandRoot, onNodeClick} = this.props;
 
     	const className = `plan-step ${active?'active-step':'not-active-step'}`
 
@@ -41,11 +33,11 @@ class PlanStepRaw extends React.Component {
 						<i className="fa fa-check-circle complete-icon text-success"></i>
 					}
 					<div className="cursor-pointer" onClick={e=>{
-							e.preventDefault();
-							if(expandRoot) expandRoot(_id);
+							// e.preventDefault();
+							// if(expandRoot) expandRoot(_id);
 						}}>
 						<div className="step-label label" style={{color:''}} onClick={e=>{
-							if(level == 1) return;
+							// if(level == 1) return;
 							onNodeClick(_id);
 						}}>
 						<a >{label}</a>
@@ -68,12 +60,12 @@ class PlanStepRaw extends React.Component {
 					</div>
 					<div className="row children-steps">
 					{
-						(expanded||level!=1)&&
+						// (expanded||level!=1)&&
 						active &&
 						childStepsObj &&
 						childStepsObj.map(sp => (
 							<div style={{marginTop:'5px'}} className={this.calculateColClass(level, childStepsObj.length)}>
-								<PlanStep {...sp} onNodeClick={onNodeClick} level={level+1}/>
+								<PlanStep {...sp} activeNodes={activeNodes} onNodeClick={onNodeClick} level={level+1}/>
 							</div>)
 						)
 					}
@@ -88,17 +80,13 @@ class PlanStepRaw extends React.Component {
 }
 
 const mapState = (state, ownProps) => {
-	let {steps, activePaths} = state.tripPlanner;
+	let {flatSteps} = state.stepMap;
+	let {activeNodes} = ownProps;
 
 	return {
-		childStepsObj: ownProps.childSteps&&ownProps.childSteps.length>0? ownProps.childSteps.map(_id => steps[_id]): null,
-		active: ownProps.level==1?true: isNodeActive(activePaths, ownProps._id),
-		isRoot: !ownProps.parentStep,
-		pathLink: activePaths[ownProps._id]? activePaths[ownProps._id].map(_id => ({
-			_id,
-			subTitle: steps[_id].subTitle,
-			label: steps[_id].label
-		})): null
+		childStepsObj: ownProps.childSteps&&ownProps.childSteps.length>0? ownProps.childSteps.map(_id => flatSteps[_id]): null,
+		active: isNodeActive(flatSteps, ownProps._id, activeNodes),
+		isRoot: !ownProps.parentStep
 	};
 }
 

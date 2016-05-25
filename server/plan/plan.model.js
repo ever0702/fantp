@@ -9,7 +9,7 @@ let PlanSchema = new mongoose.Schema({
 	daysCount: Number,
 	averageAge: Number,
 	// paths: [[{type: mongoose.Schema.Types.ObjectId, ref: 'StepNode'}]],
-	paths: [],
+	activeNodes: [{type: mongoose.Schema.Types.ObjectId, ref: 'StepNode'}],
 	createTime: {
 		type: Date,
 		default: Date.now
