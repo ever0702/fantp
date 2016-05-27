@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NavContainerShell from '../partials/NavContainerShell';
-import {saveTripPlan} from '../tripPlanner/tripPlannerActions';
+import {saveTripPlan} from '../tripPlanner/tripPlanActionReducer';
 
 @connect()
 class PlanConfirmApp extends React.Component {

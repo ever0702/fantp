@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PlanEditForm from '../tripPlanner/cmps/PlanEditForm';
-import {fetchSinglePlan} from './planActions';
 import NavContainerShell from '../partials/NavContainerShell';
-import {toggleSavedStepNode} from './planActions';
+import PlanBasicInfoForm from '../commonComponents/PlanBasicInfoForm';
+import PlanEditForm from '../commonComponents/PlanEditForm';
+import simpleForm from '../highOrderComponents/simpleForm';
+import {fetchSinglePlan, toggleSavedStepNode, savePlanChanges, setPlanStartForm, setSavedPlanBasicInfo} from './planActionReducer';
 import './planApp.scss';
 
 
@@ -14,11 +15,16 @@ import './planApp.scss';
 		rootNodes: state.stepMap.rootNodes.map(id => state.stepMap.flatSteps[id])
 	})
 )
+@simpleForm({
+	fields: ['daysCountField', 'daysCountField', 'averageAgeField']
+})
 class PlanEditApp extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.onNodeClick = this.onNodeClick.bind(this);
+		this.savePlan = this.savePlan.bind(this);
+		this.onBasicFormValueChange = this.onBasicFormValueChange.bind(this);
 	}
 
 	onNodeClick(nodeId) {
@@ -30,16 +36,24 @@ class PlanEditApp extends React.Component {
 		if(planId) {
 			this.props.dispatch(fetchSinglePlan(planId));
 		}
+	}
 
+	onBasicFormValueChange(key, value) {
+		this.props.dispatch(setSavedPlanBasicInfo(key, value));
+	}
+
+	savePlan() {
+		this.props.dispatch(savePlanChanges());
 	}
 
 	render() {
-		let {editPlan, ...rest} = this.props;
-		let {onNodeClick} = this;
+		let {editPlan} = this.props;
+		let {onNodeClick, savePlan, onBasicFormValueChange} = this;
 		return (
 			<NavContainerShell>
 				<div className="plan-edit-page">
-					<PlanEditForm {...rest} onNodeClick={onNodeClick}/>
+					<button className="btn btn-primary-outline" onClick={savePlan}>Save Plan</button>
+					<PlanEditForm {...editPlan} {...this.props.sliceProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
 				</div>
 			</NavContainerShell>
 		);

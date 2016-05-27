@@ -1,4 +1,4 @@
-import {tripPlannerActions} from './tripPlannerActions';
+import {tripPlannerActions} from './tripPlanActionReducer';
 import {constructFlatSteps} from '../../isomorphic/utils/stepUtils';
 
 const {
@@ -6,7 +6,9 @@ const {
 } = tripPlannerActions;
 
 const defaultState = {
-	flatSteps:null,
+	flatSteps:{
+		activeNodes: []
+	},
 	arraySteps : [],
 	rootNodes: []
 };

@@ -60,7 +60,8 @@ const toggleStepNode = (flatSteps, nodeId, activeNodes) => {
 
 };
 
-const isNodeActive = (flatSteps, nodeId, activeNodes=[]) => {
+const isNodeActive = (flatSteps, nodeId, activeNodes) => {
+	activeNodes = activeNodes || [];
 	let curNode = flatSteps[nodeId];
 	if(activeNodes.indexOf(nodeId) >=0 ) return true;
 

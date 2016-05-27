@@ -28,6 +28,7 @@ const hiForm = passedIn => WrapCmp => {
             let setState = this.setState.bind(this);
             this.resetForm = this.resetForm.bind(this);
             this.preSubmit = this.preSubmit.bind(this);
+            this.setValues = this.setValues.bind(this);
 
             this.getHandler = formEvtHandler(setState, validate);
         }
@@ -47,7 +48,8 @@ const hiForm = passedIn => WrapCmp => {
             this.setState(state);
         }
 
-        componentDidMount() {
+        setValues(values) {
+            createFormInitialState(propFields, validate, values).then(form => this.setState(form));
         }
 
         render() {

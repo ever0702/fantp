@@ -6,7 +6,7 @@ import AppRoutes from './appRoutes';
 import store from './reduxStore';
 import './styleRoot';
 
-import './utils/genericPipes';
+import '../isomorphic/utils/objectPolyfill';
 
 
 render(

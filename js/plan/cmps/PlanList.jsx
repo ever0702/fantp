@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Card from '../../commonComponents/Card';
-import {fetchPlans} from '../planActions';
+import {fetchPlans} from '../planActionReducer';
 
 
 @connect(

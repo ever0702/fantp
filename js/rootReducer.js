@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
 import authReducer from './auth/authReducer';
-import tripPlannerReducer from './tripPlanner/tripPlannerReducer';
+import {tripPlannerReducer} from './tripPlanner/tripPlanActionReducer';
 import stepMapReducer from './tripPlanner/stepMapReducer';
-import planReducer from './plan/planReducer';
+import {planReducer} from './plan/planActionReducer';
 
 
 if(module.hot) {

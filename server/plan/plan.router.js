@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import planService from './plan.service';
 import checkToken from '../middlewares/checkToken';
+import {updateObj} from '../../isomorphic/utils/objectUtils';
 
 const planRouter = io => {
 
@@ -30,6 +31,27 @@ const planRouter = io => {
 			planService.findById(planId)
 				.then(plan => res.send(plan))
 				.catch(err => console.log(err));
+		})
+		.put((req, res) => {
+			let {userId} = req;
+			let {planId} = req.params;
+			let {activeNodes, daysCount, peopleCount, averageAge} = req.body;
+			console.log(JSON.stringify(req.body));
+
+			planService.findById(planId)
+				.then(plan => {
+					console.log(JSON.stringify(plan))
+					if(!plan) {
+						return Promise.reject('Plan Not found');
+					}
+					plan = plan.toObject();
+					plan = plan.overrideProps(req.body);
+					console.log('updatedPlan', JSON.stringify(plan));
+					return planService.updateOne(planId, plan);
+				})
+				.then(result => res.send(result))
+				.catch(err => {console.log(err); res.status(500).send(err)});
+
 		});
 
 	return router;

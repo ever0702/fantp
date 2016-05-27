@@ -1,21 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Modal, Button} from 'react-bootstrap';
-import TreeView from '../../commonComponents/TreeView';
 import SignupForm from '../../auth/SignupForm';
 import SigninForm from '../../auth/SigninForm';
 import navHistory from '../../utils/navHistory';
 import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
-import {toggleStepNode, fetchStepNodes, expandRoot} from '../tripPlannerActions';
-import PlanStartForm from './PlanStartForm';
-import PlanEditForm from './PlanEditForm';
+import {toggleStepNode, fetchStepNodes, expandRoot, setStartForm, setPlanBasicFormValue} from '../tripPlanActionReducer';
+import simpleForm from '../../highOrderComponents/simpleForm';
+import PlanStepsEditForm from './PlanStepsEditForm';
+import PlanBasicInfoForm from '../../commonComponents/PlanBasicInfoForm';
 import {isNull} from '../../../isomorphic/utils/easy';
-
-
-const NodeTmp = ({label}) => (
-	<h4 style={{backgroundColor:'orange'}}>{label+'hahahah'}</h4>
-);
+import PlanEditForm from '../../commonComponents/PlanEditForm';
 
 const getTopSteps = stepObj => {
 	let arr = [];
@@ -36,6 +32,9 @@ const getTopSteps = stepObj => {
 		loggedIn: state.auth.username
 	})
 )
+@simpleForm({
+	fields: ['peopleCountField', 'daysCountField', 'averageAgeField']
+})
 class TripPlannerDashboard extends React.Component {
 	state = {showModal: false, showSignup: true, showSignin: false};
 	constructor(props) {
@@ -48,6 +47,7 @@ class TripPlannerDashboard extends React.Component {
 		this.onSigninClick = this.onSigninClick.bind(this);
 		this.onSignupClick = this.onSignupClick.bind(this);
 		this.onNodeClick = this.onNodeClick.bind(this);
+		this.changeBasicFormValue = this.changeBasicFormValue.bind(this);
 	}
 
 	componentWillMount() {
@@ -99,18 +99,25 @@ class TripPlannerDashboard extends React.Component {
 		this.forceUpdate();
 	}
 
+	changeBasicFormValue(key, value) {
+		this.props.dispatch(setPlanBasicFormValue(key, value));
+	}
+
 	render() {
 		
-		let { nextStepClick, onSigninClick, onSignupClick, onNodeClick} = this;
+		let { nextStepClick, onSigninClick, onSignupClick, onNodeClick, changeBasicFormValue} = this;
 		let {rootNodes, flatSteps, activeNodes} = this.props;
-		console.log(activeNodes, 'activeNodes')
+
 		let {showSignin, showSignup} = this.state;
 
 		return (
 			<div className="trip-planner-dashboard">
 				<div className="row">
 					<div className="col-md-9">
-					<PlanEditForm activeNodes={activeNodes} rootNodes={rootNodes} flatSteps={flatSteps} onNodeClick={onNodeClick} />
+					<PlanEditForm {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
+					{/*<PlanBasicInfoForm  {...this.props.sliceProps('daysCountField', 'peopleCountField', 'averageAgeField')}/>
+					<PlanStepsEditForm activeNodes={activeNodes} rootNodes={rootNodes} flatSteps={flatSteps} onNodeClick={onNodeClick} />
+					*/}
 					<Modal show={this.state.showModal} onHide={this.closeSignupModal} bsSize="sm">
 						{
 							showSignup&&

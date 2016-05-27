@@ -20,16 +20,15 @@ class PlanStepRaw extends React.Component {
 
     }
     render() {
-    	let {_id, active, label, completed, expanded, subTitle, level, isRoot, activeNodes, pathLink, childStepsObj, expandRoot, onNodeClick} = this.props;
+    	let {_id, active, label, subTitle, level, activeNodes,  childStepsObj,  onNodeClick} = this.props;
 
     	const className = `plan-step ${active?'active-step':'not-active-step'}`
 
         return (
 			<div className={className} style={{marginTop:level==1?'15px':null}}>
-				<Card className={'level'+level} style={{border: level==1&&completed?'2px solid green':null}}>
+				<Card className={'level'+level} style={{border: level==1?'2px solid green':null}}>
 					{
 						level==1 && 
-						completed &&
 						<i className="fa fa-check-circle complete-icon text-success"></i>
 					}
 					<div className="cursor-pointer" onClick={e=>{
@@ -47,7 +46,7 @@ class PlanStepRaw extends React.Component {
 							subTitle &&
 							<div className="step-subtitle text-muted">{subTitle}</div>
 						}
-						{
+						{/*
 							pathLink&&
 							pathLink[0]&&
 							pathLink.slice(1).map(pl => <span className="path-span label text-primary"><i className="fa fa-play" style={{color:'gray'}}></i>{pl.label}
@@ -56,7 +55,7 @@ class PlanStepRaw extends React.Component {
 										<span className="text-muted" style={{fontWeight:'normal', color:'gray'}}>{' ('+pl.subTitle+') '}</span>
 									}
 								</span>)
-						}
+						*/}
 					</div>
 					<div className="row children-steps">
 					{
@@ -74,14 +73,13 @@ class PlanStepRaw extends React.Component {
 				</Card>
 			</div>	
 
-        	
     	);
     }
 }
 
 const mapState = (state, ownProps) => {
 	let {flatSteps} = state.stepMap;
-	let {activeNodes} = ownProps;
+	let {activeNodes} = ownProps||[];
 
 	return {
 		childStepsObj: ownProps.childSteps&&ownProps.childSteps.length>0? ownProps.childSteps.map(_id => flatSteps[_id]): null,

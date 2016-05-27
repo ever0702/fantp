@@ -1,7 +1,7 @@
 import React from 'react';
 import simpleForm from '../highOrderComponents/simpleForm';
 import {connect} from 'react-redux';
-import {setStartForm} from '../tripPlanner/tripPlannerActions';
+import {setStartForm} from '../tripPlanner/tripPlanActionReducer';
 
 const validate = ({peopleCount, daysCount, averageAge}) => {
 	let errs = {}
@@ -11,22 +11,14 @@ const validate = ({peopleCount, daysCount, averageAge}) => {
 	return errs;
 };
 
-const indexFormHOC = passedIn => WrappedCmp => {
+const indexFormHOC = (mapStateToFormFields, submit) => WrappedCmp => {
 
-	@connect(
 
-	)
+	@connect()
 	@simpleForm({
 		fields: ['peopleCount', 'daysCount', 'averageAge'],
 		validate,
-		mapStateToFormData: state => {
-			let {peopleCount, daysCount, averageAge} = state.tripPlanner;
-			return {
-				peopleCount: peopleCount?peopleCount.value:null,
-				daysCount: daysCount?daysCount.value:null,
-				averageAge: averageAge?averageAge.value:null
-			};
-		}
+		mapStateToFormData: mapStateToFormFields
 	})
 	class Wrapper extends React.Component {
 		constructor(props){
@@ -38,11 +30,20 @@ const indexFormHOC = passedIn => WrappedCmp => {
 			
 			let {fields, isFormValid, dispatch, onHomeStartFormSuccess} = this.props;
 			let {peopleCount, daysCount, averageAge} = this.props;
-			dispatch(setStartForm({
-				peopleCount,
-				daysCount,
-				averageAge
-			}));
+
+			let form = {
+				peopleCount: peopleCount? peopleCount.value: null,
+				daysCount: daysCount? daysCount.value: null,
+				averageAge: averageAge? averageAge.value: null
+			};
+
+			submit&&submit(dispatch, form);
+
+			// dispatch(setStartForm({
+			// 	peopleCount: peopleCount? peopleCount.value: null,
+			// 	daysCount: daysCount? daysCount.value: null,
+			// 	averageAge: averageAge? averageAge.value: null
+			// }));
 			if(onHomeStartFormSuccess)	{
 				onHomeStartFormSuccess();
 			}
