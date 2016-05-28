@@ -1,5 +1,6 @@
 import 'babel-core/register';
 import 'babel-polyfill';
+import '../isomorphic/utils/objectPolyfill';
 import path from 'path';
 import express from 'express';
 import {config, configServer, connectToDB, configServerRoutes, port} from './app.config';

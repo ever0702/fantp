@@ -48,15 +48,15 @@ class SignHeader extends Component {
 									signout();
 								}
 							}>
-								<a href="#" className="nav-link">Signout</a>
+								<a href="#" className="nav-link">登出</a>
 							</li>
 						]
 					}
 					{
 						!loggedIn && 
 						[
-							<NavBarLink label="Signin" key="signin" url="/signin"></NavBarLink>,
-							<NavBarLink label="Signup" key="signup" url="/signup"></NavBarLink>
+							<NavBarLink label="登录" key="signin" url="/signin"></NavBarLink>,
+							<NavBarLink label="注册" key="signup" url="/signup"></NavBarLink>
 						]
 					}
 				</ul>	

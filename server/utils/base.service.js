@@ -7,8 +7,8 @@ class BaseService {
         return this.model.find({}).exec();
     }
 
-    findById(id) {
-        return this.model.findById(id).exec();
+    findById(_id) {
+        return this.model.findById(_id).exec();
     }
 
     find(query) {
@@ -23,12 +23,12 @@ class BaseService {
         return this.model.create(data);
     }
 
-    updateOne(id, config) {
-    	return this.model.update({id}, config).exec();
+    updateOne(_id, config) {
+    	return this.model.update({_id}, config).exec();
     }
 
-    removeById(id) {
-        return this.model.findByIdAndRemove(id);
+    removeById(_id) {
+        return this.model.findByIdAndRemove(_id);
     }
 }
 

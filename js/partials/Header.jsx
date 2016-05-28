@@ -5,17 +5,12 @@ import NavBarLink from './NavBarLink';
 import SignHeader from './SignHeader';
 
 const links = [{
-	label: 'Home',
+	label: '首页',
 	url: '/home'
-}
-// ,{
-// 	label: 'Dashboard',
-// 	url: '/dashboard'
-// },{
-// 	label: 'Todos',
-// 	url: '/todo-app'
-// }
-, {
+},{
+	label: 'Dashboard',
+	url: '/dashboard'
+}, {
 	label: '路线规划',
 	url: '/planner'
 }];

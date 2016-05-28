@@ -1,4 +1,4 @@
 {
     "verbose": false,
-    "ignore": ["/public/*", "/src/*", "/js/*"]
+    "ignore": ["/public/*", "/src/*", "/js/*", "/isomorphic/*"]
 }

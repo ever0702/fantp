@@ -1,13 +1,18 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import NavContainerShell from '../partials/NavContainerShell';
+import {saveTripPlan} from '../tripPlanner/tripPlanActionReducer';
 
-import simpleForm from '../highOrderComponents/simpleForm';
-
-
+@connect()
 class PlanConfirmApp extends React.Component {
 	
 	constructor(props) {
 		super(props);
+		this.createNewPlan = this.createNewPlan.bind(this);
+	}
+
+	createNewPlan() {
+		this.props.dispatch(saveTripPlan());
 	}
 
 	render() {
@@ -16,8 +21,8 @@ class PlanConfirmApp extends React.Component {
 				<NavContainerShell>
 					<div className="plan-confirm-page">
 						<div className="container">
-							Please Confirm?
-							<button className="btn btn-primary-outline">保存你的规划</button>
+							THIS IS THE Confirm page
+							<button onClick={this.createNewPlan} className="btn btn-primary-outline">保存你的规划</button>
 						</div>
 					</div>
 
@@ -27,6 +32,5 @@ class PlanConfirmApp extends React.Component {
 	}
 
 }
-
 
 export default PlanConfirmApp;

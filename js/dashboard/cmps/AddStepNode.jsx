@@ -41,7 +41,6 @@ class AddStepNode extends React.Component {
 		return (
 			<div className="mui">
 				<Card className="card shadow" title="Create Step">
-					{JSON.stringify(this.props)}
 					<form onSubmit={
 						e => {
 							e.preventDefault();

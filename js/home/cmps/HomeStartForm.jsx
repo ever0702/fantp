@@ -3,8 +3,16 @@ import Card from '../../commonComponents/Card';
 import LabelFieldSet from '../../commonComponents/LabelFieldSet';
 import InlineLabelFieldSet from '../../commonComponents/InlineLabelFieldSet';
 import indexFormHOC from '../indexFormHOC';
+import {setStartForm} from '../../tripPlanner/tripPlanActionReducer';
 
-@indexFormHOC()
+@indexFormHOC(
+	state => ({
+		peopleCount: state.tripPlanner.peopleCount,
+		daysCount: state.tripPlanner.daysCount,
+		averageAge: state.tripPlanner.averageAge
+	}),
+	(dispatch, form) => dispatch(setStartForm(form))
+)
 class HomeStartForm extends React.Component {
 	constructor(props) {
 		super(props);

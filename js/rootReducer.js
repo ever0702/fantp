@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import {reducer as formReducer} from 'redux-form';
 import employeeReducer from './employee/employeeReducer';
 import todoReducer from './todo/todoReducer';
 import authReducer from './auth/authReducer';
-import homeReducer from './home/homeReducer';
-import tripPlannerReducer from './tripPlanner/tripPlannerReducer';
+import {tripPlannerReducer} from './tripPlanner/tripPlanActionReducer';
+import stepMapReducer from './tripPlanner/stepMapReducer';
+import {planReducer} from './plan/planActionReducer';
 
 
 if(module.hot) {
@@ -16,9 +16,9 @@ const rootReducer = combineReducers({
 	auth: authReducer,
     employeeApp: employeeReducer,
     todoApp: todoReducer,
-    form: formReducer,
-    homeApp:homeReducer,
-    tripPlanner: tripPlannerReducer
+    tripPlanner: tripPlannerReducer,
+    stepMap: stepMapReducer,
+    plan: planReducer
 });
 
 export default rootReducer;

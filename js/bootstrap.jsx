@@ -6,10 +6,8 @@ import AppRoutes from './appRoutes';
 import store from './reduxStore';
 import './styleRoot';
 
-import './utils/genericPipes';
-import './utils/promisePolyfill';
+import '../isomorphic/utils/objectPolyfill';
 
-global.Promise = Promise;
 
 render(
 		<AppContainer>
