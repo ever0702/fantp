@@ -7,7 +7,9 @@ import store from './reduxStore';
 import './styleRoot';
 
 import './utils/genericPipes';
+import './utils/promisePolyfill';
 
+global.Promise = Promise;
 
 render(
 		<AppContainer>

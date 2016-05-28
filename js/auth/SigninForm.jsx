@@ -6,6 +6,8 @@ import Card from '../commonComponents/Card';
 import LabelFieldSet from '../commonComponents/LabelFieldSet';
 import {signinSuccess, signinError} from './authActions';
 import authService from './auth.service';
+import loadingCover from '../highOrderComponents/loadingCover';
+import {Rx} from '../utils/rxUtils';
 import toastr from 'toastr';
 
 
@@ -22,30 +24,32 @@ const validate = ({email = '', password = ''}) => {
 }
 
 
+@loadingCover
 @connect()
 @simpleForm({
 	fields: ['email', 'password', 'rememberMe'],
 	validate
 })
 class SigninForm extends Component {
+
+	state= {signinErrorMessage: null};
+
+	loadingSub = new Rx.Subject();
 	
 	constructor(props) {
 		super(props);
-		console.log(this.props);
 		this.submitForm = this.submitForm.bind(this);
-		this.state = {
-			signinErrorMessage: null
-		};
-	}
-	componentDidMount() {
+		this.loadingSub.debounce(400).subscribe(v => this.props.setLoading(v));
 	}
 
 	submitForm() {
-		let {fields, isFormValid, dispatch, onSigninSuccess} = this.props;
+		let {fields, isFormValid, dispatch, onSigninSuccess, setLoading} = this.props;
 		if(!isFormValid) return;
 		const{email, password} = fields;
+		this.loadingSub.onNext(true);
 		authService.signin({email, password})
 			.then(result => {
+				this.loadingSub.onNext(false);
 				if(result.success) {
 					dispatch(signinSuccess(result));
 					this.setState({signinErrorMessage: null});
@@ -56,7 +60,7 @@ class SigninForm extends Component {
 					dispatch(signinError())
 				}
 			})
-			// .catch(err => toastr.error(err));
+			.catch(err => this.loadingSub.onNext(false));
 	}
 
 	render() {

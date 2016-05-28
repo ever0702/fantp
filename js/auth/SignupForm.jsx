@@ -9,6 +9,7 @@ import {signupSuccess, signupError} from './authActions';
 import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 import simpleForm from '../highOrderComponents/simpleForm';
 import Card from '../commonComponents/Card';
+import loadingCover from '../highOrderComponents/loadingCover';
 
 
 let validate = ({email = '', password = '', repassword = '', agreement=false, gender}) => {
@@ -34,6 +35,7 @@ let validate = ({email = '', password = '', repassword = '', agreement=false, ge
 }
 
 
+@loadingCover
 @connect()
 @simpleForm({
 	fields: ['username', 'email', 'password', 'repassword', 'agreement', 'gender', 'age'],
@@ -42,14 +44,16 @@ let validate = ({email = '', password = '', repassword = '', agreement=false, ge
 })
 export default class SignupForm extends React.Component {
 
+	loadingSub = new Rx.Subject();
 	constructor(props) {
 		super(props);
+
+		this.loadingSub.debounce(400).subscribe(v => this.props.setLoading(v));
 		
 		this.setInitState = this.setInitState.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onUsernameChange = this.onUsernameChange.bind(this);
-
 		this.setInitState();
 	}
 
@@ -90,6 +94,7 @@ export default class SignupForm extends React.Component {
 		if(!isFormValid) return;
 		const {username, password, email, gender} = fields;
 		
+		this.loadingSub.onNext(true);
 		authService.signup({
 			username,
 			password,

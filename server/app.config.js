@@ -26,7 +26,7 @@ const config = {
 
 if(process.env.NODE_ENV != 'dev') {
 	config.database = 'mongodb://root:1234@ds023912.mlab.com:23912/fantp_dev';
-	port = 80;
+	// port = 80;
 }
 
 const connectToDB = () => mongoose.connect(config.database);
