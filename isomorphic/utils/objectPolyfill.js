@@ -77,8 +77,8 @@ if (!Object.prototype.sortPipe) {
 }
 
 
-if (!Object.prototype.sliceProps) {
-	Object.defineProperty(Object.prototype, 'sliceProps', {
+if (!Object.prototype.gatherProps) {
+	Object.defineProperty(Object.prototype, 'gatherProps', {
 		enumerable: false,
 		writable: false,
 		value: function() {
@@ -88,6 +88,21 @@ if (!Object.prototype.sliceProps) {
 				result[key] = this[key];
 			}
 
+			return result;
+		}
+	})
+}
+
+if (!Object.prototype.sliceProps) {
+	Object.defineProperty(Object.prototype, 'sliceProps', {
+		enumerable: false,
+		writable: false,
+		value: function() {
+			if (typeof this != 'object') return this;
+			let result = Object.assign(this);
+			for (let key of arguments) {
+				delete result[key];
+			}
 			return result;
 		}
 	})
@@ -107,6 +122,22 @@ if (!Object.prototype.overrideProps) {
 					result[key] = target[key];
 			}
 
+			return result;
+		}
+	})
+}
+if (!Object.prototype.mergeProps) {
+	Object.defineProperty(Object.prototype, 'mergeProps', {
+		enumerable: false,
+		writable: false,
+		value: function(target) {
+			if (typeof this != 'object') return this;
+
+			let result = {...this};
+
+			for(let key in target) {
+				result[key] = target[key];
+			}
 			return result;
 		}
 	})
