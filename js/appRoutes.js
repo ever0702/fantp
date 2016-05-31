@@ -7,7 +7,6 @@ import appInit from './appInit';
 import configStore from './reduxStore';
 import simpleLogger from './middlewares/simpleLogger';
 import HomeApp from './home/homeApp';
-import TodoApp from './todo/todoApp';
 import TripPlannerApp from './tripPlanner/TripPlannerApp';
 import SignupPage from './auth/SignupPage';
 import SigninPage from './auth/SigninPage';
@@ -52,7 +51,6 @@ class AppRoutes extends React.Component{
 					<Route path='/' component = {App} >
 						<IndexRoute component={HomeApp} />
 						<Route path='home' component={HomeApp} />
-						<Route path='todo-app' component={TodoApp} />
 						<Route path='signup' component={SignupPage} />
 						<Route path='signin' component={SigninPage} />
 						<Route path='planner' component={TripPlannerApp} />

@@ -4,11 +4,9 @@ import {Modal, Button} from 'react-bootstrap';
 import SignupForm from '../../auth/SignupForm';
 import SigninForm from '../../auth/SigninForm';
 import navHistory from '../../utils/navHistory';
-import PlanStep from './PlanStep';
 import TripSummary from './TripSummary';
 import {toggleStepNode, fetchStepNodes, expandRoot, setStartForm, setPlanBasicFormValue} from '../tripPlanActionReducer';
 import simpleForm from '../../highOrderComponents/simpleForm';
-import PlanStepsEditForm from './PlanStepsEditForm';
 import PlanBasicInfoForm from '../../commonComponents/PlanBasicInfoForm';
 import {isNull} from '../../../isomorphic/utils/easy';
 import PlanEditForm from '../../commonComponents/PlanEditForm';
@@ -54,6 +52,8 @@ class TripPlannerDashboard extends React.Component {
 	 	if(!this.props.flatSteps) {
 	 		this.props.dispatch(fetchStepNodes());
 	 	}
+		
+
 	}
 
 	openSignupModal() {
@@ -114,7 +114,7 @@ class TripPlannerDashboard extends React.Component {
 			<div className="trip-planner-dashboard">
 				<div className="row">
 					<div className="col-md-9">
-					<PlanEditForm {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
+					<PlanEditForm svgWidth={300} svgHeight={300} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
 					{/*<PlanBasicInfoForm  {...this.props.sliceProps('daysCountField', 'peopleCountField', 'averageAgeField')}/>
 					<PlanStepsEditForm activeNodes={activeNodes} rootNodes={rootNodes} flatSteps={flatSteps} onNodeClick={onNodeClick} />
 					*/}

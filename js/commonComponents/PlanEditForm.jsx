@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import InlineLabelFieldSet from './InlineLabelFieldSet';
-import PlanStepsEditForm from '../tripPlanner/cmps/PlanStepsEditForm.jsx'
+import PlanStepsEditForm from '../plan/cmps/PlanStepsEditForm.jsx'
 
 const PlanEditForm = props => {
 
