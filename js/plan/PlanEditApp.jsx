@@ -53,7 +53,7 @@ class PlanEditApp extends React.Component {
 			<NavContainerShell>
 				<div className="plan-edit-page">
 					<button className="btn btn-primary-outline" onClick={savePlan}>Save Plan</button>
-					<PlanEditForm {...editPlan} {...this.props.sliceProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
+					<PlanEditForm {...editPlan} {...this.props.gatherProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
 				</div>
 			</NavContainerShell>
 		);

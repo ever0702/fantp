@@ -27,7 +27,7 @@ class PlanList extends React.Component{
 				{
 					planList &&
 					planList.map(planItem => (
-						<Card onClick={() => {
+						<Card key={planItem._id} onClick={() => {
 							onPlanClick(planItem._id);
 						}}>{JSON.stringify(planItem)} </Card>
 					))

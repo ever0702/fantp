@@ -26,8 +26,8 @@ const getTopSteps = stepObj => {
 
 @connect(
 	state => ({
+		...state.tripPlanner,
 		flatSteps: state.stepMap.flatSteps,
-		activeNodes: state.tripPlanner.activeNodes,
 		rootNodes: state.stepMap.rootNodes.map(id => state.stepMap.flatSteps[id]),
 		loggedIn: state.auth.username
 	})

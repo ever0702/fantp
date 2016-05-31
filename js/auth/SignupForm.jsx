@@ -10,27 +10,23 @@ import {createFormInitialState, formEvtHandler} from '../utils/formUtil';
 import simpleForm from '../highOrderComponents/simpleForm';
 import Card from '../commonComponents/Card';
 import loadingCover from '../highOrderComponents/loadingCover';
+import {validateEmail, validatePassword} from '../../isomorphic/utils/accountUtils';
 
 
-let validate = ({email = '', password = '', repassword = '', agreement=false, gender}) => {
+let validate = ({email = '', password = '', username='', repassword = '', agreement=false, gender}) => {
 	let errs = {};
-	if(email.indexOf('@') == -1){
-		errs.email='请输入合法的邮箱';
-	}
 
-	if(password.length <4) {
-		errs.password = '密码不得低于8位';
-	}
+	let emailReuslt = validateEmail(email);
+	if(!emailReuslt.success) errs.email = emailReuslt.message;
+
+	let passwordResult =validatePassword(password);
+	if(!passwordResult.success) errs.password = passwordResult.message;
 	if(repassword != password) {
 		errs.repassword = '密码不匹配';
 	}
-	// if(!agreement) {
-	// 	errs.agreement = 'You much agree to signup';
-	// }
-	// if(!gender ) {
-	// 	errs.gender='Please select a gender';
-	// }
-
+	if(!username) {
+		errs.username = '请输入姓名';
+	}
 	return errs;
 }
 
@@ -39,7 +35,6 @@ let validate = ({email = '', password = '', repassword = '', agreement=false, ge
 @connect()
 @simpleForm({
 	fields: ['username', 'email', 'password', 'repassword', 'agreement', 'gender', 'age'],
-	// initData,
 	validate
 })
 export default class SignupForm extends React.Component {
@@ -126,8 +121,11 @@ export default class SignupForm extends React.Component {
 							preSubmit();
 							this.submitForm(); 
 						}}>
-							<LabelFieldSet label="邮箱" success={showUserUnique&&isUserUnique&&'该邮箱可以注册'} err={showUserUnique&&!isUserUnique&&'该邮箱已被注册'}>
+							{/*<LabelFieldSet label="邮箱" success={showUserUnique&&isUserUnique&&'该邮箱可以注册'} err={showUserUnique&&!isUserUnique&&'该邮箱已被注册'}>
 								<DelayInput {...email} onTextChange={v => { this.onUsernameChange(v)} } type="text" className="form-control" placeholder="请输入邮箱" />
+							</LabelFieldSet>*/}
+							<LabelFieldSet label="邮箱" err={(hasSubmitted||email.touched)&&email.error}>
+								<input {...email} type="text" className="form-control" placeholder="请输入邮箱" />
 							</LabelFieldSet>
 							<LabelFieldSet label="姓名" err={(hasSubmitted||username.touched)&&username.error}>
 								<input {...username} type="text"  className="form-control" placeholder="请输入姓名"/>

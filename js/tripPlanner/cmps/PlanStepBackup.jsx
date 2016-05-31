@@ -31,11 +31,6 @@ class PlanStepRaw extends React.Component {
 						level==1 && 
 						<i className="fa fa-check-circle complete-icon text-success"></i>
 					}
-					<svg width="300" height="150">
-						<line x1="50" y1="50" x2="150" y2="70" stroke="green" strokeWidth="3"></line>
-						<circle onClick={e=> console.log(e)} cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill="red" />
-						<circle onClick={e=> console.log(e)} cx="150" cy="70" r="30" stroke="black" strokeWidth="3" fill="red" />
-					</svg>
 					<div className="cursor-pointer" onClick={e=>{
 							// e.preventDefault();
 							// if(expandRoot) expandRoot(_id);

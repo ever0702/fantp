@@ -126,19 +126,19 @@ if (!Object.prototype.overrideProps) {
 		}
 	})
 }
-if (!Object.prototype.mergeProps) {
-	Object.defineProperty(Object.prototype, 'mergeProps', {
-		enumerable: false,
-		writable: false,
-		value: function(target) {
-			if (typeof this != 'object') return this;
+// if (!Object.prototype.mergeProps) {
+// 	Object.defineProperty(Object.prototype, 'mergeProps', {
+// 		enumerable: false,
+// 		writable: false,
+// 		value: function(target) {
+// 			if (typeof this != 'object') return this;
 
-			let result = {...this};
+// 			let result = {...this};
 
-			for(let key in target) {
-				result[key] = target[key];
-			}
-			return result;
-		}
-	})
-}
+// 			for(let key in target) {
+// 				result[key] = target[key];
+// 			}
+// 			return result;
+// 		}
+// 	})
+// }

@@ -35,9 +35,9 @@ const saveTripPlan = () => (dispatch, getState) => {
     let state = getState();
     let { tripPlanner } = state;
     let {activeNodes} = state.tripPlanner;
-    let peopleCount = tripPlanner.peopleCount? tripPlanner.peopleCount.value: null;
-    let daysCount = tripPlanner.daysCount? tripPlanner.daysCount.value: null;
-    let averageAge = tripPlanner.averageAge? tripPlanner.averageAge.value: null;
+    let peopleCount = tripPlanner.peopleCount;
+    let daysCount = tripPlanner.daysCount;
+    let averageAge = tripPlanner.averageAge;
 
     return asyncActionHelper({
         dispatch,

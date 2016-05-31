@@ -9,15 +9,17 @@ import authService from './auth.service';
 import loadingCover from '../highOrderComponents/loadingCover';
 import {Rx} from '../utils/rxUtils';
 import toastr from 'toastr';
-
+import {validateEmail, validatePassword} from '../../isomorphic/utils/accountUtils';
 
 const validate = ({email = '', password = ''}) => {
 	let errs = {};
-	if(!email) {
-		errs.email = 'Please fill in email';
-	}
-	if(!password) {
-		errs.password = 'Please fill in Password';
+
+	let emailResult = validateEmail(email);
+	if(!emailResult.success) errs.email = emailResult.message;
+
+	let passwordResult = validatePassword(password);
+	if(!passwordResult.success) {
+		errs.password = passwordResult.message;
 	}
 
 	return errs;

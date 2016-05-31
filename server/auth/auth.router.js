@@ -7,6 +7,7 @@ import profile from '../../isomorphic/decorators/profile.decorator';
 import routerException from '../../isomorphic/decorators/routerException.decorator';
 import routerExceptionHandler from '../../isomorphic/decorators/routerExceptionHandler.decorator';
 import { signToken, verifyToken } from '../utils/token.util';
+import {validaEmail, validatePassword} from '../../isomorphic/utils/accountUtils';
 
 // @routerExceptionHandler
 class AuthHandler {
@@ -28,6 +29,12 @@ class AuthHandler {
 
     signup(req, res) {
         let { username, password, email, gender } = req.body;
+        
+        let emailValidateResult = validaEmail(email);
+        if(!emailValidateResult.success) return res.send(failWithMessage(emailValidateResult.message));
+        let passwordValidateResult = validatePassword(password);
+        if(!passwordValidateResult.success) return res.send(failWithMessage(passwordValidateResult.message));
+
         return authService.signup({ username, password, email, gender })
             .then(user => signToken({ ...user }).then(
                     token => res.send({ success: true, token, ...user }),
