@@ -13,13 +13,11 @@ class TripPlannerApp extends React.Component {
 	render() {
 		return (
 			<div className="trip-plan-bg">
-				<NavContainerShell>
+				<NavContainerShell containerType="container-fluid">
 					<div className="trip-plan-page">
-						<div className="container">
 							<div className="row">
 							</div>
 							<TripPlannerDashboard />
-						</div>	
 					</div>
 				</NavContainerShell>
 			</div>

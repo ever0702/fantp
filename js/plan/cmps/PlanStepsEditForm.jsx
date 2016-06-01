@@ -2,11 +2,11 @@ import React from 'react';
 import PlanStep from './PlanStep';
 import {calculateNodePositions} from '../nodePositionHelper';
 
-const PlanEditForm = ({rootNodes, flatSteps, activeNodes, onNodeClick}) => {
+const PlanEditForm = ({rootNodes, svgWidth, svgHeight, flatSteps, activeNodes, onNodeClick}) => {
 	
 	let result = calculateNodePositions({
-		svgWidth: 300,
-		svgHeight: 300,
+		svgWidth,
+		svgHeight,
 		level: 1,
 		startAngle: 0
 	});
@@ -14,10 +14,10 @@ const PlanEditForm = ({rootNodes, flatSteps, activeNodes, onNodeClick}) => {
 			<div className="plan-eidt-form">
 				{
 					rootNodes && 
-					rootNodes.map(sp => (
-							<div>
-								<svg width="300" height="300" style={{border:"3px solid orange", background:"white"}}>
-									<PlanStep {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
+					rootNodes.map((sp, index) => (
+							<div className="" style={{float:"left"}}>
+								<svg width={svgWidth} height={svgHeight} style={{border:"1px solid black"}}>
+									<PlanStep index={index} {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
 								</svg>
 							</div>
 						))

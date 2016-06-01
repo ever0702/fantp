@@ -1,11 +1,12 @@
 const config = {
-	r1: 0.15,
-	r2: 0.08,
-	r3: 0.05,
-	to12: 0.27,
-	to23: 0.17
+	r1: 0.13,
+	r2: 0.09,
+	r3: 0.06,
+	to12: 0.26,
+	to23: 0.18
 }
 
+let count = 0;
 
 const calculateNodePositions = ({
 	svgWidth,
@@ -17,15 +18,16 @@ const calculateNodePositions = ({
 	px,
 	py
 }) => {
+	count++;
 	index = index||0;
 	startAngle = startAngle||0;	
-	let min = Math.min(svgHeight, svgHeight) || 300;
+	let min = Math.min(svgHeight, svgHeight) || 400;
 
 	let {r1, r2, r3, to12, to23} = config;
 
 	let rootCircle = {
-		cx: min/2,
-		cy: min/2,
+		cx: svgWidth/2,
+		cy: svgHeight/2,
 		r: min * r1
 	};
 
@@ -40,6 +42,7 @@ const calculateNodePositions = ({
 
 	let cToc = level == 2? to12: to23;
 	let curR = level ==2? r2: r3;
+	let parentR = level ==2? r1: r2;
 	if(level > 2) {
 		index++;
 		nodeCount ++;
@@ -57,13 +60,14 @@ const calculateNodePositions = ({
 
 
 	let line = {
-		x1: px,
-		y1: py,
-		x2: circle.cx,
-		y2: circle.cy
+		x1: px + parentR*min*Math.sin(curAngle),
+		y1: py +parentR*min*Math.cos(curAngle),
+		x2: circle.cx - curR*min*Math.sin(curAngle),
+		y2: circle.cy - curR*min*Math.cos(curAngle)
 	};
 
 	console.log({circle, line, angle: curAngle})
+	console.log('recaluate has run ', count);
 
 	return {
 		circle,

@@ -21,8 +21,6 @@ class PlanStepRaw extends React.Component {
 
     }
     shouldComponentUpdate(nextProps, nextState) {
-    	// return nextProps.active!=this.props.active;      
-    	// return nextProps!=this.props;
     	return true;
     }
     render() {
@@ -31,18 +29,23 @@ class PlanStepRaw extends React.Component {
     	const className = `plan-step ${active?'active-step':'not-active-step'}`
 
         return (
-			<g >
+			<g onClick={e=> {
+				e.stopPropagation();
+				onNodeClick(_id)} 
+			}>
 
-					<circle onClick={e=> onNodeClick(_id)} {...circle} fill={active?'green':level==1?'red': level==2?'yellow': 'blue'}></circle>
-					<line {...line} stroke="purple"></line>
+					<circle {...circle} strokeWidth={10-2.5*level} stroke={active?'red':'gray'} fill='white'></circle>
+					<line {...line} stroke={active?"red":"gray"} strokeWidth="5"></line>
+					<text textAnchor="middle" x={circle.cx} y={circle.cy} style={{
+						fontSize: 15-2*level
+					}}>{label}</text>
 					{
-						// (expanded||level!=1)&&
 						active&&
 						childStepsObj &&
 						childStepsObj.map((sp, index) => {
 							let result = calculateNodePositions({
-								svgHeight: 300,
-								svgWidth: 300,
+								svgHeight,
+								svgWidth,
 								level: level+1,
 								startAngle: angle,
 								index,

@@ -113,8 +113,8 @@ class TripPlannerDashboard extends React.Component {
 		return (
 			<div className="trip-planner-dashboard">
 				<div className="row">
-					<div className="col-md-9">
-					<PlanEditForm svgWidth={300} svgHeight={300} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
+					<div className="col-md-12">
+					<PlanEditForm svgWidth={400} svgHeight={400} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
 					{/*<PlanBasicInfoForm  {...this.props.sliceProps('daysCountField', 'peopleCountField', 'averageAgeField')}/>
 					<PlanStepsEditForm activeNodes={activeNodes} rootNodes={rootNodes} flatSteps={flatSteps} onNodeClick={onNodeClick} />
 					*/}
