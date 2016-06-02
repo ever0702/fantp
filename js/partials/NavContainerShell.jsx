@@ -10,7 +10,7 @@ const NavContainerShell = ({children, containerType='container'}) => (
 			        <Header />
 		        </div>
 	       </div>
-	        <div className={containerType + "top-margin" }>
+	        <div className={containerType + " top-margin" }>
 			        {children}
 	        </div>
 		</div>	

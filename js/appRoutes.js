@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect, Provider} from 'react-redux';
 import {Router, Route, IndexRoute, Link} from 'react-router';
+import {RouteTransition} from 'react-router-transition';
 import navHistory from './utils/navHistory';
 import Header from './partials/Header';
 import appInit from './appInit';
