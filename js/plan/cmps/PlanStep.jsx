@@ -24,9 +24,40 @@ class PlanStepRaw extends React.Component {
     	return true;
     }
     render() {
-    	let {_id, active, label, subTitle, level, activeNodes,  childStepsObj,  onNodeClick, circle, line, angle, svgWidth, svgHeight} = this.props;
+    	let {_id, active, label, subTitle, level, activeNodes,  childStepsObj,  onNodeClick, index, circle, line, angle, fillColor, svgWidth, svgHeight} = this.props;
+    	let isRoot = level == 1;
 
-    	const className = `plan-step ${active?'active-step':'not-active-step'}`
+    	const className = `plan-step ${active?'active-step':'not-active-step'}`;
+
+		const smartRenderText = text => {
+			let fontSize = svgWidth*(isRoot? 19: level==2? 15: 10)/400;
+			let config = {
+				textAnchor:'middle',
+				x: circle.cx,
+				y: circle.cy,
+				fill: isRoot?'white': fillColor
+			}
+			config.y += isRoot?20:fontSize/2;
+
+			let styles = {
+				fontWeight: level<3? 'bold': 'normal',
+				fontSize
+			};
+			
+			if(label.length<=4){
+				return <text {...config} style={styles}>{label}</text>
+			}
+
+			let half = Math.floor(label.length/2);
+			let firstHalf = label.substr(0, half);
+			let secondHalf = label.substr(half);
+			styles.fontSize -=2
+
+			return [
+				<text {...config} style={styles} y={circle.cy}>{firstHalf}</text>,
+				<text {...config} style={styles} y={circle.cy+fontSize}>{secondHalf}</text>
+			]
+		}
 
         return (
 			<g onClick={e=> {
@@ -34,11 +65,19 @@ class PlanStepRaw extends React.Component {
 				onNodeClick(_id)} 
 			}>
 
-					<circle {...circle} strokeWidth={10-2.5*level} stroke={active?'red':'gray'} fill='white'></circle>
-					<line {...line} stroke={active?"red":"gray"} strokeWidth="5"></line>
-					<text textAnchor="middle" x={circle.cx} y={circle.cy} style={{
-						fontSize: 15-2*level
-					}}>{label}</text>
+					<circle {...circle} strokeWidth={13-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'}></circle>
+					<line {...line} stroke={active?"#8F0D17":"gray"} stroke-width="5"></line>
+					{
+						isRoot&&
+						<text text-anchor="middle" x={circle.cx} y={circle.cy-5} style={{
+							fontSize:30,
+							fontWeight: level <3?'bold': 'normal',
+							fontFamily: "cursive"
+						}} fill={level==1?'white': fillColor}>{"0"+(index+1)}</text>
+					}
+					{
+						smartRenderText()
+					}
 					{
 						active&&
 						childStepsObj &&
@@ -53,7 +92,6 @@ class PlanStepRaw extends React.Component {
 								px: circle.cx,
 								py: circle.cy
 							})
-							console.log('this is the result ', result)
 							return (
 								<PlanStep  {...this.props} {...sp} activeNodes={activeNodes} onNodeClick={onNodeClick} level={level+1} {...result}/>
 							)}

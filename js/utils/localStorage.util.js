@@ -9,12 +9,22 @@ class LocalStorageWrapper {
     }
 
     get(key) {
-        let res = localStorage.getItem(key);
-        try {
+        try{
+            const res = localStorage.getItem(key);
+            if(res === null) {
+                return undefined;
+            }
             return JSON.parse(res);
-        } catch (err) {
-            return res;
+        } catch(err) {
+            return undefined;
         }
+
+        // let res = localStorage.getItem(key);
+        // try {
+        //     return JSON.parse(res);
+        // } catch (err) {
+        //     return res;
+        // }
     }
 
     remove(key) {

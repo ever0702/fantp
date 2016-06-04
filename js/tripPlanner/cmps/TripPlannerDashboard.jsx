@@ -34,7 +34,7 @@ const getTopSteps = stepObj => {
 	fields: ['peopleCountField', 'daysCountField', 'averageAgeField']
 })
 class TripPlannerDashboard extends React.Component {
-	state = {showModal: false, showSignup: true, showSignin: false};
+	state = {showModal: false, showSignup: true, showSignin: false, windowWidth: window.innerWidth};
 	constructor(props) {
 		super(props);
 
@@ -46,6 +46,7 @@ class TripPlannerDashboard extends React.Component {
 		this.onSignupClick = this.onSignupClick.bind(this);
 		this.onNodeClick = this.onNodeClick.bind(this);
 		this.changeBasicFormValue = this.changeBasicFormValue.bind(this);
+		this.handleResize = this.handleResize.bind(this);
 	}
 
 	componentWillMount() {
@@ -103,35 +104,53 @@ class TripPlannerDashboard extends React.Component {
 		this.props.dispatch(setPlanBasicFormValue(key, value));
 	}
 
+	componentDidMount() {
+		window.addEventListener('resize', this.handleResize);
+	}
+
+	handleResize(){
+		this.setState({windowWidth: window.innerWidth});
+	}
+
+	componentWillUnmount() {
+	      window.removeEventListener('resize', this.handleResize);
+	}
+
+	getSvgWidth() {
+		let width = 400;
+		let {windowWidth} = this.state;
+		if(windowWidth < 600) return windowWidth;
+		if(windowWidth < 800) return windowWidth/2;
+		if(windowWidth<1400) return windowWidth/3;
+		return windowWidth/4;
+	}
+
 	render() {
 		
 		let { nextStepClick, onSigninClick, onSignupClick, onNodeClick, changeBasicFormValue} = this;
 		let {rootNodes, flatSteps, activeNodes} = this.props;
 
-		let {showSignin, showSignup} = this.state;
+		let {showSignin, showSignup, windowWidth} = this.state;
 
 		return (
 			<div className="trip-planner-dashboard">
 				<div className="row">
-					<div className="col-md-12">
-					<PlanEditForm svgWidth={400} svgHeight={400} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
-					{/*<PlanBasicInfoForm  {...this.props.sliceProps('daysCountField', 'peopleCountField', 'averageAgeField')}/>
-					<PlanStepsEditForm activeNodes={activeNodes} rootNodes={rootNodes} flatSteps={flatSteps} onNodeClick={onNodeClick} />
-					*/}
-					<Modal show={this.state.showModal} onHide={this.closeSignupModal} bsSize="sm">
-						{
-							showSignup&&
-				            <SignupForm headerClose={true} onCloseClick={this.closeSignupModal} onSignupSuccess={e => navHistory.push('plan-confirm')} onSigninClick={onSigninClick}/>
-						}
-						{
-							showSignin&&
-				            <SigninForm headerClose={true} onCloseClick={this.closeSignupModal} onSigninSuccess={e => navHistory.push('plan-confirm')} onSignupClick={onSignupClick}/>
-						}
-			        </Modal>
+					<div className="col-md-12" ref={elm => this.node = elm}>
+						<PlanEditForm svgWidth={this.getSvgWidth()-30} svgHeight={this.getSvgWidth()-30} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
+						<Modal show={this.state.showModal} onHide={this.closeSignupModal} bsSize="sm">
+							{
+								showSignup&&
+					            <SignupForm headerClose={true} onCloseClick={this.closeSignupModal} onSignupSuccess={e => navHistory.push('plan-confirm')} onSigninClick={onSigninClick}/>
+							}
+							{
+								showSignin&&
+					            <SigninForm headerClose={true} onCloseClick={this.closeSignupModal} onSigninSuccess={e => navHistory.push('plan-confirm')} onSignupClick={onSignupClick}/>
+							}
+				        </Modal>
 					</div>
-					<div className="col-md-3">
+					{/*<div className="col-md-3">
 						<TripSummary nextStepClick={nextStepClick}/>
-					</div>
+					</div>*/}
 				</div>
 			</div>
 		);

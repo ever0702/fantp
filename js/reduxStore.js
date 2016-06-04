@@ -3,27 +3,36 @@ import simpleLogger from './middlewares/simpleLogger';
 import accessStoreMiddleware from './middlewares/accessStoreMiddleware';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
+import storage from './utils/localStorage.util';
+import throttle from 'lodash/throttle';
+
+const REDUX_STATE = 'REDUX_STATE';
 
 
-function configStore(initState) {
+const saveStateToLocalStorage = state => storage.set(REDUX_STATE, state);
+const getStateFromLocalStorage = () => storage.get(REDUX_STATE);
 
-    const store = createStore(rootReducer, initState, compose(
+
+function configStore() {
+
+    let persistedState = getStateFromLocalStorage();
+
+    const store = createStore(rootReducer, persistedState, compose(
         applyMiddleware(thunk, simpleLogger, accessStoreMiddleware),
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
 
+    store.subscribe(throttle(() => saveStateToLocalStorage(store.getState()), 1000));
+
+    if (module.hot) {
+        module.hot.accept('./rootReducer', () => {
+            const nextReducer = require('./rootReducer').default;
+
+            store.replaceReducer(nextReducer);
+        });
+    };
 
     return store;
 };
 
-var store = configStore({});
-
-if (module.hot) {
-    module.hot.accept('./rootReducer', () => {
-        const nextReducer = require('./rootReducer').default;
-
-        store.replaceReducer(nextReducer);
-    });
-};
-
-export default store;
+export default configStore;

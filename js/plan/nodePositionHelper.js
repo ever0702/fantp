@@ -21,7 +21,7 @@ const calculateNodePositions = ({
 	count++;
 	index = index||0;
 	startAngle = startAngle||0;	
-	let min = Math.min(svgHeight, svgHeight) || 400;
+	let min = Math.min(svgHeight, svgWidth) ||300;
 
 	let {r1, r2, r3, to12, to23} = config;
 
@@ -66,8 +66,8 @@ const calculateNodePositions = ({
 		y2: circle.cy - curR*min*Math.cos(curAngle)
 	};
 
-	console.log({circle, line, angle: curAngle})
-	console.log('recaluate has run ', count);
+	// console.log({circle, line, angle: curAngle})
+	// console.log('recaluate has run ', count);
 
 	return {
 		circle,

@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import EditableInput from './EditableInput';
 import InlineLabelFieldSet from './InlineLabelFieldSet';
 import PlanStepsEditForm from '../plan/cmps/PlanStepsEditForm.jsx'
 
@@ -11,7 +12,11 @@ const PlanEditForm = props => {
 		<div className="plan-eidt-form">
 			<div className="start-form">
 					
-				<Card>
+				<Card style={{border:'none', background:'#eee'}}>
+					<h5 style={{color:'orange'}}>美国执行计划</h5>
+
+					<span>预计旅行人数</span>
+					<EditableInput value={peopleCount} onValueChange={value=>onBasicFormValueChange('peopleCount', value)}></EditableInput>
 					<InlineLabelFieldSet label="人数">
 					      <input className="form-control" type="text" onChange={
 					      	e=> onBasicFormValueChange('peopleCount', e.target.value)
@@ -27,7 +32,6 @@ const PlanEditForm = props => {
 					      	e => onBasicFormValueChange('averageAge', e.target.value)
 					      } value={averageAge} placeholder="平均年龄"/>
 					</InlineLabelFieldSet>
-					  <button className="btn btn-raised btn-primary" type="submit">更新</button>
 					
 				</Card>
 			</div>

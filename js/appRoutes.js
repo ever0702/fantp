@@ -16,7 +16,7 @@ import PlanConfirmApp from './planConfirm/PlanConfirmApp';
 import PlanEditApp from './plan/PlanEditApp';
 
 
-let store = configStore;
+let store = configStore();
 
 
 @connect()

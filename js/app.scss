@@ -104,10 +104,10 @@ body {
     }
 }
 
-.page-body {}
+
 
 .top-margin {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .float-left {
@@ -173,5 +173,19 @@ body {
                 color: $navy;
             }
         }
+    }
+}
+
+.editable-input {
+    input {
+       background: transparent;
+       border: none; 
+       border-bottom: 1px solid black;
+    }
+    input:focus {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid orange;
+        text-align: center;
     }
 }
