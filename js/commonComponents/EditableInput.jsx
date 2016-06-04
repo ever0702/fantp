@@ -6,7 +6,7 @@ class EditableInput extends React.Component {
         super(props);
         this.inputElm = null;
         this.state = {
-        	editting: false,
+        	editting: props.editting || false,
         	edittingValue: props.value
         };
 

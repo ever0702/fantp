@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = props => {
 
-		let {imgSrc, topTitle, title, text, headerClose, onCloseClick, children, ...rest} = props;
+		let {imgSrc, topTitle, title, titleStyle, text, headerClose, onCloseClick, children, ...rest} = props;
 		return (
 			 <div className="card" {...rest}>
 			 	{
@@ -22,7 +22,7 @@ const Card = props => {
 				<div className="card-block">
 					{
 						title &&
-						<h4 className="card-title">{title}</h4>
+						<h4 className="card-title" style={titleStyle}>{title}</h4>
 					}
 					{
 						text && 

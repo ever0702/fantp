@@ -19,13 +19,16 @@ class SignupPage extends React.Component {
 		// this.props.history.push('/home');
 		navHistory.push('/home');
 	}
+	onSigninClick() {
+		navHistory.push('/signin');
+	}
 
 	render() {
 		return (
 			<NavContainerShell>
 				<div className="signup-page">
 					<div className="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-						<SignupForm onSignupSuccess={this.signupSuccess.bind(this)}/>
+						<SignupForm onSigninClick={this.onSigninClick} onSignupSuccess={this.signupSuccess.bind(this)}/>
 					</div>
 				</div>
 			</NavContainerShell>

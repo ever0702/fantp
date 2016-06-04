@@ -34,13 +34,13 @@ class AddStepNode extends React.Component {
 	}
 	
 	render() {
-		let {label, order, subTitle, parentId, preSubmit} = this.props;
+		let {label, order, subTitle, parentId, preSubmit, onCloseClick} = this.props;
 
 		let {stepNodes} = this.state;
 
 		return (
 			<div className="mui">
-				<Card className="card shadow" title="Create Step">
+				<Card className="card shadow" title="Create Step"  headerClose={true} onCloseClick={onCloseClick}>
 					<form onSubmit={
 						e => {
 							e.preventDefault();

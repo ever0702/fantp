@@ -148,9 +148,11 @@ class TripPlannerDashboard extends React.Component {
 							}
 				        </Modal>
 					</div>
-					{/*<div className="col-md-3">
+				</div>
+				<div className="row">
+					<div className="col-md-3">
 						<TripSummary nextStepClick={nextStepClick}/>
-					</div>*/}
+					</div>
 				</div>
 			</div>
 		);

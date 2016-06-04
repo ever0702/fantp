@@ -32,8 +32,8 @@ class DashboardApp extends React.Component {
 		return (
 				<NavContainerShell>	
 					<button className="btn btn-sm" onClick={this.addStepNodeClick}>Add</button>
-					<Modal show={showAddStepNode} >
-						<AddStepNode />
+					<Modal show={showAddStepNode}>
+						<AddStepNode onCloseClick={e=> this.setState({showAddStepNode: false})} />
 					</Modal>
 					<PlanList onPlanClick={onPlanClick}/>
 				</NavContainerShell>

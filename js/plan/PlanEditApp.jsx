@@ -19,6 +19,7 @@ import './planApp.scss';
 	fields: ['daysCountField', 'daysCountField', 'averageAgeField']
 })
 class PlanEditApp extends React.Component {
+	state = {windowWidth: window.innerWidth};
 	constructor(props) {
 		super(props);
 
@@ -36,6 +37,7 @@ class PlanEditApp extends React.Component {
 		if(planId) {
 			this.props.dispatch(fetchSinglePlan(planId));
 		}
+		window.addEventListener('resize', this.handleResize);
 	}
 
 	onBasicFormValueChange(key, value) {
@@ -46,14 +48,31 @@ class PlanEditApp extends React.Component {
 		this.props.dispatch(savePlanChanges());
 	}
 
+	handleResize(){
+		this.setState({windowWidth: window.innerWidth});
+	}
+
+	componentWillUnmount() {
+	      window.removeEventListener('resize', this.handleResize);
+	}
+
+	getSvgWidth() {
+		let width = 400;
+		let {windowWidth} = this.state;
+		if(windowWidth < 600) return windowWidth;
+		if(windowWidth < 800) return windowWidth/2;
+		if(windowWidth<1400) return windowWidth/3;
+		return windowWidth/4;
+	}
+
 	render() {
 		let {editPlan} = this.props;
 		let {onNodeClick, savePlan, onBasicFormValueChange} = this;
 		return (
-			<NavContainerShell>
+			<NavContainerShell containerType="container-fluid">
 				<div className="plan-edit-page">
 					<button className="btn btn-primary-outline" onClick={savePlan}>Save Plan</button>
-					<PlanEditForm {...editPlan} {...this.props.gatherProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
+					<PlanEditForm svgWidth={this.getSvgWidth()-30} svgHeight={this.getSvgWidth()-30} {...editPlan} {...this.props.gatherProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
 				</div>
 			</NavContainerShell>
 		);

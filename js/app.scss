@@ -85,7 +85,7 @@ body.hoc-styles {
 html,
 body {
     height: 100%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
     .card {
         img {
             max-width: 100%;
@@ -177,9 +177,20 @@ body {
 }
 
 .editable-input {
+    span {
+        display: inline-block;
+        min-width:10px;
+        cursor: pointer;
+        color: orange;
+        font-size: 20px;
+    }
+    span: hover{
+        color: red;
+    }
     input {
        background: transparent;
        border: none; 
+       width: 40px;
        border-bottom: 1px solid black;
     }
     input:focus {

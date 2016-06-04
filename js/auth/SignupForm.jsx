@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import toastr from 'toastr';
 import LabelFieldSet from '../commonComponents/LabelFieldSet';
 import DelayInput from '../commonComponents/DelayInput';
 import {get} from '../utils/httpHelper';
@@ -11,6 +10,7 @@ import simpleForm from '../highOrderComponents/simpleForm';
 import Card from '../commonComponents/Card';
 import loadingCover from '../highOrderComponents/loadingCover';
 import {validateEmail, validatePassword} from '../../isomorphic/utils/accountUtils';
+import colors from '../styleRoot';
 
 
 let validate = ({email = '', password = '', username='', repassword = '', agreement=false, gender}) => {
@@ -115,7 +115,7 @@ export default class SignupForm extends React.Component {
 
 		return (
 			<div className="mui">
-				<Card className="signup-form card shadow" {...rest} title="创建账号">
+				<Card className="signup-form card shadow" {...rest} title="创建账号" titleStyle={{color: colors.orange}}>
 						<form onSubmit={e=> {
 							e.preventDefault();
 							preSubmit();

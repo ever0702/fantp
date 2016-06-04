@@ -12,12 +12,7 @@ const checkStatus = res => {
     if (res.status >= 200 && res.status < 300) {
         return res;
     }
-
     return Promise.reject(res);
-
-    // let err = new Error(res.statusText);
-    // err.response = res;
-    // throw err;
 }
 
 const parseJson = res => res.json();
@@ -28,7 +23,6 @@ const jsonHeader = {
 };
 
 let send = ({ url, method = 'get', data = {}, config = {} }) => {
-    console.log('tokenis', simpleStorage.token)
     let body = data;
     if (typeof data == 'object') {
         body = JSON.stringify(data);

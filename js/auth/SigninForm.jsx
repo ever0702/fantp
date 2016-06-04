@@ -10,6 +10,7 @@ import loadingCover from '../highOrderComponents/loadingCover';
 import {Rx} from '../utils/rxUtils';
 import toastr from 'toastr';
 import {validateEmail, validatePassword} from '../../isomorphic/utils/accountUtils';
+import colors from '../styleRoot';
 
 const validate = ({email = '', password = ''}) => {
 	let errs = {};
@@ -70,7 +71,7 @@ class SigninForm extends Component {
 
 		return (
 			<div className="mui">
-				<Card className="signin-form card shadow" {...rest} title="用户登录">
+				<Card className="signin-form card shadow" {...rest} title="用户登录" titleStyle={{color:colors.orange}}>
 						<h7 className="text-danger">{this.state.signinErrorMessage}</h7>
 						<form  onSubmit= {
 							e => {
