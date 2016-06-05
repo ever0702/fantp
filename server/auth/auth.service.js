@@ -22,7 +22,7 @@ class AuthService {
     // @profile
     signup({ username, password, email, gender }) {
 
-        // throw new Error('just for fun');
+        
         return this.checkUserUnique({ email })
             .then(unique => {
                 console.log('unique', unique)
