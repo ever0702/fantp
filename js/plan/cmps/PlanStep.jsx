@@ -65,8 +65,8 @@ class PlanStepRaw extends React.Component {
 				onNodeClick(_id)} 
 			}>
 
-					<circle {...circle} stroke-width={13-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'}></circle>
-					<line {...line} stroke={active?"#8F0D17":"gray"} stroke-width="5"></line>
+					<circle {...circle} strokeWidth={13-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'}></circle>
+					<line {...line} stroke={active?"#8F0D17":"gray"} strokeWidth="5"></line>
 					{
 						isRoot&&
 						<text text-anchor="middle" x={circle.cx} y={circle.cy-5} style={{
