@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Card from '../../commonComponents/Card';
 import {isNodeActive} from '../../../isomorphic/utils/stepUtils';
 import {calculateNodePositions} from '../nodePositionHelper';
+import colors from '../../styleRoot';
 
 
 class PlanStepRaw extends React.Component {
@@ -35,7 +36,7 @@ class PlanStepRaw extends React.Component {
 				textAnchor:'middle',
 				x: circle.cx,
 				y: circle.cy,
-				fill: isRoot?'white': fillColor
+				fill: isRoot?'white': active?fillColor: colors.muted
 			}
 			config.y += isRoot?20:fontSize/2;
 

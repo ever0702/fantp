@@ -1,8 +1,9 @@
 import React from 'react';
 import PlanStep from './PlanStep';
 import {calculateNodePositions} from '../nodePositionHelper';
+import colors from '../../styleRoot';
 
-let colors = ['#FCA517', '#F4721C', '#147DAA', '#72B92F', '#049C9D', '#E05248', '#853C83']
+let stepColors = ['#FCA517', '#F4721C', '#147DAA', '#72B92F', '#049C9D', '#E05248', '#853C83']
 
 const PlanEditForm = ({rootNodes, svgWidth, svgHeight, flatSteps, activeNodes, onNodeClick}) => {
 	
@@ -14,12 +15,19 @@ const PlanEditForm = ({rootNodes, svgWidth, svgHeight, flatSteps, activeNodes, o
 	});
 	return	(
 			<div className="plan-eidt-form">
+				<div className="" style={{float:"left"}}>
+					<svg width={svgWidth} height={svgHeight} style={{border:"1px solid transparent"}}>
+						<circle cx={svgWidth/2} cy={svgHeight/2} r={svgHeight*0.13} fill="#C9CACC" stroke={colors.orange} strokeWidth="5"></circle>
+						<text textAnchor="middle" x={svgHeight/2} y={svgWidth/2+10} style={{fontSize: 20}} fill={colors.orange}>START</text>
+					</svg>
+				</div>
 				{
 					rootNodes && 
 					rootNodes.map((sp, index) => (
 							<div className="" style={{float:"left"}}>
+
 								<svg width={svgWidth} height={svgHeight} style={{border:"1px solid transparent"}}>
-									<PlanStep svgHeight={svgHeight} svgWidth={svgWidth} fillColor={colors[index]} index={index} {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
+									<PlanStep svgHeight={svgHeight} svgWidth={svgWidth} fillColor={stepColors[index]} index={index} {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
 								</svg>
 							</div>
 						))
