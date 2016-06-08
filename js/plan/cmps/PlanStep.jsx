@@ -25,7 +25,7 @@ class PlanStepRaw extends React.Component {
     	return true;
     }
     render() {
-    	let {_id, active, label, subTitle, level, activeNodes,  childStepsObj,  onNodeClick, index, circle, line, angle, fillColor, svgWidth, svgHeight} = this.props;
+    	let {_id, active, label, subTitle, level, activeNodes,  childStepsObj,  onNodeClick, index, circle, line, angle, fillColor, svgWidth, svgHeight, isActiveNodeGroup, mouseOverRoot} = this.props;
     	let isRoot = level == 1;
 
     	const className = `plan-step ${active?'active-step':'not-active-step'}`;
@@ -60,47 +60,56 @@ class PlanStepRaw extends React.Component {
 			]
 		}
 
-        return (
-			<g style={{cursor:'pointer'}} onClick={e=> {
-				e.stopPropagation();
-				onNodeClick(_id)} 
-			}>
+		if(isActiveNodeGroup || active || isRoot) {
 
-					<circle {...circle} strokeWidth={11-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'}></circle>
-					<line {...line} stroke={active?"#8F0D17":"gray"} strokeWidth="5"></line>
-					{
-						isRoot&&
-						<text text-anchor="middle" x={circle.cx} y={circle.cy-5} style={{
-							fontSize:30,
-							fontWeight: level <3?'bold': 'normal',
-							fontFamily: "cursive"
-						}} fill={level==1?'white': fillColor}>{"0"+(index+1)}</text>
-					}
-					{
-						smartRenderText()
-					}
-					{
-						active&&
-						childStepsObj &&
-						childStepsObj.map((sp, index) => {
-							let result = calculateNodePositions({
-								svgHeight,
-								svgWidth,
-								level: level+1,
-								startAngle: angle,
-								index,
-								nodeCount: childStepsObj.length,
-								px: circle.cx,
-								py: circle.cy
-							})
-							return (
-								<PlanStep  {...this.props} {...sp} activeNodes={activeNodes} onNodeClick={onNodeClick} level={level+1} {...result}/>
-							)}
-						)
-					}
-			</g>	
+	        return (
+				<g style={{cursor:'pointer'}} onClick={e=> {
+					e.stopPropagation();
+					onNodeClick(_id)} 
+				}>
 
-    	);
+						<circle {...circle} strokeWidth={11-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'} onMouseOver={e=> {
+							console.log(e)
+							console.log(isRoot)
+							console.log(mouseOverRoot)
+							if(isRoot) mouseOverRoot(_id);
+						}}></circle>
+						<line {...line} stroke={active?"#8F0D17":"gray"} strokeWidth="5"></line>
+						{
+							isRoot&&
+							<text text-anchor="middle" x={circle.cx} y={circle.cy-5} style={{
+								fontSize:30,
+								fontWeight: level <3?'bold': 'normal',
+								fontFamily: "cursive"
+							}} fill={level==1?'white': fillColor}>{"0"+(index+1)}</text>
+						}
+						{
+							smartRenderText()
+						}
+						{
+							active&&
+							childStepsObj &&
+							childStepsObj.map((sp, index) => {
+								let result = calculateNodePositions({
+									svgHeight,
+									svgWidth,
+									level: level+1,
+									startAngle: angle,
+									index,
+									nodeCount: childStepsObj.length,
+									px: circle.cx,
+									py: circle.cy
+								})
+								return (
+									<PlanStep  {...this.props} {...sp} activeNodes={activeNodes} onNodeClick={onNodeClick} level={level+1} {...result}/>
+								)}
+							)
+						}
+				</g>	
+
+	    	);
+	    }
+    	else return <g></g>
     }
 }
 

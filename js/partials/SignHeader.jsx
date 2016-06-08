@@ -58,8 +58,8 @@ class SignHeader extends Component {
 					{
 						!loggedIn && 
 						[
-							<NavBarLink label="登录" key="signin" url="/signin"></NavBarLink>,
-							<NavBarLink label="注册" key="signup" url="/signup"></NavBarLink>
+							<NavBarLink key="signin" url="/signin">登录</NavBarLink>,
+							<NavBarLink key="signup" url="/signup">注册</NavBarLink>
 						]
 					}
 				</ul>	

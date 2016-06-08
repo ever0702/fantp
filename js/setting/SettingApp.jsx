@@ -16,11 +16,14 @@ class SettingApp extends React.Component {
 					<div className="col-md-3 setting-nav">
 						<Card title="Settings">
 							<div className="list-group">
-								<a className="list-group-item active">Basic Info</a>
+								<a className="list-group-item">
+									<NavBarLink indexLink={true} url="setting">Basic INFO</NavBarLink>
+								</a>
 								<a className="list-group-item">Change Password</a>
 								<a className="list-group-item">
 									<NavBarLink label="Hello Word" url="setting/change-password">Hello Word</NavBarLink>
 								</a>
+									<NavBarLink  className="list-group-item" url="setting/change-password">Hello Word</NavBarLink>
 							</div>	
 						</Card>
 					</div>
