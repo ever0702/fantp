@@ -53,6 +53,8 @@ const calculateNodePositions = ({
 	let curAngle = tempAngle>Math.PI? tempAngle - Math.PI: tempAngle + Math.PI;
 
 	let circle = {
+		px,
+		py,
 		cx: px+ cToc* min*Math.sin(curAngle),
 		cy: py+ cToc* min* Math.cos(curAngle),
 		r: curR * min

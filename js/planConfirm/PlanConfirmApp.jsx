@@ -4,7 +4,7 @@ import NavContainerShell from '../partials/NavContainerShell';
 import {saveTripPlan} from '../tripPlanner/tripPlanActionReducer';
 import {spring, Motion, TransitionMotion} from 'react-motion';
 import SimpleArrayTransition from '../commonComponents/SimpleTransition';
-console.log(spring)
+import {resetTripPlanner} from '../tripPlanner/tripPlanActionReducer';
 
 let values = [];
 for(let i = 0; i<10; i++) {
@@ -26,6 +26,7 @@ class PlanConfirmApp extends React.Component {
 
 	createNewPlan() {
 		this.props.dispatch(saveTripPlan());
+		this.props.dispatch(resetTripPlanner());
 	}
 	
 	getDefaultStyles() {

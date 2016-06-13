@@ -8,6 +8,7 @@ import routerException from '../../isomorphic/decorators/routerException.decorat
 import routerExceptionHandler from '../../isomorphic/decorators/routerExceptionHandler.decorator';
 import { signToken, verifyToken } from '../utils/token.util';
 import {validateEmail, validatePassword} from '../../isomorphic/utils/accountUtils';
+import {USER} from '../../isomorphic/constants/userRoles';
 
 // @routerExceptionHandler
 class AuthHandler {
@@ -29,13 +30,14 @@ class AuthHandler {
 
     signup(req, res) {
         let { username, password, email, gender } = req.body;
+        console.log(USER);
         
         let emailValidateResult = validateEmail(email);
         if(!emailValidateResult.success) return res.send(failWithMessage(emailValidateResult.message));
         let passwordValidateResult = validatePassword(password);
         if(!passwordValidateResult.success) return res.send(failWithMessage(passwordValidateResult.message));
 
-        return authService.signup({ username, password, email, gender })
+        return authService.signup({ username, password, email, gender, role: USER })
             .then(user => signToken({ ...user }).then(
                     token => res.send({ success: true, token, ...user }),
                     err => res.send(failWithMessage('Fail to generate Token'))

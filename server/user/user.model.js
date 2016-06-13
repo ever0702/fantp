@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {USER, ADMIN, STAFF} from '../../isomorphic/constants/userRoles';
 
 const UserSchema = new mongoose.Schema({
 	email: {
@@ -16,6 +17,10 @@ const UserSchema = new mongoose.Schema({
 	createTime: {
 		type: Date,
 		default: Date.now
+	},
+	role: {
+		type: String,
+		enum: [USER, ADMIN, STAFF]
 	}
 });
 

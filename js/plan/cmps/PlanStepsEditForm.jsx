@@ -23,6 +23,13 @@ class PlanStepsEditForm extends React.Component {
 		});
 	}
 
+	mouseOutRoot (id) {
+		console.log('mouseout called', id);
+		this.setState({
+			activeNodeGroup: null
+		});
+	}
+
 	render() {
 		let {rootNodes, svgWidth, svgHeight, flatSteps, activeNodes, onNodeClick} = this.props;
 
@@ -45,8 +52,8 @@ class PlanStepsEditForm extends React.Component {
 						rootNodes.map((sp, index) => (
 								<div className="" style={{float:"left"}}>
 
-									<svg width={svgWidth} height={svgHeight} style={{border:"1px solid transparent"}}>
-										<PlanStep mouseOverRoot={this.mouseOverRoot} isActiveNodeGroup={sp._id == this.state.activeNodeGroup} svgHeight={svgHeight} svgWidth={svgWidth} fillColor={stepColors[index]} index={index} {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
+									<svg onMouseEnter={e => this.mouseOverRoot(sp._id)} onMouseLeave={e => this.mouseOutRoot(sp._id)} width={svgWidth} height={svgHeight} style={{border:"1px solid transparent"}}>
+										<PlanStep isActiveNodeGroup={sp._id == this.state.activeNodeGroup} svgHeight={svgHeight} svgWidth={svgWidth} fillColor={stepColors[index]} index={index} {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
 									</svg>
 								</div>
 							))

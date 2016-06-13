@@ -6,6 +6,7 @@ import Card from '../commonComponents/Card';
 import './homeApp.scss';
 import HomeStartForm from './cmps/HomeStartForm';
 import navHistory from '../utils/navHistory';
+import {USER} from '../../isomorphic/constants/userRoles';
 
 @connect(
 

@@ -89,13 +89,13 @@ class TripPlannerDashboard extends React.Component {
 	      window.removeEventListener('resize', this.handleResize);
 	}
 
-	getSvgWidth() {
+	getSvgWidth(passInWidth = this.state.windowWidth) {
+		console.log(passInWidth + ' ddd')
 		let width = 400;
-		let {windowWidth} = this.state;
-		if(windowWidth < 600) return windowWidth;
-		if(windowWidth < 800) return windowWidth/2;
-		if(windowWidth<1400) return windowWidth/3;
-		return windowWidth/4;
+		if(passInWidth < 600) return passInWidth;
+		if(passInWidth < 800) return passInWidth/2;
+		if(passInWidth<1400) return passInWidth/3;
+		return passInWidth/4;
 	}
 
 	render() {
@@ -108,13 +108,11 @@ class TripPlannerDashboard extends React.Component {
 		return (
 			<div className="trip-planner-dashboard">
 				<div className="row">
-					<div className="col-md-12" ref={elm => this.node = elm}>
-						<PlanEditForm svgWidth={this.getSvgWidth()-30} svgHeight={this.getSvgWidth()-30} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
+					<div className="col-md-9" ref={elm => this.node = elm}>
+						<PlanEditForm svgWidth={this.getSvgWidth($(this.node).width())-30} svgHeight={this.getSvgWidth($(this.node).width())-30} {...this.props} onNodeClick={onNodeClick} onBasicFormValueChange={changeBasicFormValue}/>
 					</div>
-				</div>
-				<div className="row">
 					<div className="col-md-3">
-						<TripSummary nextStepClick={nextStepClick}/>
+						<TripSummary activeNodes={activeNodes} nextStepClick={nextStepClick}/>
 					</div>
 				</div>
 			</div>

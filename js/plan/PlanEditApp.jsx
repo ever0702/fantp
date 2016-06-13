@@ -4,6 +4,7 @@ import NavContainerShell from '../partials/NavContainerShell';
 import PlanBasicInfoForm from '../commonComponents/PlanBasicInfoForm';
 import PlanEditForm from '../commonComponents/PlanEditForm';
 import simpleForm from '../highOrderComponents/simpleForm';
+import TripSummary from '../tripPlanner/cmps/TripSummary';
 import {fetchSinglePlan, toggleSavedStepNode, savePlanChanges, setPlanStartForm, setSavedPlanBasicInfo} from './planActionReducer';
 import './planApp.scss';
 
@@ -56,13 +57,13 @@ class PlanEditApp extends React.Component {
 	      window.removeEventListener('resize', this.handleResize);
 	}
 
-	getSvgWidth() {
+	getSvgWidth(passInWidth = this.state.windowWidth) {
+		console.log(passInWidth + ' ddd')
 		let width = 400;
-		let {windowWidth} = this.state;
-		if(windowWidth < 600) return windowWidth;
-		if(windowWidth < 800) return windowWidth/2;
-		if(windowWidth<1400) return windowWidth/3;
-		return windowWidth/4;
+		if(passInWidth < 600) return passInWidth;
+		if(passInWidth < 800) return passInWidth/2;
+		if(passInWidth<1400) return passInWidth/3;
+		return passInWidth/4;
 	}
 
 	render() {
@@ -71,8 +72,16 @@ class PlanEditApp extends React.Component {
 		return (
 			<NavContainerShell containerType="container-fluid">
 				<div className="plan-edit-page">
-					<button className="btn btn-primary-outline" onClick={savePlan}>Save Plan</button>
-					<PlanEditForm svgWidth={this.getSvgWidth()-30} svgHeight={this.getSvgWidth()-30} {...editPlan} {...this.props.gatherProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
+					<div className="row">
+						<div className="col-md-9" ref={elm => this.node=elm}>
+							<button className="btn btn-primary-outline" onClick={savePlan}>Save Plan</button>
+							<PlanEditForm svgWidth={this.getSvgWidth($(this.node).width())-30} svgHeight={this.getSvgWidth($(this.node).width())-30} {...editPlan} {...this.props.gatherProps('flatSteps', 'rootNodes')} onNodeClick={onNodeClick} onBasicFormValueChange={onBasicFormValueChange}/>
+						</div>
+
+						<div className="col-md-3">
+							<TripSummary activeNodes={editPlan.activeNodes}></TripSummary>
+						</div>
+					</div>
 				</div>
 			</NavContainerShell>
 		);

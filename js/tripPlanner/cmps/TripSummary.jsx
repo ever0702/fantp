@@ -1,21 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Card from '../../commonComponents/Card';
+import SummaryItem from './SummaryItem';
 
 const isNull = (value, ifIsNullValue) => value!=null?value:ifIsNullValue;
 
 const mapState = state => {
-	let {rootNodes, activePaths, steps} = state.tripPlanner;
-	let paths = isNull(rootNodes, []).map(nd => ({
-			root: steps[nd], 
-			path:isNull(activePaths[nd], []).map(ph => ({
-				id: steps[ph].id,
-				label: steps[ph].label
-			})) 
-		})
-	);
+
+	let {rootNodes, flatSteps} = state.stepMap;
 	return {
-		paths
+		rootNodes, flatSteps
 	};
 }
 @connect(mapState)
@@ -25,19 +19,16 @@ class TripSummary extends React.Component {
 	}
 
 	render() {
-		let {paths, nextStepClick} = this.props;
-		console.log(paths);
+		let {activeNodes, rootNodes, flatSteps, nextStepClick} = this.props;
+		console.log(activeNodes);
 		return (
 				<div className="trip-summary">
 					<Card title="旅程预算">
-						
 						{
-							paths.map(ph => (
-								<p>{
-									ph.path.map(node => <button>{node.label}</button>)
-								}</p>
-							))
-						}	
+							rootNodes.map((rn, index) => {
+								return <SummaryItem index={index+1} rootId={rn} activeNodes={activeNodes} />
+							})
+						}
 						<button className="btn btn-success btn-block" onClick={nextStepClick}>下一步</button>
 					</Card>
 				</div>
