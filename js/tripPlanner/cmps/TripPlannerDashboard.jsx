@@ -94,7 +94,7 @@ class TripPlannerDashboard extends React.Component {
 		let width = 400;
 		if(passInWidth < 600) return passInWidth;
 		if(passInWidth < 800) return passInWidth/2;
-		if(passInWidth<1400) return passInWidth/3;
+		if(passInWidth<1500) return passInWidth/3;
 		return passInWidth/4;
 	}
 

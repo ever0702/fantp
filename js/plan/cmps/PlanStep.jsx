@@ -74,7 +74,7 @@ class PlanStepRaw extends React.Component {
 						<line {...line} stroke={active?"#8F0D17":"gray"} strokeWidth="5"></line>
 						{
 							isRoot&&
-							<text text-anchor="middle" x={circle.cx} y={circle.cy-5} style={{
+							<text textAnchor="middle" x={circle.cx} y={circle.cy-5} style={{
 								fontSize:30,
 								fontWeight: level <3?'bold': 'normal',
 								fontFamily: "cursive"
