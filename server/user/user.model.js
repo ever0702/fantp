@@ -14,6 +14,14 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
+	areaCode: {
+		type: String,
+		trim: true
+	},
+	phone: {
+		type: String,
+		trim: true
+	},
 	createTime: {
 		type: Date,
 		default: Date.now

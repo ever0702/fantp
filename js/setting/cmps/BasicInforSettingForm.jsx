@@ -2,30 +2,53 @@ import React from 'react';
 import simpleForm from '../../highOrderComponents/simpleForm';
 import Card from '../../commonComponents/Card';
 import LabelFieldSet from '../../commonComponents/LabelFieldSet';
+import userService from '../../user/user.service';
 
 const mapStateToFormData = state => ({
-	name: state.setting.basicInfo && state.setting.basicInfo.name
+	...state.setting.basicInfo
 });
 
 @simpleForm({
-	fields: ['name', 'email'],
+	fields: ['username', 'email', 'areaCode', 'phone'],
 	mapStateToFormData
 })
 class BasicInforSettingForm extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.submitForm = this.submitForm.bind(this);
+	}
+
+	submitForm() {
+		let {fields, isFormValid, resetForm, dispatch} = this.props;
+		if(!isFormValid) return;
+		const {username, areaCode, phone} = fields;
+
+		userService.updateBasicInfo({username, areaCode, phone})
+			.then(result => console.log(result));
 	}
 
 	render() {
-		let {name, email} = this.props;
+		let {username, email, areaCode, phone, preSubmit} = this.props;
 		return (
 			<div className="mui">
-				<Card>
-					<form>
-						<LabelFieldSet label="Name">
-							<input type="text" {...name} />	
-						</LabelFieldSet>						
+				<Card style={{border:'none'}}>
+					<form onSubmit={e => {
+						e.preventDefault();
+						preSubmit();
+						this.submitForm();
+					}}>
+						<LabelFieldSet label="名字">
+							<input type="text" className="form-control" {...username} />	
+						</LabelFieldSet>
+						<LabelFieldSet label="联系电话">
+							<div >
+								<input type="text" className="form-control col-md-3" style={{float:'left', width: '20%'}} placeholder="Area Code"/>
+								<input type="text" className="form-control col-md-9" style={{float:'left', width: '75%', marginLeft: '5%'}} placeholder="Phone Number"/>
+							</div>
+						</LabelFieldSet>
+						<button className="btn btn-primary" type="submit">保存</button>
+						<button className="btn btn-default" style={{marginLeft:15}}>取消</button>
 
 					</form>
 				</Card>

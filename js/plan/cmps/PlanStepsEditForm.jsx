@@ -17,14 +17,12 @@ class PlanStepsEditForm extends React.Component {
 	}
 
 	mouseOverRoot(id) {
-		console.log('mouseover called', id)
 		this.setState({
 			activeNodeGroup: id
 		});
 	}
 
 	mouseOutRoot (id) {
-		console.log('mouseout called', id);
 		this.setState({
 			activeNodeGroup: null
 		});
@@ -62,36 +60,5 @@ class PlanStepsEditForm extends React.Component {
 			);
 	}
 }
-
-// const PlanEditForm = ({rootNodes, svgWidth, svgHeight, flatSteps, activeNodes, onNodeClick}) => {
-	
-// 	let result = calculateNodePositions({
-// 		svgWidth,
-// 		svgHeight,
-// 		level: 1,
-// 		startAngle: 0
-// 	});
-// 	return	(
-// 			<div className="plan-eidt-form">
-// 				<div className="" style={{float:"left"}}>
-// 					<svg width={svgWidth} height={svgHeight} style={{border:"1px solid transparent"}}>
-// 						<circle cx={svgWidth/2} cy={svgHeight/2} r={svgHeight*0.13} fill="#C9CACC" stroke={colors.orange} strokeWidth="5"></circle>
-// 						<text textAnchor="middle" x={svgHeight/2} y={svgWidth/2+10} style={{fontSize: 20}} fill={colors.orange}>START</text>
-// 					</svg>
-// 				</div>
-// 				{
-// 					rootNodes && 
-// 					rootNodes.map((sp, index) => (
-// 							<div className="" style={{float:"left"}}>
-
-// 								<svg width={svgWidth} height={svgHeight} style={{border:"1px solid transparent"}}>
-// 									<PlanStep svgHeight={svgHeight} svgWidth={svgWidth} fillColor={stepColors[index]} index={index} {...result} level={1} key={sp._id} activeNodes={activeNodes} {...sp} onNodeClick={node => onNodeClick(node)} />
-// 								</svg>
-// 							</div>
-// 						))
-// 				}
-// 			</div>	
-// 		);
-// };
 
 export default PlanStepsEditForm;

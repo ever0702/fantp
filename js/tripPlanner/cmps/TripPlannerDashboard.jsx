@@ -90,6 +90,7 @@ class TripPlannerDashboard extends React.Component {
 	}
 
 	getSvgWidth(passInWidth = this.state.windowWidth) {
+		if(passInWidth == null) return 400;
 		console.log(passInWidth + ' ddd')
 		let width = 400;
 		if(passInWidth < 600) return passInWidth;

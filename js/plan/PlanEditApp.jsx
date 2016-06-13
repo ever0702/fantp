@@ -59,6 +59,7 @@ class PlanEditApp extends React.Component {
 
 	getSvgWidth(passInWidth = this.state.windowWidth) {
 		console.log(passInWidth + ' ddd')
+		if(passInWidth==null) return 400;
 		let width = 400;
 		if(passInWidth < 600) return passInWidth;
 		if(passInWidth < 800) return passInWidth/2;

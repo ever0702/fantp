@@ -86,6 +86,10 @@ const tripPlannerReducer = (state = defaultState, action) => {
             return {
                 ...defaultState
             };
+        case SAVE_TRIP_PLAN.SUCCESS: 
+            return {
+                ...defaultState
+            };
         case TOGGLE_STEP_NODE:
             {
                 let { flatSteps } = action.getState().stepMap;

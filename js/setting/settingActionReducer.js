@@ -9,7 +9,7 @@ const {FETCH_USER_BASIC_INFO} = settingActions;
 
 const fetchUserBasicInfo = () => dispatch => asyncActionHelper({
 	dispatch,
-	actionName: FETCH_USER_BASIC_INFO,
+	actionName: 'FETCH_USER_BASIC_INFO',
 	url: '/users/session-user-basic-info'
 });
 
@@ -20,7 +20,10 @@ const defaultState = {
 const settingReducer = (state = defaultState, action) => {
 	switch(action.type) {
 		case FETCH_USER_BASIC_INFO.SUCCESS:
-			return state;
+			return {
+				...state,
+				basicInfo: {...action.data}
+			};
 		default:
 			return state;
 	}

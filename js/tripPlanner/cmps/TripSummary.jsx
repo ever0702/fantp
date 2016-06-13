@@ -23,13 +23,21 @@ class TripSummary extends React.Component {
 		console.log(activeNodes);
 		return (
 				<div className="trip-summary">
-					<Card title="旅程预算">
+					<Card title="">
+						<h3 className="summary-title">旅程预算</h3>
 						{
 							rootNodes.map((rn, index) => {
-								return <SummaryItem index={index+1} rootId={rn} activeNodes={activeNodes} />
+								return <SummaryItem index={index} rootId={rn} activeNodes={activeNodes} />
 							})
 						}
-						<button className="btn btn-success btn-block" onClick={nextStepClick}>下一步</button>
+						<Card>
+							
+						<div className="row">
+							<div className="col-sm-3 title-col">预计总算</div>
+							<div className="col-sm-9">$4550 - $5440</div>
+						</div>	
+						</Card>
+						<button className="btn btn-success-outline btn-block" onClick={nextStepClick}>下一步</button>
 					</Card>
 				</div>
 			);

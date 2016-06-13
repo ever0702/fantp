@@ -51,7 +51,7 @@ class SignHeader extends Component {
 									signout();
 								}
 							}>
-								<a  className="nav-link">登出</a>
+								<a  className="nav-link">退出</a>
 							</li>
 						]
 					}
