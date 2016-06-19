@@ -1,13 +1,14 @@
 import { actionConstantHelper, asyncActionHelper } from '../utils/actionCreateUtil';
 import { setPropertyWhenNodeChildrenContains } from '../utils/treeUtil';
 import { toggleStepNode as toggleStepNodeUtil } from '../../isomorphic/utils/stepUtils';
+import simpleStorage from '../utils/localStorage.util';
 
 const tripPlannerActions = actionConstantHelper({
-    sync: ['SET_START_FORM', 'TOGGLE_STEP_NODE', 'SET_PLAN_BASIC_FORM_VALUE'],
+    sync: ['SET_START_FORM', 'TOGGLE_STEP_NODE', 'SET_PLAN_BASIC_FORM_VALUE', 'RESET_TRIP_PLANNER'],
     async: ['FETCH_STEP_NODES', 'SAVE_TRIP_PLAN']
 });
 
-const {SET_START_FORM, TOGGLE_STEP_NODE, FETCH_STEP_NODES, SAVE_TRIP_PLAN, SET_PLAN_BASIC_FORM_VALUE } = tripPlannerActions;
+const {SET_START_FORM, TOGGLE_STEP_NODE, FETCH_STEP_NODES, SAVE_TRIP_PLAN, SET_PLAN_BASIC_FORM_VALUE, RESET_TRIP_PLANNER } = tripPlannerActions;
 
 const toggleStepNode = nodeId => ({
     type: TOGGLE_STEP_NODE,
@@ -29,7 +30,11 @@ const setPlanBasicFormValue = (key, value) => ({
     type: SET_PLAN_BASIC_FORM_VALUE,
     key, 
     value
-})
+});
+
+const resetTripPlanner = () => {
+    type: RESET_TRIP_PLANNER
+};
 
 const saveTripPlan = () => (dispatch, getState) => {
     let state = getState();
@@ -66,9 +71,10 @@ const defaultState = {
 const tripPlannerReducer = (state = defaultState, action) => {
     switch (action.type) {
         case SET_START_FORM:
+            let {type, ...rest} = action;
             return {
                 ...state,
-                ...action
+                ...rest
             }
         case SET_PLAN_BASIC_FORM_VALUE: {
             return {
@@ -76,6 +82,14 @@ const tripPlannerReducer = (state = defaultState, action) => {
                 [action.key]: action.value
             }
         }
+        case RESET_TRIP_PLANNER: 
+            return {
+                ...defaultState
+            };
+        case SAVE_TRIP_PLAN.SUCCESS: 
+            return {
+                ...defaultState
+            };
         case TOGGLE_STEP_NODE:
             {
                 let { flatSteps } = action.getState().stepMap;
@@ -94,4 +108,4 @@ const tripPlannerReducer = (state = defaultState, action) => {
     }
 }
 
-export {tripPlannerReducer, tripPlannerActions, toggleStepNode, fetchStepNodes, saveTripPlan, setStartForm, setPlanBasicFormValue };
+export {tripPlannerReducer, tripPlannerActions, toggleStepNode, fetchStepNodes, saveTripPlan, setStartForm, setPlanBasicFormValue, resetTripPlanner };

@@ -14,23 +14,23 @@ class AuthService {
                 if (user.password != inputPassword) {
                     return Promise.reject('密码不匹配');
                 }
-                let { username, email, _id } = user;
-                return { username, email, _id };
+                let { username, email, _id, role } = user;
+                return { username, email, _id, role };
             });
     }
 
     // @profile
-    signup({ username, password, email, gender }) {
+    signup({ username, password, email, gender, role }) {
 
-        // throw new Error('just for fun');
+        
         return this.checkUserUnique({ email })
             .then(unique => {
                 console.log('unique', unique)
                 if (!unique) return Promise.reject('该邮箱已被注册');
                 console.log(username, password, email, gender);
-                return userService.createOne({ username, password, email, gender });
+                return userService.createOne({ username, password, email, gender, role });
             })
-            .then(({ username, _id }) => ({ username, _id }));
+            .then(({ username, _id, role }) => ({ username, _id, role }));
     }
 
     // @profile

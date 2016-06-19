@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import NavBarLink from './NavBarLink';
 import {signoutSuccess} from '../auth/authActions';
-import {hashHistory} from 'react-router';
+import navHistory from '../utils/navHistory';
 import authService from '../auth/auth.service';
 
 @connect(
@@ -23,9 +23,12 @@ class SignHeader extends Component {
 		authService.signout()
 			.then(res => {
 				dispatch(signoutSuccess());
-				hashHistory.push('/signin');
+				navHistory.push('/signin');
 			})
-		// dispatch(signoutSuccess());
+	}
+
+	goSettingPage() {
+		navHistory.push('/setting');
 	}
 
 
@@ -39,8 +42,8 @@ class SignHeader extends Component {
 					{
 						loggedIn && 
 						[
-							<li className="nav-item" key="username">
-								<a href="#" className="nav-link">{username}</a>
+							<li className="nav-item" key="username" onClick={e=> this.goSettingPage()}>
+								<a  className="nav-link">{username}</a>
 							</li>,
 							<li className="nav-item" key="signout" onClick={
 								e => {
@@ -48,15 +51,15 @@ class SignHeader extends Component {
 									signout();
 								}
 							}>
-								<a href="#" className="nav-link">登出</a>
+								<a  className="nav-link">退出</a>
 							</li>
 						]
 					}
 					{
 						!loggedIn && 
 						[
-							<NavBarLink label="登录" key="signin" url="/signin"></NavBarLink>,
-							<NavBarLink label="注册" key="signup" url="/signup"></NavBarLink>
+							<NavBarLink key="signin" url="/signin">登录</NavBarLink>,
+							<NavBarLink key="signup" url="/signup">注册</NavBarLink>
 						]
 					}
 				</ul>	

@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import NavContainerShell from '../partials/NavContainerShell';
 import {saveTripPlan} from '../tripPlanner/tripPlanActionReducer';
-// import {spring, Motion, TransitionMotion} from 'react-motion';
-// import SimpleArrayTransition from '../commonComponents/SimpleTransition';
-console.log(spring)
+import {spring, Motion, TransitionMotion} from 'react-motion';
+import SimpleArrayTransition from '../commonComponents/SimpleTransition';
+import {resetTripPlanner} from '../tripPlanner/tripPlanActionReducer';
 
 let values = [];
 for(let i = 0; i<10; i++) {
@@ -15,7 +15,6 @@ for(let i = 0; i<10; i++) {
 }
 console.log(values);
 
-const spring = (x) => x;
 @connect()
 class PlanConfirmApp extends React.Component {
 	
@@ -27,6 +26,7 @@ class PlanConfirmApp extends React.Component {
 
 	createNewPlan() {
 		this.props.dispatch(saveTripPlan());
+		this.props.dispatch(resetTripPlanner());
 	}
 	
 	getDefaultStyles() {
@@ -86,7 +86,7 @@ class PlanConfirmApp extends React.Component {
 										</ul>
 									}
 								}
-							</TransitionMotion>
+							</TransitionMotion>*/}
 							<SimpleArrayTransition
 								key='key'
 								array={this.state.values}
@@ -102,7 +102,6 @@ class PlanConfirmApp extends React.Component {
 									}
 								}	
 							</SimpleArrayTransition>
-						*/}
 							<button onClick={this.createNewPlan} className="btn btn-primary-outline">保存你的规划</button>
 						</div>
 					</div>

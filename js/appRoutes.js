@@ -13,6 +13,9 @@ import SigninPage from './auth/SigninPage';
 import DashboardApp from './dashboard/DashboardApp';
 import PlanConfirmApp from './planConfirm/PlanConfirmApp';
 import PlanEditApp from './plan/PlanEditApp';
+import SettingApp from './setting/SettingApp';
+import BasicInfoSetting from './setting/BasicInfoSetting';
+import ChangePasswordSetting from './setting/ChangePasswordSetting';
 
 
 let store = configStore();
@@ -57,6 +60,10 @@ class AppRoutes extends React.Component{
 						<Route path='plan-confirm' component={PlanConfirmApp} />
 						<Route path='dashboard' component={DashboardApp} />
 						<Route path='plans/:planId' component={PlanEditApp} />
+						<Route path='setting' component={SettingApp} >
+							<IndexRoute component={BasicInfoSetting} />
+							<Route path="change-password" component={ChangePasswordSetting}></Route>
+						</Route>
 					</Route>
 				</Router>
 			</Provider>

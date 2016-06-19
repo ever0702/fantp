@@ -34,7 +34,7 @@ const NavBar = ({loggedIn, username, dispatch}) => {
 			        	</a>
 			        	<ul className="nav navbar-nav">
 							{
-								links.map(lk => <NavBarLink  key={lk.label} {...lk} />)
+								links.map(lk => <NavBarLink  key={lk.label} {...lk} >{lk.label}</NavBarLink>)
 							}
 			        	</ul>
 

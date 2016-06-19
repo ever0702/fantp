@@ -93,6 +93,23 @@ if (!Object.prototype.gatherProps) {
 	})
 }
 
+if (!Object.prototype.gatherNotNullProps) {
+	Object.defineProperty(Object.prototype, 'gatherNotNullProps', {
+		enumerable: false,
+		writable: false,
+		value: function() {
+			if (typeof this != 'object') return this;
+			let result = {};
+			for (let key of arguments) {
+				if(this[key]){
+					result[key] = this[key];
+				}
+			}
+
+			return result;
+		}
+	})
+}
 if (!Object.prototype.sliceProps) {
 	Object.defineProperty(Object.prototype, 'sliceProps', {
 		enumerable: false,

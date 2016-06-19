@@ -10,6 +10,7 @@ import authRouter from './auth/auth.router';
 import todoRouter from './todo/todo.router';
 import stepNodeRouter from './stepNode/stepNode.router';
 import planRouter from './plan/plan.router';
+import userRouter from './user/user.router';
 
 
 console.log("CURRENT NODE_ENV", process.env.NODE_ENV);
@@ -58,6 +59,7 @@ const configServerRoutes = (app, io) => {
     app.use('/todos', todoRouter(io));
     app.use('/stepNodes', stepNodeRouter(io));
     app.use('/plans', planRouter(io));
+    app.use('/users', userRouter(io));
 }
 
 

@@ -157,10 +157,7 @@ export default class SignupForm extends React.Component {
 								</div>
 							</LabelFieldSet>
 							*/}
-							<button type="submit" className="btn btn-primary-outline" onClick={e=> {
-								preSubmit();
-								this.submitForm();
-							}}>注册</button>
+							<button type="submit" className="btn btn-primary-outline">注册</button>
 							<small style={{marginLeft:'20px'}}><a className="cursor-pointer" onClick={e=> onSigninClick()}>已有账号</a></small>
 							{/*<button  className="btn btn-warning-outline" style={{marginLeft: '15px'}} onClick={e=> {
 								e.preventDefault();

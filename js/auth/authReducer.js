@@ -39,7 +39,10 @@ const authReducer = (state = defaultState, action) => {
             };
         case SIGN_OUT.SUCCESS:
             return {
-                ...defaultState
+                _id: null,
+                username: null,
+                email: null,
+                token: null
             };
         default:
             return state;

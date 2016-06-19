@@ -26,7 +26,8 @@ const colors = {
 	black: '#111',
 	lightdark: '#F2F2F5',
 
-	lightgreen: '#009688'
+	lightgreen: '#009688',
+	muted: '#B9B6B4'
 
 }
 

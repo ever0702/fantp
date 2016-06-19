@@ -3,6 +3,7 @@ import './tripPlannerApp.scss';
 import NavContainerShell from '../partials/NavContainerShell';
 import TreeView from '../commonComponents/TreeView';
 import TripPlannerDashboard from './cmps/TripPlannerDashboard';
+import Footer from '../partials/Footer';
 
 
 class TripPlannerApp extends React.Component {
@@ -20,6 +21,7 @@ class TripPlannerApp extends React.Component {
 							<TripPlannerDashboard />
 					</div>
 				</NavContainerShell>
+				<Footer />
 			</div>
 		);
 	}

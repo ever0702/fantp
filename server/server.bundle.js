@@ -107,7 +107,11 @@
 	                    (0, _app.configServerRoutes)(app, io);
 
 	                    app.get('/*', function (req, res) {
+<<<<<<< HEAD
 	                        res.sendFile(_path2.default.join(__dirname, '../public', 'index.html'));
+=======
+	                        res.sendFile(_path2.default.join('../public', 'index.html'), { root: __dirname });
+>>>>>>> 230ac3eba85977f547ba83c3c6ea38b5051fe1ec
 	                    });
 
 	                case 6:

@@ -17,8 +17,7 @@ class AuthService {
 		return get(`/check-user-unique?${params}`);
 	}
 
-	@
-	profile
+	@profile
 	signup(body) {
 		return post('/signup', body)
 			.then(result => {

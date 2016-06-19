@@ -1,10 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, IndexLink} from 'react-router';
+import colors from '../styleRoot';
 
 
 const NavBarLink = (props) => (
 		<li className="nav-item">
-			<Link activeStyle={{color:'yellow'}} {...props} className={props.className +" nav-link" } to={props.url}>{props.label}</Link>
+		{
+			props.indexLink&&
+			<IndexLink activeStyle={props.activeStyle||{color:colors.orange}} {...props} className={props.className +" nav-link" } to={props.url}>{props.children}</IndexLink>
+		}
+		{
+			!props.indexLink&&
+			<Link activeStyle={props.activeStyle||{color:colors.orange}} {...props} className={props.className +" nav-link" } to={props.url}>{props.children}</Link>
+		}
 		</li>
 	);
 

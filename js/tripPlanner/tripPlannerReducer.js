@@ -19,9 +19,10 @@ const defaultState = {
 const tripPlannerReducer = (state = defaultState, action) => {
     switch (action.type) {
         case SET_START_FORM:
+            let {type, ...rest} = action;
             return {
                 ...state,
-                ...action
+                ...rest
             }
         case TOGGLE_STEP_NODE:
             {

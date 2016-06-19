@@ -1,21 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Card from '../../commonComponents/Card';
+import SummaryItem from './SummaryItem';
 
 const isNull = (value, ifIsNullValue) => value!=null?value:ifIsNullValue;
 
 const mapState = state => {
-	let {rootNodes, activePaths, steps} = state.tripPlanner;
-	let paths = isNull(rootNodes, []).map(nd => ({
-			root: steps[nd], 
-			path:isNull(activePaths[nd], []).map(ph => ({
-				id: steps[ph].id,
-				label: steps[ph].label
-			})) 
-		})
-	);
+
+	let {rootNodes, flatSteps} = state.stepMap;
 	return {
-		paths
+		rootNodes, flatSteps
 	};
 }
 @connect(mapState)
@@ -25,20 +19,25 @@ class TripSummary extends React.Component {
 	}
 
 	render() {
-		let {paths, nextStepClick} = this.props;
-		console.log(paths);
+		let {activeNodes, rootNodes, flatSteps, nextStepClick} = this.props;
+		console.log(activeNodes);
 		return (
 				<div className="trip-summary">
-					<Card title="旅程预算">
-						
+					<Card title="">
+						<h3 className="summary-title">旅程预算</h3>
 						{
-							paths.map(ph => (
-								<p>{
-									ph.path.map(node => <button>{node.label}</button>)
-								}</p>
-							))
-						}	
-						<button className="btn btn-success btn-block" onClick={nextStepClick}>下一步</button>
+							rootNodes.map((rn, index) => {
+								return <SummaryItem index={index} rootId={rn} activeNodes={activeNodes} />
+							})
+						}
+						<Card>
+							
+						<div className="row">
+							<div className="col-sm-3 title-col">预计总算</div>
+							<div className="col-sm-9">$4550 - $5440</div>
+						</div>	
+						</Card>
+						<button className="btn btn-success-outline btn-block" onClick={nextStepClick}>下一步</button>
 					</Card>
 				</div>
 			);
