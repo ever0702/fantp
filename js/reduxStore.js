@@ -4,7 +4,7 @@ import accessStoreMiddleware from './middlewares/accessStoreMiddleware';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
 import storage from './utils/localStorage.util';
-import throttle from 'lodash/throttle';
+// import throttle from 'lodash/throttle';
 
 const REDUX_STATE = 'REDUX_STATE';
 
@@ -22,7 +22,7 @@ function configStore() {
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
 
-    store.subscribe(throttle(() => saveStateToLocalStorage(store.getState()), 1000));
+    store.subscribe(() => saveStateToLocalStorage(store.getState()));
 
     if (module.hot) {
         module.hot.accept('./rootReducer', () => {

@@ -99,14 +99,14 @@
 
 	                case 2:
 	                    server = app.listen(_app.port, function () {
-	                        return console.log('Listening on Port ', _app.port);
+	                        return console.log('Listening on Port ' + _app.port);
 	                    });
 	                    io = _socket2.default.listen(server);
 
 
 	                    (0, _app.configServerRoutes)(app, io);
 
-	                    app.get('*', function (req, res) {
+	                    app.get('/*', function (req, res) {
 	                        res.sendFile(_path2.default.join(__dirname, '../public', 'index.html'));
 	                    });
 

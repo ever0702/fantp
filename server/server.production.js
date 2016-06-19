@@ -13,16 +13,15 @@ configServer(app);
 
 (async() => {
 
+    await connectToDB();
 
-	await connectToDB();
-
-    let server = app.listen(port, () => console.log('Listening on Port ', port));
+    let server = app.listen(port, () => console.log(`Listening on Port ${port}`));
 
     let io = socketio.listen(server);
 
     configServerRoutes(app, io);
 
-    app.get('*', (req, res) => {
+    app.get('/*', (req, res) => {
         res.sendFile(path.join(__dirname, '../public', 'index.html'));
     })
 
