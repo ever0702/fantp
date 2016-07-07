@@ -19,7 +19,7 @@ class TripSummary extends React.Component {
 	}
 
 	render() {
-		let {activeNodes, rootNodes, flatSteps, nextStepClick} = this.props;
+		let {activeNodes, rootNodes, flatSteps, nextStepClick, btnText, btnClick} = this.props;
 		console.log(activeNodes);
 		return (
 				<div className="trip-summary">
@@ -37,7 +37,7 @@ class TripSummary extends React.Component {
 							<div className="col-sm-9">$4550 - $5440</div>
 						</div>	
 						</Card>
-						<button className="btn btn-success-outline btn-block" onClick={nextStepClick}>下一步</button>
+						<button className="btn btn-success-outline btn-block" onClick={nextStepClick}>{btnText||'下一步'}</button>
 					</Card>
 				</div>
 			);

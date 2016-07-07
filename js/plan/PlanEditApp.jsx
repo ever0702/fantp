@@ -34,11 +34,8 @@ class PlanEditApp extends React.Component {
 	}
 
 	componentDidMount() {
-		const { planId } = this.props.params;      
-		if(planId) {
-			this.props.dispatch(fetchSinglePlan(planId));
-		}
 		window.addEventListener('resize', this.handleResize);
+		console.log(this.node);
 	}
 
 	onBasicFormValueChange(key, value) {
@@ -51,6 +48,13 @@ class PlanEditApp extends React.Component {
 
 	handleResize(){
 		this.setState({windowWidth: window.innerWidth});
+	}
+
+	componentWillMount() {
+		const { planId } = this.props.params;      
+		if(planId) {
+			this.props.dispatch(fetchSinglePlan(planId));
+		}
 	}
 
 	componentWillUnmount() {
@@ -80,7 +84,7 @@ class PlanEditApp extends React.Component {
 						</div>
 
 						<div className="col-md-3">
-							<TripSummary activeNodes={editPlan.activeNodes}></TripSummary>
+							<TripSummary activeNodes={editPlan?editPlan.activeNodes: []}></TripSummary>
 						</div>
 					</div>
 				</div>

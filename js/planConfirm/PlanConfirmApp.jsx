@@ -71,37 +71,7 @@ class PlanConfirmApp extends React.Component {
 				<NavContainerShell>
 					<div className="plan-confirm-page">
 						<div className="container">
-							{/*<TransitionMotion
-								defaultStyles={this.getDefaultStyles()}
-								styles={this.getStyles()}
-								willLeave={this.willLeave}
-								willEnter={this.willEnter}
-							>
-								{
-									styles => {
-										return <ul>
-										{
-											styles.map(({key, value, style}) => <li style={style} key={key}>{value +'ddd'}</li>)
-										}
-										</ul>
-									}
-								}
-							</TransitionMotion>*/}
-							<SimpleArrayTransition
-								key='key'
-								array={this.state.values}
-								dynamics={this.state.values}
-							>
-							{
-									styles => {
-										return <ul>
-										{
-											styles.map(item => <li style={item.style} key={item.key}>{JSON.stringify(item)}</li>)
-										}
-										</ul>
-									}
-								}	
-							</SimpleArrayTransition>
+							<h3>Are you sure to Save your plan?</h3>
 							<button onClick={this.createNewPlan} className="btn btn-primary-outline">保存你的规划</button>
 						</div>
 					</div>

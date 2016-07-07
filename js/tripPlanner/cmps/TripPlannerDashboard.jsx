@@ -57,7 +57,6 @@ class TripPlannerDashboard extends React.Component {
 	}
 
 
-
 	nextStepClick(){
 		this.props.doAuth().then(v => {
 			console.log(v, ' authed');

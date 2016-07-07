@@ -27,7 +27,6 @@ const authAware = passedIn => WrappedCmp => {
 			this.doAuth = this.doAuth.bind(this);
 	    }
 
-
 		openSignupModal() {
 			this.setState({showModal: true});
 		}
