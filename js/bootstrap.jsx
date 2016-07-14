@@ -9,6 +9,7 @@ import './styleRoot';
 import '../isomorphic/utils/objectPolyfill';
 
 
+
 render(
 		<AppContainer>
 			<AppRoutes store={store}/>
@@ -19,5 +20,4 @@ render(
 if(module.hot) {
 	module.hot.accept();
 }
-
 

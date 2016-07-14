@@ -27,6 +27,11 @@ class EditableInput extends React.Component {
     }
 
     save(e) {
+        if(this.props.validate) {
+            if(!this.props.validate(this.state.edittingValue)) {
+                return;
+            }
+        }
     	this.props.onValueChange(this.state.edittingValue);
     	this.endEditting();
     }

@@ -2,11 +2,18 @@ import React from 'react';
 import simpleForm from '../highOrderComponents/simpleForm';
 import {connect} from 'react-redux';
 import {setStartForm} from '../tripPlanner/tripPlanActionReducer';
+import {isInteger, isPositiveInteger} from '../../isomorphic/utils/typeUtils';
 
 const validate = ({peopleCount, daysCount, averageAge}) => {
 	let errs = {}
-	if(!Number.isInteger(peopleCount) || parseInt(peopleCount)<0 ) {
+	if(!isPositiveInteger(peopleCount) ) {
 		errs.peopleCount='请输入合适的人数';
+	}
+	if(!isPositiveInteger(daysCount) ) {
+		errs.daysCount='请输入合适的Days';
+	}
+	if(!isPositiveInteger(averageAge) ) {
+		errs.averageAge='请输入合适的Age';
 	}
 	return errs;
 };
@@ -28,7 +35,7 @@ const indexFormHOC = (mapStateToFormFields, submit) => WrappedCmp => {
 
 		submitForm() {
 			
-			let {fields, isFormValid, dispatch, onHomeStartFormSuccess} = this.props;
+			let {fields, isFormValid, preSubmit, dispatch, onHomeStartFormSuccess} = this.props;
 			let {peopleCount, daysCount, averageAge} = this.props;
 
 			let form = {
@@ -37,13 +44,12 @@ const indexFormHOC = (mapStateToFormFields, submit) => WrappedCmp => {
 				averageAge: averageAge? averageAge.value: null
 			};
 
+			preSubmit();
+			if(!isFormValid)	{
+				return;
+			}
 			submit&&submit(dispatch, form);
 
-			// dispatch(setStartForm({
-			// 	peopleCount: peopleCount? peopleCount.value: null,
-			// 	daysCount: daysCount? daysCount.value: null,
-			// 	averageAge: averageAge? averageAge.value: null
-			// }));
 			if(onHomeStartFormSuccess)	{
 				onHomeStartFormSuccess();
 			}

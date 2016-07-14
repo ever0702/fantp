@@ -3,6 +3,7 @@ import Card from './Card';
 import EditableInput from './EditableInput';
 import InlineLabelFieldSet from './InlineLabelFieldSet';
 import PlanStepsEditForm from '../plan/cmps/PlanStepsEditForm.jsx'
+import {isPositiveInteger} from '../../isomorphic/utils/typeUtils';
 
 const PlanEditForm = props => {
 
@@ -16,11 +17,11 @@ const PlanEditForm = props => {
 					<h5 style={{color:'orange'}}>美国之行计划</h5>
 
 					<span style={{marginRight:10}}>预计旅行人数</span>
-					<EditableInput editting={!peopleCount} value={peopleCount||0} onValueChange={value=>onBasicFormValueChange('peopleCount', value)}></EditableInput>
+					<EditableInput editting={!peopleCount} value={peopleCount||0} validate={value => isPositiveInteger(value)} onValueChange={value=>onBasicFormValueChange('peopleCount', value)}></EditableInput>
 					<span style={{marginRight:10, marginLeft: 10}}>人</span>
-					<EditableInput editting={!daysCount} value={daysCount||0} onValueChange={value=>onBasicFormValueChange('daysCount', value)}></EditableInput>
+					<EditableInput editting={!daysCount} value={daysCount||0} validate={value => isPositiveInteger(value)} onValueChange={value=>onBasicFormValueChange('daysCount', value)}></EditableInput>
 					<span style={{marginRight:10, marginLeft: 10}}>天, 平均</span>
-					<EditableInput editting={!averageAge} value={averageAge||0} onValueChange={value=>onBasicFormValueChange('averageAge', value)}></EditableInput>
+					<EditableInput editting={!averageAge} value={averageAge||0} validate={value => isPositiveInteger(value)} onValueChange={value=>onBasicFormValueChange('averageAge', value)}></EditableInput>
 					<span style={{marginRight:10, marginLeft: 10}}>岁</span>
 					{/*<InlineLabelFieldSet label="人数">
 					      <input className="form-control" type="text" onChange={
