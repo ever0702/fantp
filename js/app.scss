@@ -65,6 +65,10 @@ body.common {
     .float-right {
         float: right;
     }
+
+    input[type="radio"] {
+        margin-right: 10px;
+    }
 }
 
 body.hoc-styles {

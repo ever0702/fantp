@@ -29,41 +29,11 @@ class PlanConfirmApp extends React.Component {
 		this.props.dispatch(resetTripPlanner());
 	}
 	
-	getDefaultStyles() {
-		return this.state.values.map(item => ({...item, key:String(item.value), style:{height:0, opacity: 1}}));
-	}
-
 	handleAdd(value) {
 		let {values} = this.state;
 		values = values.push({value});
 		this.setState({values});
 	}
-	getStyles() {
-		return this.state.values.map(item => {
-			return {
-				...item,
-				key: String(item.value),
-				style: {
-					height: spring(100),
-					opacity: spring(1)
-				}
-			}
-		})		
-	}
-	
-	willEnter() {
-	return {
-	  height: 0,
-	  opacity: 1,
-	};
-  }
-
-  willLeave() {
-	return {
-	  height: spring(0),
-	  opacity: spring(0),
-	};
-  }
 
 	render() {
 		return (

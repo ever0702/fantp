@@ -53,14 +53,13 @@ class PlanStepRaw extends React.Component {
 			let half = Math.floor(label.length/2);
 			let firstHalf = label.substr(0, half);
 			let secondHalf = label.substr(half);
-			styles.fontSize -=2
+			styles.fontSize -=2;
 
 			return [
 				<text {...config} style={styles} y={circle.cy}>{firstHalf}</text>,
 				<text {...config} style={styles} y={circle.cy+fontSize}>{secondHalf}</text>
 			]
 		}
-
 
 		if(isActiveNodeGroup || active || isRoot) {
 

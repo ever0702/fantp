@@ -12,7 +12,7 @@ const validate = ({peopleCount, daysCount, averageAge}) => {
 	if(!isPositiveInteger(daysCount) ) {
 		errs.daysCount='请输入合适的Days';
 	}
-	if(!isPositiveInteger(averageAge) ) {
+	if(!isPositiveInteger(averageAge) && parseInt(averageAge) > 90) {
 		errs.averageAge='请输入合适的Age';
 	}
 	return errs;
@@ -34,7 +34,6 @@ const indexFormHOC = (mapStateToFormFields, submit) => WrappedCmp => {
 		}
 
 		submitForm() {
-			
 			let {fields, isFormValid, preSubmit, dispatch, onHomeStartFormSuccess} = this.props;
 			let {peopleCount, daysCount, averageAge} = this.props;
 
@@ -45,7 +44,7 @@ const indexFormHOC = (mapStateToFormFields, submit) => WrappedCmp => {
 			};
 
 			preSubmit();
-			if(!isFormValid)	{
+			if(!isFormValid) {
 				return;
 			}
 			submit&&submit(dispatch, form);

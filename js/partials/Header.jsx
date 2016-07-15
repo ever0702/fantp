@@ -9,7 +9,8 @@ const links = [{
 	url: '/home'
 },{
 	label: 'Dashboard',
-	url: '/dashboard'
+	url: '/dashboard',
+	authRequired: true
 }, {
 	label: '路线规划',
 	url: '/planner'
@@ -34,7 +35,7 @@ const NavBar = ({loggedIn, username, dispatch}) => {
 			        	</a>
 			        	<ul className="nav navbar-nav">
 							{
-								links.map(lk => <NavBarLink  key={lk.label} {...lk} >{lk.label}</NavBarLink>)
+								links.filter(lk => loggedIn || !lk.authRequired).map(lk => <NavBarLink  key={lk.label} {...lk} >{lk.label}</NavBarLink>)
 							}
 			        	</ul>
 

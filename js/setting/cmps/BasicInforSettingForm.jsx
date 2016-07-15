@@ -9,7 +9,7 @@ const mapStateToFormData = state => ({
 });
 
 @simpleForm({
-	fields: ['username', 'email', 'areaCode', 'phone'],
+	fields: ['username', 'email', 'areaCode', 'phone', 'gender'],
 	mapStateToFormData
 })
 class BasicInforSettingForm extends React.Component {
@@ -29,7 +29,7 @@ class BasicInforSettingForm extends React.Component {
 	}
 
 	render() {
-		let {username, email, areaCode, phone, preSubmit} = this.props;
+		let {username, email, gender, areaCode, phone, preSubmit, hasSubmitted} = this.props;
 		return (
 			<div className="mui">
 				<Card style={{border:'none'}}>
@@ -41,6 +41,18 @@ class BasicInforSettingForm extends React.Component {
 						<LabelFieldSet label="名字">
 							<input type="text" className="form-control" {...username} />	
 						</LabelFieldSet>
+						<LabelFieldSet label="Gender" err={(hasSubmitted||gender.touched)&&gender.error} >
+								<div className="radio">
+								  <label className="col-md-3">
+								    <input {...gender} type="radio" name="gender" value="M"  />
+								    Male
+								  </label>
+								  <label>
+								    <input {...gender} type="radio" name="gender" value="F" />
+								    Female
+								  </label>
+								</div>
+							</LabelFieldSet>
 						<LabelFieldSet label="联系电话">
 							<div >
 								<input type="text" className="form-control col-md-3" style={{float:'left', width: '20%'}} placeholder="Area Code"/>
