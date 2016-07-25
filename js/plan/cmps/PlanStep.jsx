@@ -97,7 +97,7 @@ class PlanStepRaw extends React.Component {
 									py: circle.cy
 								})
 								return (
-									<PlanStep  {...this.props} {...sp} activeNodes={activeNodes} onNodeClick={onNodeClick} level={level+1} {...result}/>
+									<PlanStep  {...this.props} {...sp} kep={sp._id} activeNodes={activeNodes} onNodeClick={onNodeClick} level={level+1} {...result}/>
 								)}
 							)
 						}

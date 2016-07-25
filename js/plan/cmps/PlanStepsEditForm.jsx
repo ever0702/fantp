@@ -10,7 +10,7 @@ class PlanStepsEditForm extends React.Component {
 		super(props);
 
 		this.state = {
-			activeNodeGroup : props.rootNodes&&props.rootNodes[0]._id
+			activeNodeGroup : props.rootNodes&&props.rootNodes[0]&&props.rootNodes[0]._id
 		}
 
 		this.mouseOverRoot = this.mouseOverRoot.bind(this);
