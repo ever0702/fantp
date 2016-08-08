@@ -4,6 +4,7 @@ import EditableInput from './EditableInput';
 import InlineLabelFieldSet from './InlineLabelFieldSet';
 import PlanStepsEditForm from '../plan/cmps/PlanStepsEditForm.jsx'
 import {isPositiveInteger} from '../../isomorphic/utils/typeUtils';
+import PickCityForm from '../pickCity/PickCityForm'
 
 const PlanEditForm = props => {
 
@@ -42,6 +43,7 @@ const PlanEditForm = props => {
 					
 				</Card>
 			</div>
+			<PickCityForm></PickCityForm>
 			<PlanStepsEditForm {...props}></PlanStepsEditForm>
 		</div>
 	);
