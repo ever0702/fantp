@@ -32,7 +32,12 @@ class SummaryItem extends React.Component {
 						{
 							flatSteps[rootId].descendents
 								.filter(dc => activeNodes.indexOf(dc) >= 0)
-								.map(id => <div>{flatSteps[id].label}</div>)
+								.map(id => (<div>{flatSteps[id].label}
+										{flatSteps[id].price
+										&&
+										<span style={{marginLeft:20, color:'orange', fontWeight:'bold'}}>( ${flatSteps[id].price} )</span>
+										}
+									</div>))
 						}
 						</div>
 						

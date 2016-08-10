@@ -1,3 +1,5 @@
+import {randrange} from './genUtils';
+
 const constructFlatSteps = arrayStepTree => {
 
 	let stepArray = arrayStepTree;
@@ -19,6 +21,10 @@ const constructFlatSteps = arrayStepTree => {
 					asc.descendents = (asc.descendents||[] ).concat(curNode.childSteps)
 				}
 				inner(curNode.childSteps, newAscs);
+			} else {
+				if(!curNode.price){
+					curNode.price = randrange(50, 350, 25);
+				}
 			}
 		});
 	}

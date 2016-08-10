@@ -21,6 +21,9 @@ class TripSummary extends React.Component {
 	render() {
 		let {activeNodes, rootNodes, flatSteps, nextStepClick, btnText, btnClick} = this.props;
 		console.log(activeNodes);
+		// let total = activeNodes.reduce((acc, cur) => acc + flatSteps[cur].price || 0, 0);
+		let total = activeNodes.map(nd => flatSteps[nd].price || 0).reduce((acc, cur) => acc+cur)
+		console.log(total)
 		return (
 				<div className="trip-summary">
 					<Card title="">
@@ -34,7 +37,7 @@ class TripSummary extends React.Component {
 							
 						<div className="row">
 							<div className="col-sm-3 title-col">预计总算</div>
-							<div className="col-sm-9">$4550 - $5440</div>
+							<div className="col-sm-9">${total} - ${Math.floor(total*1.2)}</div>
 						</div>	
 						</Card>
 						<button className="btn btn-success-outline btn-block" onClick={nextStepClick}>{btnText||'下一步'}</button>
