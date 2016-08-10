@@ -22,7 +22,7 @@ class TripSummary extends React.Component {
 		let {activeNodes, rootNodes, flatSteps, nextStepClick, btnText, btnClick} = this.props;
 		console.log(activeNodes);
 		// let total = activeNodes.reduce((acc, cur) => acc + flatSteps[cur].price || 0, 0);
-		let total = activeNodes.map(nd => flatSteps[nd].price || 0).reduce((acc, cur) => acc+cur)
+		let total = activeNodes.map(nd => flatSteps[nd].price || 0).reduce((acc, cur) => acc+cur, 0)
 		console.log(total)
 		return (
 				<div className="trip-summary">
