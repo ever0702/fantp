@@ -21,8 +21,8 @@ let port = 3500;
 const config = {
     secret: 'TheBestIsYetToBe',
     tokenExpiresInMinutes: 20,
-    database: 'mongodb://localhost:27017/relay_graph'
-        // database: 'mongodb://root:1234@ds023912.mlab.com:23912/fantp_dev'
+    // database: 'mongodb://localhost:27017/relay_graph'
+        database: 'mongodb://root:1234@ds023912.mlab.com:23912/fantp_dev'
 };
 
 if(process.env.NODE_ENV != 'dev') {
