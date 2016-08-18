@@ -26,7 +26,7 @@ class PlanStepRaw extends React.Component {
     	return true;
     }
     render() {
-    	let {_id, active, label, subTitle, level, activeNodes,  childStepsObj,  onNodeClick, index, circle, line, angle, fillColor, svgWidth, svgHeight, isActiveNodeGroup} = this.props;
+    	let {_id, active, label, disabled, subTitle, level, activeNodes,  childStepsObj,  onNodeClick, index, circle, line, angle, fillColor, svgWidth, svgHeight, isActiveNodeGroup} = this.props;
     	let isRoot = level == 1;
 
     	const className = `plan-step ${active?'active-step':'not-active-step'}`;
@@ -65,8 +65,10 @@ class PlanStepRaw extends React.Component {
 
 	        return (
 				<g style={{cursor:'pointer'}} onClick={e=> {
-					e.stopPropagation();
-					onNodeClick(_id)} 
+					if(!disabled){
+						e.stopPropagation();
+						onNodeClick(_id)} 
+					}
 				}>
 
 						<circle {...circle} strokeWidth={11-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'}></circle>

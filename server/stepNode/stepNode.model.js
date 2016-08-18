@@ -10,7 +10,8 @@ let StepNodeSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'StepNode'
 	},
-	subTitle: {
+	price: Number,
+ 	subTitle: {
 		type: String,
 		trim: true
 	},
