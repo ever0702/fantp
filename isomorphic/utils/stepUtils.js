@@ -26,7 +26,7 @@ const constructFlatSteps = arrayStepTree => {
 					curNode.price = randrange(50, 350, 25);
 				}
 				else {
-					console.log('00000000000000 has a price:', curNode, curNode.price)
+					// console.log('00000000000000 has a price:', curNode, curNode.price)
 				}
 			}
 		});

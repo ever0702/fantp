@@ -48,6 +48,7 @@
     "react-redux": "^4.4.1",
     "react-router": "^2.3.0",
     "react-router-transition": "0.0.5",
+    "react-tooltip": "^3.1.6",
     "redbox-react": "^1.2.3",
     "redux": "^3.3.1",
     "redux-form": "^5.0.1",

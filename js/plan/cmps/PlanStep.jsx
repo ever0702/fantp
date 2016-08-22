@@ -5,6 +5,7 @@ import {isNodeActive} from '../../../isomorphic/utils/stepUtils';
 import {calculateNodePositions} from '../nodePositionHelper';
 import colors from '../../styleRoot';
 import {Motion, TransitionMotion} from 'react-motion';
+import ReactTooltip from 'react-tooltip'
 
 
 class PlanStepRaw extends React.Component {
@@ -72,6 +73,7 @@ class PlanStepRaw extends React.Component {
 				}>
 
 						<circle {...circle} strokeWidth={11-2.5*level} stroke={active?'#8F0D17':'gray'} fill={(level==1&&fillColor)||'white'}></circle>
+
 						<line {...line} stroke={active?"#8F0D17":"gray"} strokeWidth="5"></line>
 						{
 							isRoot&&
@@ -83,6 +85,10 @@ class PlanStepRaw extends React.Component {
 						}
 						{
 							smartRenderText()
+						}
+						{
+							subTitle &&
+							<title>{subTitle}</title>
 						}
 						{
 							active&&
