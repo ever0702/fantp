@@ -5,7 +5,6 @@ import {isNodeActive} from '../../../isomorphic/utils/stepUtils';
 import {calculateNodePositions} from '../nodePositionHelper';
 import colors from '../../styleRoot';
 import {Motion, TransitionMotion} from 'react-motion';
-import ReactTooltip from 'react-tooltip'
 
 
 class PlanStepRaw extends React.Component {
