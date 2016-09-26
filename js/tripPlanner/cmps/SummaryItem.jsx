@@ -24,18 +24,22 @@ class SummaryItem extends React.Component {
 						<div className="">{flatSteps[rootId].label}</div>
 					</div>
 					<div className="col-sm-9 content-col">
-						<div className="icon">
+						<div className="icon col-sm-2">
 							<i className={'fa fa-'+ iconArr[index]}></i>
 						</div>
-						<div className="content-text">
+						<div className="content-text col-sm-10">
 							
 						{
 							flatSteps[rootId].descendents
 								.filter(dc => activeNodes.indexOf(dc) >= 0)
 								.map(id => (<div>{flatSteps[id].label}
-										{flatSteps[id].price
+										{
+											flatSteps[id].subTitle&&
+											<span style={{fontFamily:'cursive'}}> ({flatSteps[id].subTitle})</span>
+										}
+										{flatSteps[id].price!=null
 										&&
-										<span style={{marginLeft:20, color:'orange', fontWeight:'bold'}}>( ${flatSteps[id].price} )</span>
+										<span className="pull-right" style={{marginLeft:20, color:'orange', fontWeight:'bold'}}> ${flatSteps[id].price} </span>
 										}
 									</div>))
 						}

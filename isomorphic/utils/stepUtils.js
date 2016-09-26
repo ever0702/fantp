@@ -2,7 +2,7 @@ import {randrange} from './genUtils';
 
 const constructFlatSteps = arrayStepTree => {
 
-	let stepArray = arrayStepTree;
+	let stepArray = arrayStepTree.sort((a, b) => a.order - b.order);
 	let flatSteps = {};
 	for (let s of stepArray) {
 		if (s.childSteps && s.childSteps.length == 0) s.childSteps = null;
@@ -22,8 +22,11 @@ const constructFlatSteps = arrayStepTree => {
 				}
 				inner(curNode.childSteps, newAscs);
 			} else {
-				if(!curNode.price){
+				if(curNode.price == null){
 					curNode.price = randrange(50, 350, 25);
+				}
+				else {
+					// console.log('00000000000000 has a price:', curNode, curNode.price)
 				}
 			}
 		});

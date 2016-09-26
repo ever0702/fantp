@@ -17,6 +17,7 @@ const stepNodeRouter = io => {
 				steps.map(sp => ({
 					_id: sp._id,
 					label: sp.label,
+					price: sp.price,
 					order: sp.order,	
 					subTitle: sp.subTitle,
 					parentStep: sp.parent,

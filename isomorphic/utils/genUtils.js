@@ -21,6 +21,7 @@ let take = function * (n, gen) {
 	for (let v of gen) {
 		if (counter < n) {
 			yield v;
+			count ++;
 			continue;
 		}
 		break;
