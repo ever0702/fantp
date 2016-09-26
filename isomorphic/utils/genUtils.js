@@ -27,6 +27,20 @@ let take = function * (n, gen) {
 	}
 }
 
+let all = iter => {
+	for (let i of iter) {
+		if(!i) return false;
+	}
+	return true;
+}
+
+let any = iter => {
+	for (let i of iter) {
+		if(i) return true;
+	}
+	return false;
+}
+
 export {
 	range, randrange, take
 };
