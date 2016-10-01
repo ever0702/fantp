@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "babel-node": "babel-node server/server.js",
+    "babel-node": "babel-node ./server/server.js",
     "start": "if-env NODE_ENV=production&&npm run start:production||npm run start:dev",
     "start:dev": "nodemon  --exec  npm run babel-node",
     "start:production": "node server/server.bundle.js",
